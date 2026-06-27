@@ -1,0 +1,58 @@
+/* ===== General Styles ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #222;
+
+  /* CSS GRID on body (required) */
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 100vh;
+}
+
+/* ===== Header ===== */
+header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* ===== Navigation (FLEX required) ===== */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;              /* Flexbox */
+  justify-content: center;
+  gap: 20px;
+
+  background-color: #34495e;
+}
+
+nav a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  background-color: #1abc9c;
+  border-radius: 5px;
+}
+
+/* ===== Main ===== */
+main {
+  padding: 20px;
+}
+
+/* ===== Footer ===== */
+footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
