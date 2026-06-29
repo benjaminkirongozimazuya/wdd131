@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
+/* --- Reset --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,21 +11,25 @@ body {
     font-family: 'Montserrat', sans-serif;
     background-color: #ffffff;
     color: #000000;
+    line-height: 1.6;
 }
 
-/* Header & Menu */
+/* --- Header Layout --- */
 header {
     background-color: #1e557e;
-    color: white;
+    color: #ffffff;
     text-align: center;
 }
 
 #course-title {
-    display: block;
-    padding: 15px 0;
-    font-size: 1.4rem;
+    display: block; /* Required: Allows easy centering and vertical spacing */
+    padding: 20px 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
+/* --- Navigation (Using CSS Flexbox) --- */
 nav {
     background-color: #333333;
 }
@@ -35,77 +40,80 @@ nav ul {
     justify-content: space-around;
     max-width: 900px;
     margin: 0 auto;
-    padding: 10px 0;
+    padding: 12px 10px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 nav a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     font-size: 1.1rem;
-    padding: 5px 15px;
-    transition: background 0.3s;
+    padding: 6px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 nav a:hover {
     background-color: #555555;
 }
 
-/* Main Layout */
+/* --- Main Layout --- */
 main {
     max-width: 1000px;
-    margin: 20px auto;
-    padding: 0 15px;
+    margin: 30px auto;
+    padding: 0 20px;
 }
 
 main h1 {
     text-align: center;
-    margin: 20px 0;
-    font-weight: 400;
-    font-size: 2.2rem;
+    margin-bottom: 30px;
+    font-weight: 500;
+    font-size: 2.3rem;
+    color: #333333;
 }
 
-/* CSS Grid pour les deux blocs principaux */
+/* --- Asymmetric Layout Grid (Using CSS Grid for Cards) --- */
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 25px;
 }
 
 @media (min-width: 768px) {
     .grid-container {
-        grid-template-columns: 1.4fr 1fr; /* Le bloc "About Me" est plus large */
+        grid-template-columns: 1.4fr 1fr; /* About Me card is wider than Resources track */
     }
 }
 
-/* Style des Cartes */
+/* --- Card Styles --- */
 .card {
     border: 1px solid #cccccc;
     border-radius: 8px;
     overflow: hidden;
     background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .card h2 {
     background-color: #1e557e;
-    color: white;
+    color: #ffffff;
     text-align: center;
-    padding: 10px;
-    font-size: 1.2rem;
+    padding: 12px;
+    font-size: 1.25rem;
     font-weight: 600;
 }
 
-/* Contenu interne de la carte About Me */
+/* --- About Me Card Internals --- */
 .card-content-top {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     padding: 20px;
     align-items: flex-start;
 }
 
 .card-content-top p {
     font-size: 0.95rem;
-    line-height: 1.5;
     flex: 1;
 }
 
@@ -120,20 +128,35 @@ main h1 {
     text-align: center;
     margin: 15px 0 5px 0;
     font-size: 1.1rem;
+    font-weight: 600;
 }
 
 hr {
-    width: 80%;
-    margin: 0 auto 15px auto;
+    width: 85%;
+    margin: 0 auto 20px auto;
     border: 0;
     border-top: 1px solid #cccccc;
 }
 
 .card-content-bottom {
     display: flex;
-    gap: 15px;
-    padding: 0 20px 20px 20px;
+    gap: 20px;
+    padding: 0 20px 25px 20px;
     align-items: center;
+}
+
+.card-content-bottom p {
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+/* Figure and Flag Caption Layout */
+.flag-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    max-width: 120px;
 }
 
 .flag-img {
@@ -142,38 +165,50 @@ hr {
     border: 1px solid #cccccc;
 }
 
-.card-content-bottom p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    flex: 1;
+.flag-caption {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #555555;
+    text-align: center;
+    line-height: 1.2;
 }
 
-/* Liste des ressources (Carte de droite) */
+/* --- Resources Link List --- */
 .resources-list {
     padding: 30px 40px;
+    list-style-type: disc;
 }
 
 .resources-list li {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 .resources-list a {
     color: #0000ee;
     text-decoration: underline;
+    font-size: 1rem;
 }
 
-/* Footer */
+.resources-list a:hover {
+    color: #0000aa;
+}
+
+/* --- Footer Area --- */
 footer {
     background-color: #1e557e;
-    color: white;
+    color: #ffffff;
     text-align: center;
-    padding: 15px 0;
-    margin-top: 40px;
+    padding: 20px 10px;
+    margin-top: 50px;
     font-size: 0.95rem;
 }
 
+footer p {
+    margin: 4px 0;
+}
+
 #lastModified {
-    color: #ffff00; /* Couleur jaune pour correspondre à l'image */
-    margin-top: 5px;
+    color: #ffff00; /* Distinct bright yellow matching the model mockup */
     font-size: 0.85rem;
+    font-weight: 500;
 }
