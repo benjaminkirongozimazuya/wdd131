@@ -2,12 +2,11 @@
    1. RESET & BASE STYLES
    ========================================================================== */
 :root {
-    --primary-color: #003366;    /* Dark Blue Accent */
-    --secondary-color: #f4f6f9;  /* Light Grey Card Background */
-    --accent-color: #d4af37;     /* Soft Gold Accent */
-    --text-color: #333333;       /* Dark Text for Readability */
-    --heading-color: #111111;
-    --white: #ffffff;
+    --primary-color: #2a5c8a;    /* Bleu du modèle */
+    --nav-bg-color: #333333;     /* Fond sombre de la navigation */
+    --body-bg: #ffffff;
+    --text-color: #000000;
+    --card-border: #cccccc;
 }
 
 * {
@@ -20,7 +19,7 @@ body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: #f0f2f5;
+    background-color: var(--body-bg);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -31,156 +30,165 @@ body {
    ========================================================================== */
 header {
     background-color: var(--primary-color);
-    color: var(--white);
-    padding: 1.5rem;
+    color: #ffffff;
     text-align: center;
-    border-bottom: 4px solid var(--accent-color);
 }
 
 #course-title {
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-weight: 400;
     display: block;
-    margin-bottom: 1rem;
+    padding: 1rem 0;
+}
+
+nav {
+    background-color: var(--nav-bg-color);
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    justify-content: space-around; /* Aligné comme sur la photo */
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
 }
 
 nav a {
-    color: var(--white);
+    color: #ffffff;
     text-decoration: none;
-    font-weight: bold;
-    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
     transition: color 0.3s ease;
 }
 
 nav a:hover {
-    color: var(--accent-color);
+    color: #cccccc;
     text-decoration: underline;
 }
 
 /* ==========================================================================
-   3. MAIN CONTENT & GRID LAYOUT (Mobile-First)
+   3. MAIN CONTENT & CARDS (Grid Layout)
    ========================================================================== */
 main {
     flex: 1;
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 2rem;
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
+    font-size: 2.2rem;
+    font-weight: 400;
 }
 
-/* Grid Container */
+/* Grid à deux colonnes */
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr; /* Default to 1 column on mobile devices */
-    gap: 2rem;
+    grid-template-columns: 2fr 1fr; /* Colonne gauche plus large */
+    gap: 1.5rem;
+    align-items: start;
 }
 
-/* Cards styling */
+/* Style des Cartes */
 .card {
-    background-color: var(--white);
-    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    border: 1px solid var(--card-border);
     border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Pour bloquer les angles du bandeau bleu */
 }
 
 .card h2 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 0.25rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
-/* Card layout contents */
+/* Contenu interne des cartes */
 .card-content-top {
     display: flex;
     gap: 1.5rem;
-    align-items: center;
-    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    align-items: flex-start;
+}
+
+.card-content-top p {
+    flex: 1;
 }
 
 .profile-img {
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--primary-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 120px;
+    height: auto;
+    border: 1px solid #999;
 }
 
 .sub-heading {
-    color: #555;
-    font-style: italic;
-    font-weight: 500;
-    margin-top: 1rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
 }
 
 hr {
     border: 0;
     height: 1px;
-    background: #ccc;
-    margin: 1rem 0;
+    background: #dddddd;
+    margin: 0.5rem auto;
+    width: 90%;
 }
 
 .card-content-bottom {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    align-items: center;
 }
 
 .flag-container {
+    flex: 0 0 140px;
     text-align: center;
-    background-color: var(--secondary-color);
-    padding: 0.75rem;
-    border-radius: 6px;
 }
 
 .flag-img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    display: block;
-    margin: 0 auto 0.5rem auto;
+    border: 1px solid #ccc;
 }
 
 .flag-caption {
-    font-size: 0.85rem;
-    color: #666;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #555;
+    margin-top: 0.25rem;
 }
 
-/* Resources List */
+/* Liste des Ressources */
 .resources-list {
     list-style: none;
+    padding: 1.5rem;
 }
 
 .resources-list li {
-    margin-bottom: 0.75rem;
-    padding-left: 0.5rem;
-    border-left: 3px solid var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.resources-list li::before {
+    content: "• ";
+    color: black;
 }
 
 .resources-list a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
+    color: #0000ee;
+    text-decoration: underline;
 }
 
 .resources-list a:hover {
-    text-decoration: underline;
-    color: #001f40;
+    color: #551a8b;
 }
 
 /* ==========================================================================
@@ -188,44 +196,35 @@ hr {
    ========================================================================== */
 footer {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: #ffffff;
     text-align: center;
     padding: 1.5rem;
-    margin-top: auto;
-    font-size: 0.9rem;
-    border-top: 4px solid var(--accent-color);
+    font-size: 0.95rem;
 }
 
 footer p {
     margin: 0.25rem 0;
 }
 
-/* ==========================================================================
-   5. RESPONSIVE MEDIA QUERIES (Desktop Layout)
-   ========================================================================== */
-@media (min-width: 768px) {
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        text-align: left;
-        padding: 1.5rem 3rem;
-    }
+/* Couleur jaune/verte spécifique pour la dernière modification */
+#lastModified {
+    color: #ccff00; 
+    font-weight: bold;
+    font-size: 0.85rem;
+}
 
-    #course-title {
-        margin-bottom: 0;
-    }
-
+/* Responsive pour Mobile */
+@media (max-width: 768px) {
     .grid-container {
-        grid-template-columns: 2fr 1fr; /* 2 columns: About Me takes up more space than Resources */
+        grid-template-columns: 1fr;
     }
-
-    .card-content-bottom {
-        flex-direction: row;
+    .card-content-top, .card-content-bottom {
+        flex-direction: column;
         align-items: center;
     }
-
-    .flag-container {
-        flex: 0 0 150px;
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
     }
 }

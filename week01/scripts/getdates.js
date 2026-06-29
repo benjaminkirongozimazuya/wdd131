@@ -1,17 +1,13 @@
-// Wait for the DOM to fully load before executing the script
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // 1. Dynamic Year for Footer
-    const currentYearSpan = document.getElementById("currentyear");
-    if (currentYearSpan) {
-        const currentYear = new Date().getFullYear();
-        currentYearSpan.textContent = currentYear;
+    // 1. Met à jour automatiquement l'année dans le premier paragraphe du footer
+    const yearSpan = document.querySelector("footer p span");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
 
-    // 2. Last Modified Date for Footer
+    // 2. Met à jour la date de dernière modification dans le deuxième paragraphe
     const lastModifiedParagraph = document.getElementById("lastModified");
     if (lastModifiedParagraph) {
         lastModifiedParagraph.textContent = `Last Modification: ${document.lastModified}`;
     }
-    
 });
