@@ -1,214 +1,231 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+/* ==========================================================================
+   1. RESET & BASE STYLES
+   ========================================================================== */
+:root {
+    --primary-color: #003366;    /* Dark Blue Accent */
+    --secondary-color: #f4f6f9;  /* Light Grey Card Background */
+    --accent-color: #d4af37;     /* Soft Gold Accent */
+    --text-color: #333333;       /* Dark Text for Readability */
+    --heading-color: #111111;
+    --white: #ffffff;
+}
 
-/* --- Reset --- */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff;
-    color: #000000;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* --- Header Layout --- */
+/* ==========================================================================
+   2. HEADER & NAVIGATION
+   ========================================================================== */
 header {
-    background-color: #1e557e;
-    color: #ffffff;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1.5rem;
     text-align: center;
+    border-bottom: 4px solid var(--accent-color);
 }
 
 #course-title {
-    display: block; /* Required: Allows easy centering and vertical spacing */
-    padding: 20px 10px;
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-/* --- Navigation (Using CSS Flexbox) --- */
-nav {
-    background-color: #333333;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 1rem;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: space-around;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 12px 10px;
+    justify-content: center;
+    gap: 1.5rem;
     flex-wrap: wrap;
-    gap: 10px;
 }
 
 nav a {
-    color: #ffffff;
+    color: var(--white);
     text-decoration: none;
-    font-size: 1.1rem;
-    padding: 6px 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
-    background-color: #555555;
+    color: var(--accent-color);
+    text-decoration: underline;
 }
 
-/* --- Main Layout --- */
+/* ==========================================================================
+   3. MAIN CONTENT & GRID LAYOUT (Mobile-First)
+   ========================================================================== */
 main {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0 20px;
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
-main h1 {
+h1 {
     text-align: center;
-    margin-bottom: 30px;
-    font-weight: 500;
-    font-size: 2.3rem;
-    color: #333333;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
 }
 
-/* --- Asymmetric Layout Grid (Using CSS Grid for Cards) --- */
+/* Grid Container */
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 25px;
+    grid-template-columns: 1fr; /* Default to 1 column on mobile devices */
+    gap: 2rem;
 }
 
-@media (min-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1.4fr 1fr; /* About Me card is wider than Resources track */
-    }
-}
-
-/* --- Card Styles --- */
+/* Cards styling */
 .card {
-    border: 1px solid #cccccc;
+    background-color: var(--white);
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    overflow: hidden;
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .card h2 {
-    background-color: #1e557e;
-    color: #ffffff;
-    text-align: center;
-    padding: 12px;
-    font-size: 1.25rem;
-    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.25rem;
 }
 
-/* --- About Me Card Internals --- */
+/* Card layout contents */
 .card-content-top {
     display: flex;
-    gap: 20px;
-    padding: 20px;
-    align-items: flex-start;
-}
-
-.card-content-top p {
-    font-size: 0.95rem;
-    flex: 1;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
 }
 
 .profile-img {
-    width: 110px;
-    height: 140px;
+    border-radius: 50%;
     object-fit: cover;
-    border: 1px solid #999999;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .sub-heading {
-    text-align: center;
-    margin: 15px 0 5px 0;
-    font-size: 1.1rem;
-    font-weight: 600;
+    color: #555;
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 1rem;
 }
 
 hr {
-    width: 85%;
-    margin: 0 auto 20px auto;
     border: 0;
-    border-top: 1px solid #cccccc;
+    height: 1px;
+    background: #ccc;
+    margin: 1rem 0;
 }
 
 .card-content-bottom {
     display: flex;
-    gap: 20px;
-    padding: 0 20px 25px 20px;
-    align-items: center;
-}
-
-.card-content-bottom p {
-    font-size: 0.95rem;
-    flex: 1;
-}
-
-/* Figure and Flag Caption Layout */
-.flag-container {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    max-width: 120px;
+    gap: 1rem;
+}
+
+.flag-container {
+    text-align: center;
+    background-color: var(--secondary-color);
+    padding: 0.75rem;
+    border-radius: 6px;
 }
 
 .flag-img {
-    width: 120px;
+    max-width: 100%;
     height: auto;
-    border: 1px solid #cccccc;
+    display: block;
+    margin: 0 auto 0.5rem auto;
 }
 
 .flag-caption {
-    font-size: 0.75rem;
-    font-style: italic;
-    color: #555555;
-    text-align: center;
-    line-height: 1.2;
+    font-size: 0.85rem;
+    color: #666;
 }
 
-/* --- Resources Link List --- */
+/* Resources List */
 .resources-list {
-    padding: 30px 40px;
-    list-style-type: disc;
+    list-style: none;
 }
 
 .resources-list li {
-    margin-bottom: 14px;
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--accent-color);
 }
 
 .resources-list a {
-    color: #0000ee;
-    text-decoration: underline;
-    font-size: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .resources-list a:hover {
-    color: #0000aa;
+    text-decoration: underline;
+    color: #001f40;
 }
 
-/* --- Footer Area --- */
+/* ==========================================================================
+   4. FOOTER
+   ========================================================================== */
 footer {
-    background-color: #1e557e;
-    color: #ffffff;
+    background-color: var(--primary-color);
+    color: var(--white);
     text-align: center;
-    padding: 20px 10px;
-    margin-top: 50px;
-    font-size: 0.95rem;
+    padding: 1.5rem;
+    margin-top: auto;
+    font-size: 0.9rem;
+    border-top: 4px solid var(--accent-color);
 }
 
 footer p {
-    margin: 4px 0;
+    margin: 0.25rem 0;
 }
 
-#lastModified {
-    color: #ffff00; /* Distinct bright yellow matching the model mockup */
-    font-size: 0.85rem;
-    font-weight: 500;
+/* ==========================================================================
+   5. RESPONSIVE MEDIA QUERIES (Desktop Layout)
+   ========================================================================== */
+@media (min-width: 768px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        padding: 1.5rem 3rem;
+    }
+
+    #course-title {
+        margin-bottom: 0;
+    }
+
+    .grid-container {
+        grid-template-columns: 2fr 1fr; /* 2 columns: About Me takes up more space than Resources */
+    }
+
+    .card-content-bottom {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .flag-container {
+        flex: 0 0 150px;
+    }
 }
