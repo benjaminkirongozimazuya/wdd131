@@ -1,17 +1,16 @@
-// Wait until the DOM content is fully loaded to safely manipulate elements
+// Wait for the DOM to fully load before executing the script
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. Dynamically populate the current copyright year
+    // 1. Dynamic Year for Footer
     const currentYearSpan = document.getElementById("currentyear");
     if (currentYearSpan) {
         const currentYear = new Date().getFullYear();
         currentYearSpan.textContent = currentYear;
     }
 
-    // 2. Dynamically populate the last modified date of the document
+    // 2. Last Modified Date for Footer
     const lastModifiedParagraph = document.getElementById("lastModified");
     if (lastModifiedParagraph) {
-        // document.lastModified returns a string containing the date and time the file was updated
         lastModifiedParagraph.textContent = `Last Modification: ${document.lastModified}`;
     }
     
