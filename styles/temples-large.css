@@ -1,0 +1,26 @@
+/* Ce code ne s'applique qu'au-dessus de 768px via la règle média HTML */
+
+/* Cache le bouton hamburger */
+#menu {
+    display: none;
+}
+
+/* Réorganise la navigation horizontalement */
+nav ul.navigation {
+    display: flex !important; /* Force l'affichage en flex horizontal */
+    flex-direction: row;
+    justify-content: center;
+    background: none;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+nav a {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+/* Galerie photo responsive à 3 colonnes via minmax */
+.gallery-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* S'adapte superbement */
+}

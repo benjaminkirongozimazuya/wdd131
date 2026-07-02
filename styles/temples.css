@@ -1,0 +1,148 @@
+/* ==========================================================================
+   1. BASE STYLES & TYPOGRAPHY
+   ========================================================================== */
+:root {
+    --primary-color: #1a446c;     /* Bleu profond */
+    --accent-color: #e0a96d;      /* Doré doux */
+    --bg-color: #f7f9fb;          /* Fond de page clair */
+    --card-bg: #ffffff;
+    --text-color: #222222;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION (CSS Flex & Hamburger Menu)
+   ========================================================================== */
+header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+/* Bouton Hamburger */
+#menu {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Utilisation du symbole ☰ (hamburger) via le pseudo-élément ::before */
+#menu::before {
+    content: "☰";
+}
+
+/* Quand la classe .show est ajoutée par JS, le bouton devient un X */
+#menu.show::before {
+    content: "❌";
+    font-size: 1.5rem;
+}
+
+/* Navigation principale */
+nav ul.navigation {
+    list-style: none;
+    display: none; /* Caché par défaut sur mobile */
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Classe activée par JavaScript pour afficher le menu */
+nav ul.navigation.show {
+    display: flex; /* Active Flexbox */
+}
+
+nav a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 1rem;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--accent-color);
+}
+
+/* ==========================================================================
+   3. MAIN CONTENT & GRID GALLERY (1 Colonne sur Mobile)
+   ========================================================================== */
+main {
+    flex: 1;
+    max-width: 1000px; /* Largeur maximale limitée */
+    width: 100%;
+    margin: 0 auto;    /* Centré horizontalement */
+    padding: 1.5rem;
+}
+
+main h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Conteneur CSS Grid */
+.gallery-container {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 Seule colonne sur mobile */
+    gap: 1.5rem;
+}
+
+figure {
+    background-color: var(--card-bg);
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+figcaption {
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   4. FOOTER
+   ========================================================================== */
+footer {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+    font-size: 0.9rem;
+    border-top: 4px solid var(--accent-color);
+}

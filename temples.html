@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Album – WDD 131 – Benjamin Kirongozi Mazuya</title>
+    <meta name="description" content="Temple Album page for WDD 131 by Benjamin Kirongozi Mazuya, showcasing a collection of temples with dynamic footer information.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/temples.css">
+    <link rel="stylesheet" href="styles/temples-large.css" media="(min-width: 768px)">
+    
+    <script src="scripts/getdates.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Temple Album</h1>
+        <nav>
+            <button id="menu" aria-label="Toggle Menu"></button>
+            <ul class="navigation">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Old</a></li>
+                <li><a href="#">New</a></li>
+                <li><a href="#">Large</a></li>
+                <li><a href="#">Small</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Temple Gallery</h2>
+        
+        <div class="gallery-container">
+            <figure>
+                <img src="https://picsum.photos/400/250" alt="Placeholder Temple Image" loading="lazy" width="400" height="250">
+                <figcaption>Kinshasa DR Congo Temple</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://picsum.photos/400/250" alt="Placeholder Temple Image" loading="lazy" width="400" height="250">
+                <figcaption>Salt Lake Temple</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://picsum.photos/400/250" alt="Placeholder Temple Image" loading="lazy" width="400" height="250">
+                <figcaption>Paris France Temple</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://picsum.photos/400/250" alt="Placeholder Temple Image" loading="lazy" width="400" height="250">
+                <figcaption>Johannesburg South Africa Temple</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://picsum.photos/400/250" alt="Placeholder Temple Image" loading="lazy" width="400" height="250">
+                <figcaption>Accra Ghana Temple</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://picsum.photos/400/250" alt="Placeholder Temple Image" loading="lazy" width="400" height="250">
+                <figcaption>Rome Italy Temple</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://picsum.photos/400/250" alt="Placeholder Temple Image" loading="lazy" width="400" height="250">
+                <figcaption>Frankfurt Germany Temple</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://picsum.photos/400/250" alt="Placeholder Temple Image" loading="lazy" width="400" height="250">
+                <figcaption>Nairobi Kenya Temple</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://picsum.photos/400/250" alt="Placeholder Temple Image" loading="lazy" width="400" height="250">
+                <figcaption>London England Temple</figcaption>
+            </figure>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy;<span id="currentyear"></span> 🌸 Benjamin Kirongozi Mazuya 🌸 Democratic Republic of the Congo</p>
+        <p id="lastModified"></p>
+    </footer>
+
+</body>
+</html>
