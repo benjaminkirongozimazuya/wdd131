@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. VARIABLES & BASE STYLES (Consolidés - Zéro doublon)
+   1. VARIABLES & BASE STYLES
    ========================================================================== */
 :root {
     --primary-color: #1a446c;     /* Teinte bleue finale unifiée */
@@ -20,7 +20,7 @@ body {
 }
 
 /* ==========================================================================
-   2. HEADER & NAVIGATION (Version Mobile-First par défaut)
+   2. HEADER & NAVIGATION
    ========================================================================== */
 header {
     background-color: var(--primary-color);
@@ -57,7 +57,7 @@ header h1 {
 /* Liste de navigation sur mobile */
 nav ul.navigation {
     list-style: none;
-    display: none;               /* Caché par défaut sur mobile (Rule #41) */
+    display: none;               /* Caché par défaut sur mobile */
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -73,7 +73,7 @@ nav a {
     display: block;
     color: #ffffff;
     text-decoration: none;
-    padding: 1rem;               /* Grand espace cliquable pour les doigts (Rule #43) */
+    padding: 1rem;               /* Grand espace cliquable pour mobile */
     font-weight: bold;
     text-align: center;
     transition: background 0.3s ease, color 0.3s ease;
@@ -81,15 +81,15 @@ nav a {
 
 nav a:hover {
     background-color: rgba(255, 255, 255, 0.2);
-    color: var(--accent-color);  /* Hover unifié conforme à WCAG AA */
+    color: var(--accent-color);  
 }
 
 /* ==========================================================================
-   3. MAIN CONTENT & GALLERY GRID (Version Mobile-First)
+   3. MAIN CONTENT & GALLERY GRID
    ========================================================================== */
 main {
     flex: 1;
-    max-width: 1000px;           /* Limite de largeur unifiée (Rule #45) */
+    max-width: 1000px;           /* Limite de largeur unifiée */
     width: 100%;
     margin: 0 auto;              /* Centrage horizontal parfait */
     padding: 1.5rem;
@@ -104,7 +104,7 @@ main h2 {
 /* Grille mobile à 1 seule colonne */
 .gallery-container {
     display: grid;
-    grid-template-columns: 1fr;  /* 1 colonne par défaut (Rule #47) */
+    grid-template-columns: 1fr;  /* 1 colonne par défaut sur mobile */
     gap: 1.5rem;
 }
 
@@ -134,7 +134,7 @@ figcaption {
 }
 
 /* ==========================================================================
-   4. FOOTER (Unique et nettoyé)
+   4. FOOTER
    ========================================================================== */
 footer {
     background-color: var(--primary-color);
@@ -142,12 +142,12 @@ footer {
     text-align: center;
     padding: 1.5rem;
     margin-top: auto;
-    font-size: 0.9rem;           /* Taille harmonisée pour éviter les conflits */
+    font-size: 0.9rem;           
     border-top: 4px solid var(--accent-color);
 }
 
 /* ==========================================================================
-   5. MEDIA QUERY : MODIFICATIONS POUR ÉCRANS LARGES (Tablettes et PC)
+   5. MEDIA QUERY : UNICITÉ DES MODIFICATIONS POUR ÉCRANS LARGES
    ========================================================================== */
 @media (min-width: 768px) {
     #menu {
@@ -155,7 +155,7 @@ footer {
     }
 
     nav ul.navigation {
-        display: flex;           /* Affichage horizontal forcé (Rule #56) */
+        display: flex;           /* Affichage horizontal forcé */
         flex-direction: row;
         justify-content: center;
         background: none;
@@ -164,12 +164,12 @@ footer {
     }
 
     nav a {
-        padding: 0.5rem 1rem;    /* Réduction du padding pour barres horizontales (Rule #57) */
+        padding: 0.5rem 1rem;    /* Réduction du padding pour PC */
         border-radius: 4px;
     }
 
     .gallery-container {
-        /* Transformation de la grille en mode multi-colonnes responsive (Rule #58) */
+        /* Transformation en mode responsive multi-colonnes */
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 }
