@@ -1,12 +1,12 @@
 /* ==========================================================================
-   1. VARIABLES & BASE STYLES (:root & body combinés)
+   1. VARIABLES & BASE STYLES
    ========================================================================== */
 :root {
-    --primary-color: #1a446c;     /* Bleu profond (Rule #34 harmonisé) */
+    --primary-color: #1a446c;     /* Bleu profond unifié */
     --accent-color: #e0a96d;      /* Doré doux */
     --bg-color: #f7f9fb;          /* Fond de page clair */
     --card-bg: #ffffff;
-    --text-color: #222222;        /* Gris foncé (Rule #34 harmonisé) */
+    --text-color: #222222;        /* Gris foncé lisible */
 }
 
 body {
@@ -20,7 +20,7 @@ body {
 }
 
 /* ==========================================================================
-   2. HEADER & NAVIGATION (Styles de base / Mobile)
+   2. HEADER & NAVIGATION (Mobile-First)
    ========================================================================== */
 header {
     background-color: var(--primary-color);
@@ -31,7 +31,7 @@ header {
 }
 
 header h1 {
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem 0;
     font-weight: 700;
 }
 
@@ -54,10 +54,10 @@ header h1 {
     font-size: 1.5rem;
 }
 
-/* Navigation principale */
+/* Menu de navigation sur mobile */
 nav ul.navigation {
     list-style: none;
-    display: none;       /* Caché par défaut sur mobile (Rule #41) */
+    display: none;               /* Caché par défaut sur mobile */
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -66,14 +66,14 @@ nav ul.navigation {
 }
 
 nav ul.navigation.show {
-    display: flex;
+    display: flex;               /* Affiché via JS */
 }
 
 nav a {
     display: block;
     color: #ffffff;
     text-decoration: none;
-    padding: 1rem;       /* Padding mobile (Rule #43) */
+    padding: 1rem;               /* Espacement pour écrans tactiles */
     font-weight: bold;
     text-align: center;
     transition: background 0.3s ease, color 0.3s ease;
@@ -81,18 +81,18 @@ nav a {
 
 nav a:hover {
     background-color: rgba(255, 255, 255, 0.2);
-    color: var(--accent-color); /* Couleur hover unifiée (Rule #44) */
+    color: var(--accent-color);
 }
 
 /* ==========================================================================
-   3. MAIN CONTENT & GRID GALLERY (Vue Mobile)
+   3. MAIN & GRID GALLERY (Mobile-First)
    ========================================================================== */
 main {
     flex: 1;
-    max-width: 1000px;   /* Limite de largeur unifiée (Rule #45) */
+    max-width: 1000px;           /* Largeur max unifiée */
     width: 100%;
-    margin: 0 auto;      /* Centrage horizontal */
-    padding: 1.5rem;     /* Padding ajusté propre */
+    margin: 0 auto;              /* Centrage horizontal */
+    padding: 1.5rem;
 }
 
 main h2 {
@@ -103,7 +103,7 @@ main h2 {
 
 .gallery-container {
     display: grid;
-    grid-template-columns: 1fr; /* 1 colonne par défaut sur mobile (Rule #47) */
+    grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
     gap: 1.5rem;
 }
 
@@ -141,20 +141,20 @@ footer {
     text-align: center;
     padding: 1.5rem;
     margin-top: auto;
-    font-size: 0.9rem;   /* Taille harmonisée (Rule #51) */
+    font-size: 0.9rem;
     border-top: 4px solid var(--accent-color);
 }
 
 /* ==========================================================================
-   5. MEDIA QUERY : ÉCRANS LARGES (Anciennement Rule #53 à #55)
+   5. MEDIA QUERY : ÉCRANS LARGES (Uniquement les surcharges)
    ========================================================================== */
 @media (min-width: 768px) {
     #menu {
-        display: none;   /* Cache le bouton hamburger sur PC */
+        display: none;           /* Cache le bouton sur PC */
     }
 
     nav ul.navigation {
-        display: flex;   /* Affiche la navigation en ligne */
+        display: flex;           /* Force l'affichage horizontal */
         flex-direction: row;
         justify-content: center;
         background: none;
@@ -163,11 +163,11 @@ footer {
     }
 
     nav a {
-        padding: 0.5rem 1rem; /* Ajustement du padding pour grand écran */
+        padding: 0.5rem 1rem;    /* Réduction du padding sur PC */
         border-radius: 4px;
     }
 
     .gallery-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Grille multi-colonnes responsive */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Grille multi-colonnes */
     }
 }
