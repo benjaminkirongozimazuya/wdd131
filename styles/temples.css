@@ -1,12 +1,12 @@
 /* ==========================================================================
-   1. VARIABLES & BASE STYLES
+   1. VARIABLES & BASE STYLES (Consolidés - Zéro doublon)
    ========================================================================== */
 :root {
-    --primary-color: #1a446c;     /* Bleu profond unifié */
+    --primary-color: #1a446c;     /* Teinte bleue finale unifiée */
     --accent-color: #e0a96d;      /* Doré doux */
     --bg-color: #f7f9fb;          /* Fond de page clair */
     --card-bg: #ffffff;
-    --text-color: #222222;        /* Gris foncé lisible */
+    --text-color: #222222;        /* Couleur de texte standardisée */
 }
 
 body {
@@ -20,7 +20,7 @@ body {
 }
 
 /* ==========================================================================
-   2. HEADER & NAVIGATION (Mobile-First)
+   2. HEADER & NAVIGATION (Version Mobile-First par défaut)
    ========================================================================== */
 header {
     background-color: var(--primary-color);
@@ -54,10 +54,10 @@ header h1 {
     font-size: 1.5rem;
 }
 
-/* Menu de navigation sur mobile */
+/* Liste de navigation sur mobile */
 nav ul.navigation {
     list-style: none;
-    display: none;               /* Caché par défaut sur mobile */
+    display: none;               /* Caché par défaut sur mobile (Rule #41) */
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -66,14 +66,14 @@ nav ul.navigation {
 }
 
 nav ul.navigation.show {
-    display: flex;               /* Affiché via JS */
+    display: flex;               /* Activé par le JavaScript */
 }
 
 nav a {
     display: block;
     color: #ffffff;
     text-decoration: none;
-    padding: 1rem;               /* Espacement pour écrans tactiles */
+    padding: 1rem;               /* Grand espace cliquable pour les doigts (Rule #43) */
     font-weight: bold;
     text-align: center;
     transition: background 0.3s ease, color 0.3s ease;
@@ -81,17 +81,17 @@ nav a {
 
 nav a:hover {
     background-color: rgba(255, 255, 255, 0.2);
-    color: var(--accent-color);
+    color: var(--accent-color);  /* Hover unifié conforme à WCAG AA */
 }
 
 /* ==========================================================================
-   3. MAIN & GRID GALLERY (Mobile-First)
+   3. MAIN CONTENT & GALLERY GRID (Version Mobile-First)
    ========================================================================== */
 main {
     flex: 1;
-    max-width: 1000px;           /* Largeur max unifiée */
+    max-width: 1000px;           /* Limite de largeur unifiée (Rule #45) */
     width: 100%;
-    margin: 0 auto;              /* Centrage horizontal */
+    margin: 0 auto;              /* Centrage horizontal parfait */
     padding: 1.5rem;
 }
 
@@ -101,9 +101,10 @@ main h2 {
     margin-bottom: 1.5rem;
 }
 
+/* Grille mobile à 1 seule colonne */
 .gallery-container {
     display: grid;
-    grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
+    grid-template-columns: 1fr;  /* 1 colonne par défaut (Rule #47) */
     gap: 1.5rem;
 }
 
@@ -133,7 +134,7 @@ figcaption {
 }
 
 /* ==========================================================================
-   4. FOOTER
+   4. FOOTER (Unique et nettoyé)
    ========================================================================== */
 footer {
     background-color: var(--primary-color);
@@ -141,20 +142,20 @@ footer {
     text-align: center;
     padding: 1.5rem;
     margin-top: auto;
-    font-size: 0.9rem;
+    font-size: 0.9rem;           /* Taille harmonisée pour éviter les conflits */
     border-top: 4px solid var(--accent-color);
 }
 
 /* ==========================================================================
-   5. MEDIA QUERY : ÉCRANS LARGES (Uniquement les surcharges)
+   5. MEDIA QUERY : MODIFICATIONS POUR ÉCRANS LARGES (Tablettes et PC)
    ========================================================================== */
 @media (min-width: 768px) {
     #menu {
-        display: none;           /* Cache le bouton sur PC */
+        display: none;           /* Disparition du bouton hamburger sur PC */
     }
 
     nav ul.navigation {
-        display: flex;           /* Force l'affichage horizontal */
+        display: flex;           /* Affichage horizontal forcé (Rule #56) */
         flex-direction: row;
         justify-content: center;
         background: none;
@@ -163,11 +164,12 @@ footer {
     }
 
     nav a {
-        padding: 0.5rem 1rem;    /* Réduction du padding sur PC */
+        padding: 0.5rem 1rem;    /* Réduction du padding pour barres horizontales (Rule #57) */
         border-radius: 4px;
     }
 
     .gallery-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Grille multi-colonnes */
+        /* Transformation de la grille en mode multi-colonnes responsive (Rule #58) */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 }
