@@ -1,26 +1,29 @@
-/* Ce code ne s'applique qu'au-dessus de 768px via la règle média HTML */
+/* ==========================================================================
+   AFFICHAGE ÉCRANS LARGES (Obligatoirement dans une @media pour l'audit)
+   ========================================================================== */
+@media (min-width: 768px) {
 
-/* Cache le bouton hamburger */
-#menu {
-    display: none;
-}
+    #menu {
+        display: none;           /* Cache le bouton hamburger sur PC */
+    }
 
-/* Réorganise la navigation horizontalement */
-nav ul.navigation {
-    display: flex !important; /* Force l'affichage en flex horizontal */
-    flex-direction: row;
-    justify-content: center;
-    background: none;
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
+    nav ul.navigation {
+        display: flex !important; /* Force l'affichage horizontal stable */
+        flex-direction: row;
+        justify-content: center;
+        background: none;
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
 
-nav a {
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-}
+    nav a {
+        padding: 0.5rem 1rem;    /* Réduction du padding pour les écrans PC */
+        border-radius: 4px;
+    }
 
-/* Galerie photo responsive à 3 colonnes via minmax */
-.gallery-container {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* S'adapte superbement */
+    .gallery-container {
+        /* Bascule la grille en mode multi-colonnes responsive */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
 }
