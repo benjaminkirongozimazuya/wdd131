@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDD 131 - Country Project (France)</title>
+    <meta name="description" content="Data and weather information about France matching the project wireframe.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="styles/place.css">
+    <!-- JavaScript Link with defer attribute -->
+    <script src="scripts/place.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>France</h1>
+        </div>
+    </header>
+
+    <!-- Conteneur principal calqué sur Capture d’écran 2026-07-06 205606.png -->
+    <main class="hero-container">
+        
+        <!-- L'image de fond "Large Image" occupant tout l'espace -->
+        <picture class="hero-image">
+            <source srcset="images/hero-large.webp" media="(min-width: 768px)">
+            <img src="images/hero-small.webp" alt="Beautiful landscape of France" width="1200" height="600">
+        </picture>
+
+        <!-- Carte "Data" positionnée à gauche -->
+        <section class="data-card">
+            <h2>Data</h2>
+            <ul>
+                <li><strong>Capital:</strong> Paris</li>
+                <li><strong>Population:</strong> 68 Million</li>
+                <li><strong>Language:</strong> French</li>
+                <li><strong>Currency:</strong> Euro (€)</li>
+            </ul>
+        </section>
+
+        <!-- Carte "Weather" positionnée à droite -->
+        <section class="weather-card">
+            <h2 class="weather-title">Weather ⛅</h2>
+            
+            <div class="weather-icon-mobile">
+                <img src="images/weather.svg" alt="Weather Icon" width="48" height="48">
+            </div>
+
+            <ul>
+                <li><strong>Temperature:</strong> <span id="temp">8</span>°C</li>
+                <li><strong>Conditions:</strong> Mostly Cloudy</li>
+                <li><strong>Wind:</strong> <span id="wind">15</span> km/h</li>
+                <li><strong>Wind Chill:</strong> <span id="windchill"></span></li>
+            </ul>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentyear"></span> | Benjamin K. Mazuya | France Project</p>
+        <p class="last-modified">Last Modified: <span id="lastmodified"></span></p>
+    </footer>
+
+</body>
+</html>
