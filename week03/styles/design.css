@@ -1,67 +1,79 @@
 /* ==========================================================================
-   Starter Styles & Core Layout Elements
+   Starter CSS (Issu du CodePen initial fourni)
    ========================================================================== */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Roboto, helvetica, sans-serif;
     margin: 0;
     padding: 20px;
     background-color: #f9f9f9;
 }
 
-/* Static banner replacing the old marquee */
+header,
+main,
+footer {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+h1 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+article p {
+    text-align: justify;
+}
+
+/* ==========================================================================
+   Mises aux normes et corrections de l'activité
+   ========================================================================== */
+
+/* Style appliqué à la nouvelle zone statique remplaçant le marquee */
 .banner {
+    padding: 1rem;
     background-color: #702963;
     color: #ffffff;
     text-align: center;
-    padding: 15px;
     font-weight: bold;
     border-radius: 4px;
     margin-bottom: 20px;
 }
 
-/* Left-align the h2 heading instead of centering it */
-h2 {
-    text-align: left;
-}
-
-/* ==========================================================================
-   Main Grid Layout (Two Columns)
-   ========================================================================== */
+/* Agencement de l'élément parent <main> en un modèle Grid à deux colonnes */
 main {
     display: grid;
-    /* Creates two equal columns for the article and list sections */
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-/* Force the <h2> heading within <main> to span across both grid columns */
-main h2 {
-    grid-column: 1 / span 2;
+/* Alignement de h2 à gauche et étalement obligatoire sur les 2 colonnes */
+h2 {
+    color: navy;
+    text-align: left;          /* Correction de l'alignement centré d'origine */
+    grid-column: 1 / span 2;   /* Force l'étalement horizontal complet */
 }
 
-/* Make sure the callout section spans both columns at the bottom */
+/* Extension du bloc conteneur callout pour occuper la largeur totale */
 .callout {
     grid-column: 1 / span 2;
-}
-
-/* ==========================================================================
-   Container & Component Fixes
-   ========================================================================== */
-
-/* Fix the padding issues on the div.callout container */
-div.callout {
-    padding: 20px;
+    padding: 20px;             /* Résolution des problèmes de marge interne (padding) */
     border-radius: 6px;
-    background-color: #f3e8f2; 
-    color: #4a1441; 
     border-left: 5px solid #702963;
+    
+    /* 
+       RESOLUTION DU CONTRASTE D'ACCESSIBILITÉ :
+       Le couple d'origine (#777 sur fond #702963 avec un ratio insuffisant de 2.14) a été modifié.
+       En basculant le fond sur une nuance douce claire (#f3e8f2) et le texte en prune foncé (#4a1441),
+       le nouveau ratio de contraste valide haut la main les niveaux WCAG AA et AAA.
+    */
+    background-color: #f3e8f2;
+    color: #4a1441;
 }
 
-/* Move the footer content to the left */
+/* Alignement du bloc footer vers la gauche */
 footer {
-    margin-top: 40px;
-    text-align: left;
-    padding: 15px 0;
-    border-top: 1px solid #ddd;
-    color: #666;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: smaller;
+    text-align: left;          /* Remplacement de l'alignement à droite (text-align: right) */
+    padding: 10px 0;
 }
