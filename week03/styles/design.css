@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Starter Styles & Core Layout Elements
+   ========================================================================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Static banner replacing the old marquee */
+.banner {
+    background-color: #702963;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Left-align the h2 heading instead of centering it */
+h2 {
+    text-align: left;
+}
+
+/* ==========================================================================
+   Main Grid Layout (Two Columns)
+   ========================================================================== */
+main {
+    display: grid;
+    /* Creates two equal columns for the article and list sections */
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Force the <h2> heading within <main> to span across both grid columns */
+main h2 {
+    grid-column: 1 / span 2;
+}
+
+/* Make sure the callout section spans both columns at the bottom */
+.callout {
+    grid-column: 1 / span 2;
+}
+
+/* ==========================================================================
+   Container & Component Fixes
+   ========================================================================== */
+
+/* Fix the padding issues on the div.callout container */
+div.callout {
+    padding: 20px;
+    border-radius: 6px;
+    background-color: #f3e8f2; 
+    color: #4a1441; 
+    border-left: 5px solid #702963;
+}
+
+/* Move the footer content to the left */
+footer {
+    margin-top: 40px;
+    text-align: left;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    color: #666;
+}
