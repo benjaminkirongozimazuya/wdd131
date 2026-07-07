@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WDD 131 - Country Project (DR Congo)</title>
     <meta name="description" content="Data and weather information about DR Congo and Kolwezi matching the project wireframe.">
-    <!-- Google Fonts -->
+    
+    <!-- 1. CORRECTIF : Ajout de la balise Meta Author obligatoire -->
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
+
+    <!-- 2. CORRECTIF : Ajout des liens preconnect pour Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
     <!-- CSS Link -->
     <link rel="stylesheet" href="styles/place.css">
     <!-- JavaScript Link with defer attribute -->
@@ -19,15 +26,15 @@
     </header>
     <div class="nav-bar-divider"></div>
 
-    <!-- Zone principale contenant l'image et les cartes superposées -->
     <main class="hero-container">
         
+        <!-- 3. CORRECTIF : Structure picture validée avec les attributs alt et dimensions -->
         <picture class="hero-image">
             <source srcset="images/hero-large.webp" media="(min-width: 900px)">
             <img src="images/hero-small.webp" alt="Beautiful landscape of DR Congo" width="900" height="675">
         </picture>
 
-        <!-- Carte "Data" (Translucide à gauche) -->
+        <!-- Carte Data -->
         <section class="data-card">
             <h2>Data</h2>
             <div class="card-content">
@@ -42,12 +49,13 @@
             </div>
         </section>
 
-        <!-- Carte "Weather" (Translucide à droite) -->
+        <!-- Carte Weather -->
         <section class="weather-card">
-            <h2 class="weather-title">Weather ⛅</h2>
+            <!-- 4. IMPORTANT : Retrait de l'émoji du HTML pour le grand écran car il doit être géré par le CSS -->
+            <h2 class="weather-title">Weather</h2>
             
             <div class="weather-icon-mobile">
-                <img src="images/weather.svg" alt="" width="48" height="48">
+                <img src="images/weather.svg" alt="Weather icon" width="48" height="48">
             </div>
 
             <div class="card-content">

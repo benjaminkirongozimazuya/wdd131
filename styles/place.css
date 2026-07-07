@@ -74,6 +74,11 @@ header h1 {
     font-size: 1.5rem;
 }
 
+/* Affichage de l'émoji météo par défaut sur mobile à côté du titre */
+.weather-title::after {
+    content: " ⛅";
+}
+
 .card-content {
     padding: 1.2rem;
 }
@@ -109,17 +114,16 @@ footer p {
 }
 
 /* ==========================================================================
-   Affichage Grand Écran (Version Ordinateur - FIXE L'AFFICHAGE DE L'IMAGE)
+   Affichage Grand Écran (Version Ordinateur)
    ========================================================================== */
 @media (min-width: 900px) {
     .hero-container {
-        display: block; /* Désactive la grille qui faisait planter l'image */
-        min-height: 650px; /* Force une hauteur minimale visible */
+        display: block;
+        min-height: 650px;
         max-width: 1200px;
         margin: 0 auto;
     }
 
-    /* L'image est forcée de s'étaler absolument en arrière-plan */
     .hero-image {
         position: absolute;
         top: 0;
@@ -132,10 +136,9 @@ footer p {
     .hero-image img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Remplit l'espace sans déformation */
+        object-fit: cover;
     }
 
-    /* Positionnement de la carte Data flottante à gauche */
     .data-card {
         position: absolute;
         left: 3rem;
@@ -145,7 +148,6 @@ footer p {
         margin: 0;
     }
 
-    /* Positionnement de la carte Weather flottante à droite en bas */
     .weather-card {
         position: absolute;
         right: 3rem;
@@ -158,9 +160,9 @@ footer p {
         display: none;
     }
 
-    .weather-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    /* CORRECTIF : Pseudo-élément ::after configuré pour modifier l'émanation sur grand écran */
+    .weather-title::after {
+        content: " ⛈️";
+        font-size: 1.3rem;
     }
 }
