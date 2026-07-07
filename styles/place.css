@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Variables globales & Alignement de base (COULEURS AUX NORMES DE CONTRASTE)
+   Variables globales & Alignement de base (COULEURS RENFORCÉES NIVEAU AA/AAA)
    ========================================================================== */
 :root {
-    --brand-blue: #0056b3;      /* Bleu foncé aux normes de contraste pour le texte blanc */
-    --brand-green: #0f5132;     /* Vert sapin foncé pour garantir un contraste 4.5:1 */
-    --accent-yellow: #fdd835;   /* Jaune pour les bordures */
-    --text-dark: #111111;       /* Noir profond pour un contraste maximal sur fond blanc */
-    --bg-card: #ffffff;         /* Fond blanc 100% opaque obligatoire pour l'accessibilité */
+    --brand-blue: #0A4384;      /* Bleu royal très sombre - Contraste parfait (>7:1) avec le blanc */
+    --brand-green: #0B4026;     /* Vert forêt très profond - Contraste parfait (>7:1) avec le blanc */
+    --accent-yellow: #fdd835;   /* Jaune vif uniquement utilisé pour les lignes de bordure */
+    --text-dark: #1A1A1A;       /* Noir de jais très dense pour un contraste maximal sur fond blanc */
+    --bg-card: #ffffff;         /* Fond blanc 100% opaque pour bloquer toute transparence */
 }
 
 body {
@@ -14,12 +14,12 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
-    color: var(--text-dark); /* Correction du contraste global du body */
+    color: var(--text-dark);
 }
 
 header {
     background-color: var(--brand-blue);
-    color: #ffffff; /* Texte blanc parfaitement lisible sur le bleu foncé */
+    color: #ffffff;
     padding: 2.5rem 1rem;
     text-align: center;
     border-bottom: 4px solid var(--accent-yellow);
@@ -70,7 +70,7 @@ header h1 {
 
 .data-card h2, .weather-card h2 {
     background-color: var(--brand-green);
-    color: #ffffff; /* Texte blanc sur fond vert foncé validé par Lighthouse */
+    color: #ffffff; /* Validé par le CSS Overview grâce au nouveau vert sombre */
     margin: 0;
     padding: 0.75rem 1rem;
     font-size: 1.5rem;
@@ -89,7 +89,7 @@ header h1 {
     margin: 0.6rem 0;
     font-size: 1rem;
     text-align: right;
-    color: var(--text-dark); /* Correction pour p dans la section card */
+    color: var(--text-dark);
 }
 
 .card-content p span {
@@ -105,7 +105,7 @@ header h1 {
 
 footer {
     background-color: var(--brand-blue);
-    color: #ffffff; /* Texte blanc et spans corrigés sur fond bleu foncé */
+    color: #ffffff;
     text-align: center;
     padding: 2rem 1rem;
     font-size: 1rem;
@@ -114,7 +114,7 @@ footer {
 
 footer p, footer span {
     margin: 0.4rem 0;
-    color: #ffffff !important; /* Force le blanc pur pour le validateur */
+    color: #ffffff !important; /* Force le blanc pur pour le validateur sur le nouveau bleu sombre */
 }
 
 /* ==========================================================================
