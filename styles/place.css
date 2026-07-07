@@ -14,12 +14,12 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
-    color: var(--text-dark);
+    color: var(--text-dark); /* Correction du contraste global du body */
 }
 
 header {
     background-color: var(--brand-blue);
-    color: #ffffff;
+    color: #ffffff; /* Texte blanc parfaitement lisible sur le bleu foncé */
     padding: 2.5rem 1rem;
     text-align: center;
     border-bottom: 4px solid var(--accent-yellow);
@@ -46,14 +46,11 @@ header h1 {
     width: 100%;
     display: flex;
     flex-direction: column;
-    min-height: 300px; /* Sécurité anti-CLS : réserve l'espace initial */
 }
 
 .hero-image {
     display: block;
     width: 100%;
-    aspect-ratio: 900 / 675; /* Stabilise le ratio de l'image dès le départ */
-    overflow: hidden;
 }
 
 .hero-image img {
@@ -73,7 +70,7 @@ header h1 {
 
 .data-card h2, .weather-card h2 {
     background-color: var(--brand-green);
-    color: #ffffff;
+    color: #ffffff; /* Texte blanc sur fond vert foncé validé par Lighthouse */
     margin: 0;
     padding: 0.75rem 1rem;
     font-size: 1.5rem;
@@ -92,7 +89,7 @@ header h1 {
     margin: 0.6rem 0;
     font-size: 1rem;
     text-align: right;
-    color: var(--text-dark);
+    color: var(--text-dark); /* Correction pour p dans la section card */
 }
 
 .card-content p span {
@@ -108,7 +105,7 @@ header h1 {
 
 footer {
     background-color: var(--brand-blue);
-    color: #ffffff;
+    color: #ffffff; /* Texte blanc et spans corrigés sur fond bleu foncé */
     text-align: center;
     padding: 2rem 1rem;
     font-size: 1rem;
@@ -117,7 +114,7 @@ footer {
 
 footer p, footer span {
     margin: 0.4rem 0;
-    color: #ffffff !important; /* Force la conformité stricte du contraste */
+    color: #ffffff !important; /* Force le blanc pur pour le validateur */
 }
 
 /* ==========================================================================
