@@ -1,24 +1,25 @@
 /* ==========================================================================
-   Variables globales & Alignement de base
+   Variables globales & Alignement de base (COULEURS AUX NORMES DE CONTRASTE)
    ========================================================================== */
 :root {
-    --brand-blue: #007fff;      /* Bleu royal officiel de la RDC */
-    --brand-green: #1b7343;     /* Vert des titres de cartes */
+    --brand-blue: #0056b3;      /* Bleu foncé aux normes de contraste pour le texte blanc */
+    --brand-green: #0f5132;     /* Vert sapin foncé pour garantir un contraste 4.5:1 */
     --accent-yellow: #fdd835;   /* Jaune pour les bordures */
-    --text-dark: #333333;
-    --bg-card: rgba(255, 255, 255, 0.88); /* Arrière-plan translucide */
+    --text-dark: #111111;       /* Noir profond pour un contraste maximal sur fond blanc */
+    --bg-card: #ffffff;         /* Fond blanc 100% opaque obligatoire pour l'accessibilité */
 }
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #f8f9fa;
+    color: var(--text-dark); /* Correction du contraste global du body */
 }
 
 header {
     background-color: var(--brand-blue);
-    color: #ffffff;
+    color: #ffffff; /* Texte blanc parfaitement lisible sur le bleu foncé */
     padding: 2.5rem 1rem;
     text-align: center;
     border-bottom: 4px solid var(--accent-yellow);
@@ -61,14 +62,15 @@ header h1 {
 .data-card, .weather-card {
     background: var(--bg-card);
     margin: 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     color: var(--text-dark);
     z-index: 2;
+    border: 1px solid #dee2e6;
 }
 
 .data-card h2, .weather-card h2 {
     background-color: var(--brand-green);
-    color: #ffffff;
+    color: #ffffff; /* Texte blanc sur fond vert foncé validé par Lighthouse */
     margin: 0;
     padding: 0.75rem 1rem;
     font-size: 1.5rem;
@@ -85,8 +87,9 @@ header h1 {
 
 .card-content p {
     margin: 0.6rem 0;
-    font-size: 0.95rem;
+    font-size: 1rem;
     text-align: right;
+    color: var(--text-dark); /* Correction pour p dans la section card */
 }
 
 .card-content p span {
@@ -102,15 +105,16 @@ header h1 {
 
 footer {
     background-color: var(--brand-blue);
-    color: #ffffff;
+    color: #ffffff; /* Texte blanc et spans corrigés sur fond bleu foncé */
     text-align: center;
     padding: 2rem 1rem;
     font-size: 1rem;
     border-top: 4px solid var(--accent-yellow);
 }
 
-footer p {
+footer p, footer span {
     margin: 0.4rem 0;
+    color: #ffffff !important; /* Force le blanc pur pour le validateur */
 }
 
 /* ==========================================================================
@@ -160,7 +164,6 @@ footer p {
         display: none;
     }
 
-    /* CORRECTIF : Pseudo-élément ::after configuré pour modifier l'émanation sur grand écran */
     .weather-title::after {
         content: " ⛈️";
         font-size: 1.3rem;
