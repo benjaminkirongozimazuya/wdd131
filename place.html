@@ -7,21 +7,17 @@
     <meta name="description" content="Data and weather information about DR Congo and Kolwezi matching the project wireframe.">
     <meta name="author" content="Benjamin Kirongozi Mazuya">
 
-    <!-- Gestion du Favicon pour éviter l'erreur 404 -->
-    <!-- Ligne unique pour bloquer la recherche automatique du favicon -->
+    <!-- Gestion du Favicon (Bloque la recherche automatique pour éviter l'erreur 404) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇨🇩</text></svg>">
 
-    <!-- Liens Google Fonts optimisés pour ne pas bloquer le rendu (Performance) -->
+    <!-- Liens Google Fonts optimisés (Suppression du hack JS qui bloquait le Main Thread) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <!-- CSS Link -->
     <link rel="stylesheet" href="styles/place.css">
-    <!-- JavaScript Link with defer attribute -->
+    <!-- JavaScript Link (avec attribut defer pour la performance) -->
     <script src="scripts/place.js" defer></script>
 </head>
 <body>
@@ -35,13 +31,16 @@
         
         <!-- Élément picture optimisé pour le responsive et le LCP -->
         <picture class="hero-image">
+            <!-- Version pour les écrans d'ordinateur (Large) -->
             <source srcset="images/hero-large.webp" media="(min-width: 900px)">
-            <img src="images/hero-large.webp" 
+            <!-- Version pour les écrans mobiles (Petite) + Priorité haute pour le LCP -->
+            <img src="images/hero-small.webp" 
                  alt="Beautiful landscape of DR Congo" 
                  width="400" 
                  height="300" 
                  sizes="(max-width: 900px) 100vw, 900px" 
-                 loading="eager">
+                 loading="eager"
+                 fetchpriority="high">
         </picture>
 
         <!-- Carte Data -->
