@@ -7,8 +7,8 @@
     <meta name="description" content="Data and weather information about DR Congo and Kolwezi matching the project wireframe.">
     <meta name="author" content="Benjamin Kirongozi Mazuya">
 
-    <!-- Gestion du Favicon (Encodé proprement pour valider le W3C sans erreur de caractères) -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🇨🇩%3C/text%3E%3C/svg%3E">
+    <!-- Gestion du Favicon (Entièrement encodé sans aucun espace pour passer le W3C) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E🇨🇩%3C/text%3E%3C/svg%3E">
 
     <!-- Liens Google Fonts optimisés (Chargement asynchrone non-bloquant) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,9 +32,9 @@
 
     <main class="hero-container">
         
-        <!-- Élément picture corrigé : l'attribut sizes est placé sur la balise source conforme au W3C -->
+        <!-- Élément picture corrigé : Ajout du descripteur de largeur '900w' requis par l'attribut sizes -->
         <picture class="hero-image">
-            <source srcset="images/hero-large.webp" media="(min-width: 900px)" sizes="(max-width: 900px) 100vw, 900px">
+            <source srcset="images/hero-large.webp 900w" media="(min-width: 900px)" sizes="(max-width: 900px) 100vw, 900px">
             <img src="images/hero-large.webp" 
                  alt="Beautiful landscape of DR Congo" 
                  width="400" 
