@@ -10,10 +10,14 @@
     <!-- Gestion du Favicon (Bloque la recherche automatique pour éviter l'erreur 404) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇨🇩</text></svg>">
 
-    <!-- Liens Google Fonts optimisés (Suppression du hack JS qui bloquait le Main Thread) -->
+    <!-- TECHNIQUE ULTIME NON-BLOQUANTE POUR GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- On charge la feuille de style en mode "print" (non bloquant). Une fois chargée, elle bascule sur "all" -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    </noscript>
 
     <!-- CSS Link -->
     <link rel="stylesheet" href="styles/place.css">
@@ -41,7 +45,7 @@
                  sizes="(max-width: 900px) 100vw, 900px" 
                  loading="eager"
                  fetchpriority="high">
-        </picture>
+</picture>
 
         <!-- Carte Data -->
         <section class="data-card">
