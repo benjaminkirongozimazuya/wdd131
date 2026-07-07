@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WDD 131 - Country Project (France)</title>
-    <meta name="description" content="Data and weather information about France matching the project wireframe.">
+    <title>WDD 131 - Country Project (DR Congo)</title>
+    <meta name="description" content="Data and weather information about DR Congo and Kolwezi matching the project wireframe.">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS Link -->
@@ -15,52 +15,54 @@
 <body>
 
     <header>
-        <div class="header-container">
-            <h1>France</h1>
-        </div>
+        <h1>Democratic Republic of the Congo</h1>
     </header>
+    <div class="nav-bar-divider"></div>
 
-    <!-- Conteneur principal calqué sur Capture d’écran 2026-07-06 205606.png -->
+    <!-- Zone principale contenant l'image et les cartes superposées -->
     <main class="hero-container">
         
-        <!-- L'image de fond "Large Image" occupant tout l'espace -->
         <picture class="hero-image">
-            <source srcset="images/hero-large.webp" media="(min-width: 768px)">
-            <img src="images/hero-small.webp" alt="Beautiful landscape of France" width="1200" height="600">
+            <source srcset="images/hero-large.webp" media="(min-width: 900px)">
+            <img src="images/hero-small.webp" alt="Beautiful landscape of DR Congo" width="900" height="675">
         </picture>
 
-        <!-- Carte "Data" positionnée à gauche -->
+        <!-- Carte "Data" (Translucide à gauche) -->
         <section class="data-card">
             <h2>Data</h2>
-            <ul>
-                <li><strong>Capital:</strong> Paris</li>
-                <li><strong>Population:</strong> 68 Million</li>
-                <li><strong>Language:</strong> French</li>
-                <li><strong>Currency:</strong> Euro (€)</li>
-            </ul>
+            <div class="card-content">
+                <p><span>Area:</span> 2,345,409 sq km</p>
+                <p><span>Population:</span> 105,000,000</p>
+                <p><span>Capital:</span> Kinshasa</p>
+                <p><span>Languages:</span> French, Swahili, Lingala</p>
+                <p><span>Currency:</span> Congolese Franc (CDF)</p>
+                <p><span>Time Zone:</span> UTC+1 / UTC+2</p>
+                <p><span>Calling Code:</span> +243</p>
+                <p><span>Internet TLD:</span> .cd</p>
+            </div>
         </section>
 
-        <!-- Carte "Weather" positionnée à droite -->
+        <!-- Carte "Weather" (Translucide à droite) -->
         <section class="weather-card">
             <h2 class="weather-title">Weather ⛅</h2>
             
             <div class="weather-icon-mobile">
-                <img src="images/weather.svg" alt="Weather Icon" width="48" height="48">
+                <img src="images/weather.svg" alt="" width="48" height="48">
             </div>
 
-            <ul>
-                <li><strong>Temperature:</strong> <span id="temp">8</span>°C</li>
-                <li><strong>Conditions:</strong> Mostly Cloudy</li>
-                <li><strong>Wind:</strong> <span id="wind">15</span> km/h</li>
-                <li><strong>Wind Chill:</strong> <span id="windchill"></span></li>
-            </ul>
+            <div class="card-content">
+                <p><span>Temperature:</span> <span id="temp">9</span>°C</p>
+                <p><span>Conditions:</span> Rainy & Windy</p>
+                <p><span>Wind:</span> <span id="wind">12</span> km/h</p>
+                <p><span>Wind Chill:</span> <span id="windchill"></span></p>
+            </div>
         </section>
         
     </main>
 
     <footer>
-        <p>&copy; <span id="currentyear"></span> | Benjamin K. Mazuya | France Project</p>
-        <p class="last-modified">Last Modified: <span id="lastmodified"></span></p>
+        <p>&copy; <span id="currentyear"></span> 🌸 Benjamin K. Mazuya 🌸 DR Congo Project</p>
+        <p class="last-modified">Last Modification: <span id="lastmodified"></span></p>
     </footer>
 
 </body>

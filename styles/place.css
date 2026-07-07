@@ -2,148 +2,165 @@
    Variables globales & Alignement de base
    ========================================================================== */
 :root {
-    --primary-color: #0055a5;
-    --secondary-color: #ffffff;
-    --accent-color: #e70023;
-    --text-dark: #222222;
-    --bg-light: #f4f6f9;
-    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    --brand-blue: #007fff;      /* Bleu royal officiel de la RDC */
+    --brand-green: #1b7343;     /* Vert des titres de cartes */
+    --accent-yellow: #fdd835;   /* Jaune pour les bordures */
+    --text-dark: #333333;
+    --bg-card: rgba(255, 255, 255, 0.88); /* Arrière-plan translucide */
 }
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--bg-light);
-    color: var(--text-dark);
+    background-color: #f0f0f0;
 }
 
 header {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 1.5rem;
-    border-bottom: 5px solid var(--accent-color);
-}
-
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    background-color: var(--brand-blue);
+    color: #ffffff;
+    padding: 2.5rem 1rem;
     text-align: center;
+    border-bottom: 4px solid var(--accent-yellow);
 }
 
-h1 {
+header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-bar-divider {
+    background-color: var(--brand-green);
+    height: 20px;
+    width: 100%;
 }
 
 /* ==========================================================================
-   Structure de superposition (Mobile First)
+   Structure Mobile First (Superposition verticale standard)
    ========================================================================== */
 .hero-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    max-width: 1200px;
-    margin: 1rem auto;
-    padding: 0 1rem;
-    gap: 1.5rem;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-/* En mobile, l'image s'affiche normalement au-dessus */
+.hero-image {
+    display: block;
+    width: 100%;
+}
+
 .hero-image img {
+    display: block;
     width: 100%;
     height: auto;
-    object-fit: cover;
-    border-radius: 8px;
 }
 
 .data-card, .weather-card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: var(--card-shadow);
+    background: var(--bg-card);
+    margin: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: var(--text-dark);
     z-index: 2;
 }
 
 .data-card h2, .weather-card h2 {
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
-    margin-top: 0;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
+    background-color: var(--brand-green);
+    color: #ffffff;
     margin: 0;
+    padding: 0.75rem 1rem;
+    font-size: 1.5rem;
 }
 
-ul li {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid #eeeeee;
+.card-content {
+    padding: 1.2rem;
+}
+
+.card-content p {
+    margin: 0.6rem 0;
+    font-size: 0.95rem;
+    text-align: right;
+}
+
+.card-content p span {
+    font-weight: bold;
+    display: inline-block;
 }
 
 .weather-icon-mobile {
     display: block;
-    margin-bottom: 1rem;
+    text-align: center;
+    padding-top: 1rem;
 }
 
 footer {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
+    background-color: var(--brand-blue);
+    color: #ffffff;
     text-align: center;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    font-size: 0.9rem;
+    padding: 2rem 1rem;
+    font-size: 1rem;
+    border-top: 4px solid var(--accent-yellow);
+}
+
+footer p {
+    margin: 0.4rem 0;
 }
 
 /* ==========================================================================
-   Large View Layout (Superposition exacte du Wireframe)
+   Affichage Grand Écran (Version Ordinateur - FIXE L'AFFICHAGE DE L'IMAGE)
    ========================================================================== */
-@media (min-width: 768px) {
+@media (min-width: 900px) {
     .hero-container {
-        grid-template-columns: 1fr 1fr 1fr; /* 3 colonnes pour distribuer l'espace */
-        grid-template-rows: auto;
-        position: relative;
-        padding: 0;
+        display: block; /* Désactive la grille qui faisait planter l'image */
+        min-height: 650px; /* Force une hauteur minimale visible */
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    /* L'image prend toute la largeur et sert de fond en arrière-plan */
+    /* L'image est forcée de s'étaler absolument en arrière-plan */
     .hero-image {
-        grid-column: 1 / span 3;
-        grid-row: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
     }
 
     .hero-image img {
-        height: 500px;
-        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Remplit l'espace sans déformation */
     }
 
-    /* Placement de la carte Data sur la gauche (colonne 1) par-dessus l'image */
+    /* Positionnement de la carte Data flottante à gauche */
     .data-card {
-        grid-column: 1;
-        grid-row: 1;
-        align-self: center;
-        justify-self: start;
-        margin-left: 2rem;
-        width: 280px;
+        position: absolute;
+        left: 3rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 320px;
+        margin: 0;
     }
 
-    /* Placement de la carte Weather sur la droite (colonne 3) par-dessus l'image */
+    /* Positionnement de la carte Weather flottante à droite en bas */
     .weather-card {
-        grid-column: 3;
-        grid-row: 1;
-        align-self: center;
-        justify-self: end;
-        margin-right: 2rem;
+        position: absolute;
+        right: 3rem;
+        bottom: 3rem;
         width: 280px;
+        margin: 0;
     }
 
     .weather-icon-mobile {
         display: none;
     }
 
-    /* Pseudo-élément :after requis placé après le titre Weather */
-    .weather-title::after {
-        content: " ❄️";
-        font-size: 1.3rem;
+    .weather-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 }
