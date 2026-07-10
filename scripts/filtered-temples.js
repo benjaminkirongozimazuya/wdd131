@@ -51,12 +51,12 @@ const temples = [
     area: 116642,
     imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/mexico-city-mexico/400x250/mexico-city-temple-exterior-1518361-wallpaper.jpg"
   },
-  {
+ {
     templeName: "Kinshasa DR Congo",
     location: "Kinshasa, Democratic Republic of the Congo",
     dedicated: "2019, April, 14",
     area: 12000,
-    imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/kinshasa-democratic-republic-of-congo/400x250/01-Kinshasa-DRC-Temple-2212232.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Kinshasa_Democratic_Republic_of_the_Congo_Temple.jpg/400x250px-Kinshasa_Democratic_Republic_of_the_Congo_Temple.jpg"
   },
   {
     templeName: "Paris France",
