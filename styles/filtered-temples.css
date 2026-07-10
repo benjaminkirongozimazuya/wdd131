@@ -1,0 +1,111 @@
+/* Styles Généraux */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+header {
+    background-color: #0A4384;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+nav a:hover {
+    background-color: #072f5f;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+main h2 {
+    text-align: center;
+    color: #0A4384;
+    margin-bottom: 2rem;
+}
+
+/* Grille Responsives pour les cartes des Temples */
+.temple-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* Styles des Cartes individuelles */
+.temple-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.temple-card h3 {
+    margin-top: 0;
+    color: #0A4384;
+    border-bottom: 2px solid #f4f6f9;
+    padding-bottom: 0.5rem;
+}
+
+.temple-card p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.temple-card figure {
+    margin: 1rem 0 0 0;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.temple-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.temple-card img:hover {
+    transform: scale(1.03);
+}
+
+/* Footer */
+footer {
+    background-color: #0A4384;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 4rem;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0.4rem 0;
+}
