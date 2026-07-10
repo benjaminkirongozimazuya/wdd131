@@ -1,5 +1,5 @@
 // ==========================================
-// 1. TABLEAU COMPLET DES 10 TEMPLES
+// 1. TABLEAU DE DONNÉES DES TEMPLES
 // ==========================================
 const temples = [
   {
@@ -51,12 +51,13 @@ const temples = [
     area: 116642,
     imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/mexico-city-mexico/400x250/mexico-city-temple-exterior-1518361-wallpaper.jpg"
   },
-{
-    templeName: "Frankfurt Germany",
-    location: "Friedrichsdorf, Germany",
-    dedicated: "1987, August, 28",
-    area: 32895,
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Frankfurt_Germany_Temple.jpg/400x250px-Frankfurt_Germany_Temple.jpg"
+  // FIX IMAGE : URL alternative libre de droits pour éviter le blocage réseau
+  {
+  templeName: "Kinshasa Democratic Republic of the Congo",
+  location: "Kinshasa, Democratic Republic of the Congo",
+  dedicated: "2019, April, 14",
+  area: 12000,
+  imageUrl: "images/kinshasa-temple.jpg"
   },
   {
     templeName: "Paris France",
@@ -91,17 +92,18 @@ if (hamburger && navMenu) {
 // 3. FONCTION DE GÉNÉRATION DES CARTES HTML
 // ==========================================
 const gallery = document.querySelector(".temple-grid");
-const mainHeading = document.querySelector("main h2"); // Corrigé pour cibler le bon h2
+const mainHeading = document.querySelector("main h2");
 
 function displayTemples(filteredTemples) {
   if (!gallery) return;
   
-  gallery.innerHTML = "";
+  gallery.innerHTML = ""; 
   
   filteredTemples.forEach(temple => {
     const card = document.createElement("section");
     card.classList.add("temple-card");
     
+    // Respecte strictement le lazy loading et les dimensions requises par le sujet
     card.innerHTML = `
       <h3>${temple.templeName}</h3>
       <p><strong>Location:</strong> ${temple.location}</p>
@@ -109,7 +111,7 @@ function displayTemples(filteredTemples) {
       <p><strong>Size:</strong> ${temple.area.toLocaleString()} sq ft</p>
       <figure>
         <img src="${temple.imageUrl}" 
-             alt="The beautiful ${temple.templeName} Temple" 
+             alt="${temple.templeName} Temple" 
              loading="lazy" 
              width="400" 
              height="250">
@@ -127,7 +129,7 @@ const navLinks = document.querySelectorAll("nav a");
 
 navLinks.forEach(link => {
   link.addEventListener("click", (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     
     navLinks.forEach(l => l.classList.remove("active"));
     link.classList.add("active");
@@ -142,33 +144,32 @@ navLinks.forEach(link => {
     
     if (mainHeading) mainHeading.textContent = link.textContent;
 
-    // CORRECTION : Les cases correspondent maintenant aux ID de ton HTML
     switch (filter) {
-      case "nav-old":
+      case "nav-old": // Avant 1900
         filteredList = temples.filter(t => {
           const year = parseInt(t.dedicated.split(",")[0].trim());
           return year < 1900;
         });
         break;
         
-      case "nav-new":
+      case "nav-new": // Après 2000
         filteredList = temples.filter(t => {
           const year = parseInt(t.dedicated.split(",")[0].trim());
           return year > 2000;
         });
         break;
         
-      case "nav-large":
+      case "nav-large": // Supérieur à 90 000
         filteredList = temples.filter(t => t.area > 90000);
         break;
         
-      case "nav-small":
+      case "nav-small": // Inférieur à 10 000
         filteredList = temples.filter(t => t.area < 10000);
         break;
         
-      default: // Correspond à "nav-home"
+      default: // Tout afficher
         filteredList = temples;
-        if (mainHeading) mainHeading.textContent = "Explore LDS Temples"; // Texte original
+        if (mainHeading) mainHeading.textContent = "Home";
         break;
     }
     
@@ -180,7 +181,7 @@ navLinks.forEach(link => {
 // 5. MISE À JOUR DU FOOTER (DATES)
 // ==========================================
 const currentYearSpan = document.getElementById("currentyear");
-const lastModifiedSpan = document.getElementById("lastmodified"); // Corrigé pour correspondre à ton HTML (tout en minuscules)
+const lastModifiedSpan = document.getElementById("lastmodified");
 
 if (currentYearSpan) {
   currentYearSpan.textContent = new Date().getFullYear();
