@@ -1,0 +1,61 @@
+/* Alignement de base */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    text-align: center;
+}
+
+main {
+    padding: 2rem 1rem;
+}
+
+h1 {
+    margin-bottom: 2.5rem;
+    color: #0A4384;
+}
+
+/* Alignement des images sur une seule colonne centrée */
+img {
+    display: block;
+    width: 400px;
+    height: 600px;
+    margin: 2rem auto; /* Centre l'image et ajoute de l'espace vertical */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    background-color: #000000; /* Fond noir visible pendant le chargement */
+    
+    /* Application de l'animation */
+    animation: fadeFromBlack 1.5s ease-out;
+}
+
+/* Animation Fond Noir -> Opacité & Couleur normale */
+@keyframes fadeFromBlack {
+    0% {
+        opacity: 0;
+        filter: brightness(0); /* Totalement noir */
+    }
+    50% {
+        opacity: 0.5;
+        filter: brightness(0.3);
+    }
+    100% {
+        opacity: 1;
+        filter: brightness(1); /* Image normale */
+    }
+}
+
+/* Style du Footer */
+footer {
+    background-color: #0A4384;
+    color: #ffffff;
+    padding: 1.5rem 1rem;
+    margin-top: 3rem;
+    font-size: 0.95rem;
+}
+
+footer p {
+    margin: 0.4rem 0;
+}

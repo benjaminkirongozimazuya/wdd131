@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W04 : Lazy Loading & Animations</title>
+    <link rel="stylesheet" href="styles/lazyload.css">
+    <script src="scripts/lazyload.js" defer></script>
+</head>
+<body>
+
+    <main>
+        <h1>Galerie Lazy Loading - Soko Images</h1>
+        
+        <!-- Six images au format portrait avec chargement différé -->
+        <img src="https://unsplash.it/400/600?image=10" alt="Image de remplacement 1" loading="lazy" width="400" height="600">
+        <img src="https://unsplash.it/400/600?image=20" alt="Image de remplacement 2" loading="lazy" width="400" height="600">
+        <img src="https://unsplash.it/400/600?image=30" alt="Image de remplacement 3" loading="lazy" width="400" height="600">
+        <img src="https://unsplash.it/400/600?image=40" alt="Image de remplacement 4" loading="lazy" width="400" height="600">
+        <img src="https://unsplash.it/400/600?image=50" alt="Image de remplacement 5" loading="lazy" width="400" height="600">
+        <img src="https://unsplash.it/400/600?image=60" alt="Image de remplacement 6" loading="lazy" width="400" height="600">
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentyear"></span> | Benjamin K. Mazuya | Soko Images </p>
+        <p>Dernière modification : <span id="lastmodified"></span></p>
+    </footer>
+
+</body>
+</html>
