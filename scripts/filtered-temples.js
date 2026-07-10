@@ -52,11 +52,11 @@ const temples = [
     imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/mexico-city-mexico/400x250/mexico-city-temple-exterior-1518361-wallpaper.jpg"
   },
 {
-    templeName: "Salt Lake Utah",
-    location: "Salt Lake City, Utah, United States",
-    dedicated: "1893, April, 6",
-    area: 382207,
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Salt_Lake_Temple_and_Tabernacle.jpg/400x250px-Salt_Lake_Temple_and_Tabernacle.jpg"
+    templeName: "Frankfurt Germany",
+    location: "Friedrichsdorf, Germany",
+    dedicated: "1987, August, 28",
+    area: 32895,
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Frankfurt_Germany_Temple.jpg/400x250px-Frankfurt_Germany_Temple.jpg"
   },
   {
     templeName: "Paris France",
