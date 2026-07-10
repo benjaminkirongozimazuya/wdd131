@@ -49,27 +49,7 @@ const temples = [
     area: 116642,
     imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/mexico-city-mexico/400x250/mexico-city-temple-exterior-1518361-wallpaper.jpg"
   },
-  {
-    templeName: "Paris France",
-    location: "Le Chesnay, France",
-    dedicated: "2017, May, 21",
-    area: 44175,
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Paris_France_Temple_by_Mormon_Wiki.jpg/400px-Paris_France_Temple_by_Mormon_Wiki.jpg"
-  },
-  {
-    templeName: "Kinshasa DR Congo",
-    location: "Kinshasa, DR Congo",
-    dedicated: "2019, April, 14",
-    area: 12000,
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Kinshasa_Democratic_Republic_of_the_Congo_Temple.jpg/400px-Kinshasa_Democratic_Republic_of_the_Congo_Temple.jpg"
-  },
-  {
-    templeName: "Rome Italy",
-    location: "Rome, Italy",
-    dedicated: "2019, March, 10",
-    area: 41010,
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Rome_Italy_Temple_2019.jpg/400px-Rome_Italy_Temple_2019.jpg"
-  }
+ 
 ];
 
 // Attendre le chargement complet de la structure HTML
