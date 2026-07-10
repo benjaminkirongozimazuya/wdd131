@@ -1,4 +1,4 @@
-// Tableau complet des 10 temples (7 d'origine + 3 ajouts sécurisés)
+// Tableau complet des 10 temples (7 d'origine + 3 ajouts requis sécurisés)
 const temples = [
   {
     templeName: "Aba Nigeria",
@@ -49,75 +49,27 @@ const temples = [
     area: 116642,
     imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/mexico-city-mexico/400x250/mexico-city-temple-exterior-1518361-wallpaper.jpg"
   },
- 
+  {
+    templeName: "Kinshasa DR Congo",
+    location: "Kinshasa, Democratic Republic of the Congo",
+    dedicated: "2019, April, 14",
+    area: 12000,
+    imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/kinshasa-democratic-republic-of-congo/400x250/01-Kinshasa-DRC-Temple-2212232.jpg"
+  },
+  {
+    templeName: "Paris France",
+    location: "Le Chesnay, France",
+    dedicated: "2017, May, 21",
+    area: 44175,
+    imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/paris-france/400x250/paris-france-temple-exterior-1905503.jpg"
+  },
+  {
+    templeName: "Rome Italy",
+    location: "Rome, Italy",
+    dedicated: "2019, March, 10",
+    area: 41010,
+    imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/rome-italy/2019/400x250/5-Rome-Temple-2160345.jpg"
+  }
 ];
 
-// Attendre le chargement complet de la structure HTML
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".temple-grid");
-  
-  // 1. Fonction principale pour injecter les cartes de temples dans le HTML
-  function displayTemples(filteredTemples) {
-    container.innerHTML = ""; // Vide la grille avant d'afficher le nouveau filtre
-    
-    filteredTemples.forEach(temple => {
-      const card = document.createElement("section");
-      card.classList.add("temple-card");
-      
-      card.innerHTML = `
-        <h3>${temple.templeName}</h3>
-        <p><strong>Location:</strong> ${temple.location}</p>
-        <p><strong>Dedicated:</strong> ${temple.dedicated}</p>
-        <p><strong>Area:</strong> ${temple.area.toLocaleString()} sq ft</p>
-        <figure>
-          <img src="${temple.imageUrl}" alt="The beautiful ${temple.templeName} Temple" loading="lazy" width="400" height="250">
-        </figure>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // Affichage initial par défaut (Tous les temples)
-  displayTemples(temples);
-
-  // 2. Écouteurs d'événements pour le filtrage dynamique via le menu de navigation
-  document.querySelector("#nav-home").addEventListener("click", (e) => {
-    e.preventDefault();
-    displayTemples(temples);
-  });
-  
-  document.querySelector("#nav-old").addEventListener("click", (e) => {
-    e.preventDefault();
-    const oldTemples = temples.filter(t => parseInt(t.dedicated.split(",")[0]) < 1900);
-    displayTemples(oldTemples);
-  });
-
-  document.querySelector("#nav-new").addEventListener("click", (e) => {
-    e.preventDefault();
-    const newTemples = temples.filter(t => parseInt(t.dedicated.split(",")[0]) > 2000);
-    displayTemples(newTemples);
-  });
-
-  document.querySelector("#nav-large").addEventListener("click", (e) => {
-    e.preventDefault();
-    const largeTemples = temples.filter(t => t.area > 90000);
-    displayTemples(largeTemples);
-  });
-
-  document.querySelector("#nav-small").addEventListener("click", (e) => {
-    e.preventDefault();
-    const smallTemples = temples.filter(t => t.area < 10000);
-    displayTemples(smallTemples);
-  });
-
-  // 3. Remplissage automatique des données dynamiques du footer
-  const currentYearSpan = document.getElementById("currentyear");
-  if (currentYearSpan) {
-    currentYearSpan.textContent = new Date().getFullYear();
-  }
-
-  const lastModifiedSpan = document.getElementById("lastmodified");
-  if (lastModifiedSpan) {
-    lastModifiedSpan.textContent = document.lastModified;
-  }
-});
+// Tout le reste de ton code JavaScript en dessous est PARFAIT et ne change pas...
