@@ -90,9 +90,8 @@ if (hamburger && navMenu) {
 // ==========================================
 // 3. FONCTION DE GÉNÉRATION DES CARTES HTML
 // ==========================================
-// Correction ici : ciblage de la classe 'temple-grid' définie dans ton CSS
 const gallery = document.querySelector(".temple-grid");
-const mainHeading = document.getElementById("main-heading");
+const mainHeading = document.querySelector("main h2"); // Corrigé pour cibler le bon h2
 
 function displayTemples(filteredTemples) {
   if (!gallery) return;
@@ -103,7 +102,6 @@ function displayTemples(filteredTemples) {
     const card = document.createElement("section");
     card.classList.add("temple-card");
     
-    // Remplacement des balises span par strong pour s'aligner sur ton CSS
     card.innerHTML = `
       <h3>${temple.templeName}</h3>
       <p><strong>Location:</strong> ${temple.location}</p>
@@ -144,32 +142,33 @@ navLinks.forEach(link => {
     
     if (mainHeading) mainHeading.textContent = link.textContent;
 
+    // CORRECTION : Les cases correspondent maintenant aux ID de ton HTML
     switch (filter) {
-      case "filter-old":
+      case "nav-old":
         filteredList = temples.filter(t => {
           const year = parseInt(t.dedicated.split(",")[0].trim());
           return year < 1900;
         });
         break;
         
-      case "filter-new":
+      case "nav-new":
         filteredList = temples.filter(t => {
           const year = parseInt(t.dedicated.split(",")[0].trim());
           return year > 2000;
         });
         break;
         
-      case "filter-large":
+      case "nav-large":
         filteredList = temples.filter(t => t.area > 90000);
         break;
         
-      case "filter-small":
+      case "nav-small":
         filteredList = temples.filter(t => t.area < 10000);
         break;
         
-      default:
+      default: // Correspond à "nav-home"
         filteredList = temples;
-        if (mainHeading) mainHeading.textContent = "Home";
+        if (mainHeading) mainHeading.textContent = "Explore LDS Temples"; // Texte original
         break;
     }
     
@@ -178,10 +177,10 @@ navLinks.forEach(link => {
 });
 
 // ==========================================
-// 5. MISE À TRACE DU FOOTER (DATES)
+// 5. MISE À JOUR DU FOOTER (DATES)
 // ==========================================
 const currentYearSpan = document.getElementById("currentyear");
-const lastModifiedSpan = document.getElementById("lastModified");
+const lastModifiedSpan = document.getElementById("lastmodified"); // Corrigé pour correspondre à ton HTML (tout en minuscules)
 
 if (currentYearSpan) {
   currentYearSpan.textContent = new Date().getFullYear();
