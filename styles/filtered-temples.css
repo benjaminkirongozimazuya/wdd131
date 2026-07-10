@@ -1,8 +1,7 @@
 /* ==========================================================================
-   1. VARIABLES GLOBALES (:root) & THÈME
+   1. VARIABLES GLOBALES (:root) - REQUIS PAR BYU
    ========================================================================== */
 :root {
-    /* Palette de couleurs sémantiques */
     --primary-color: #0A4384;
     --primary-hover: #072f5f;
     --accent-color: #e0a96d;
@@ -12,14 +11,10 @@
     --bg-card: #ffffff;
     --border-color: #e0e4ec;
     --placeholder-gray: #e0e0e0;
-    
-    /* Typographie et espacements standardisés */
-    --font-stack: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --transition-smooth: all 0.3s ease;
 }
 
 /* ==========================================================================
-   2. RÉINITIALISATION RAISONNÉE (Reset & Base)
+   2. RÉINITIALISATION & CONFIGURATION DE BASE
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -28,7 +23,7 @@
 }
 
 body {
-    font-family: var(--font-stack);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-main);
     color: var(--text-color);
     line-height: 1.5;
@@ -53,10 +48,11 @@ header h1 {
 
 nav ul {
     list-style: none;
+    padding: 0;
     display: flex;
     justify-content: center;
     gap: 0.75rem;
-    flex-wrap: wrap; /* Aligne proprement les boutons sur les écrans étroits */
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -66,7 +62,7 @@ nav a {
     padding: 0.6rem 1.2rem;
     border-radius: 6px;
     border: 1px solid transparent;
-    transition: var(--transition-smooth);
+    transition: all 0.3s ease;
     font-size: 0.95rem;
 }
 
@@ -77,7 +73,7 @@ nav a:hover, nav a:focus {
 }
 
 /* ==========================================================================
-   4. ZONE PRINCIPALE (Main)
+   4. ZONE PRINCIPALE (Main) & GRILLE (Anti-CLS)
    ========================================================================== */
 main {
     max-width: 1200px;
@@ -93,7 +89,6 @@ main h2 {
     position: relative;
 }
 
-/* Décoration subtile sous le titre principal */
 main h2::after {
     content: '';
     display: block;
@@ -104,20 +99,15 @@ main h2::after {
     border-radius: 2px;
 }
 
-/* ==========================================================================
-   5. GRILLE ADAPTATIVE & ANTI-CLS
-   ========================================================================== */
 .temple-grid {
     display: grid;
-    /* Génère automatiquement le nombre de colonnes adéquat selon l'écran */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    /* Empêche les sursauts du footer pendant l'effacement/le tri des éléments */
     min-height: 650px;
 }
 
 /* ==========================================================================
-   6. CARTES DES TEMPLES (Cards)
+   5. CARTES DES TEMPLES (Cards)
    ========================================================================== */
 .temple-card {
     background-color: var(--bg-card);
@@ -155,13 +145,11 @@ main h2::after {
     color: var(--text-color);
 }
 
-/* Configuration rigoureuse de l'image pour bloquer le layout shift (CLS) */
 .temple-card figure {
     margin: 1.25rem 0 0 0;
     overflow: hidden;
     border-radius: 6px;
     background-color: var(--placeholder-gray);
-    /* Aligné sur les attributs width="400" et height="250" du JS */
     aspect-ratio: 400 / 250; 
     width: 100%;
 }
@@ -171,7 +159,7 @@ main h2::after {
     height: 100%;
     display: block;
     object-fit: cover;
-    transition: var(--transition-smooth);
+    transition: all 0.3s ease;
 }
 
 .temple-card img:hover {
@@ -179,7 +167,7 @@ main h2::after {
 }
 
 /* ==========================================================================
-   7. FOOTER
+   6. FOOTER
    ========================================================================== */
 footer {
     background-color: var(--primary-color);
@@ -197,7 +185,7 @@ footer p {
 }
 
 /* ==========================================================================
-   8. AJUSTEMENTS POUR GRANDS ÉCRANS (Media Query)
+   7. MEDIA QUERIES (Écrans larges)
    ========================================================================== */
 @media (min-width: 768px) {
     header {
