@@ -51,12 +51,12 @@ const temples = [
     area: 116642,
     imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/mexico-city-mexico/400x250/mexico-city-temple-exterior-1518361-wallpaper.jpg"
   },
- {
-    templeName: "Kinshasa DR Congo",
-    location: "Kinshasa, Democratic Republic of the Congo",
-    dedicated: "2019, April, 14",
-    area: 12000,
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Kinshasa_Democratic_Republic_of_the_Congo_Temple.jpg/400x250px-Kinshasa_Democratic_Republic_of_the_Congo_Temple.jpg"
+{
+    templeName: "Salt Lake Utah",
+    location: "Salt Lake City, Utah, United States",
+    dedicated: "1893, April, 6",
+    area: 382207,
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Salt_Lake_Temple_and_Tabernacle.jpg/400x250px-Salt_Lake_Temple_and_Tabernacle.jpg"
   },
   {
     templeName: "Paris France",
