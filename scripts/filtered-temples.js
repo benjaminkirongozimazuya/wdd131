@@ -1,4 +1,6 @@
-// Tableau complet des 10 temples (7 d'origine + 3 ajouts requis sécurisés)
+// ==========================================
+// 1. TABLEAU COMPLET DES 10 TEMPLES
+// ==========================================
 const temples = [
   {
     templeName: "Aba Nigeria",
@@ -72,4 +74,126 @@ const temples = [
   }
 ];
 
-// Tout le reste de ton code JavaScript en dessous est PARFAIT et ne change pas...
+// ==========================================
+// 2. GESTION DU MENU MOBILE (HAMBURGER)
+// ==========================================
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
+if (hamburger && navMenu) {
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("open");
+    hamburger.textContent = navMenu.classList.contains("open") ? "✕" : "☰";
+  });
+}
+
+// ==========================================
+// 3. FONCTION DE GÉNÉRATION DES CARTES HTML
+// ==========================================
+// Correction ici : ciblage de la classe 'temple-grid' définie dans ton CSS
+const gallery = document.querySelector(".temple-grid");
+const mainHeading = document.getElementById("main-heading");
+
+function displayTemples(filteredTemples) {
+  if (!gallery) return;
+  
+  gallery.innerHTML = "";
+  
+  filteredTemples.forEach(temple => {
+    const card = document.createElement("section");
+    card.classList.add("temple-card");
+    
+    // Remplacement des balises span par strong pour s'aligner sur ton CSS
+    card.innerHTML = `
+      <h3>${temple.templeName}</h3>
+      <p><strong>Location:</strong> ${temple.location}</p>
+      <p><strong>Dedicated:</strong> ${temple.dedicated}</p>
+      <p><strong>Size:</strong> ${temple.area.toLocaleString()} sq ft</p>
+      <figure>
+        <img src="${temple.imageUrl}" 
+             alt="The beautiful ${temple.templeName} Temple" 
+             loading="lazy" 
+             width="400" 
+             height="250">
+      </figure>
+    `;
+    
+    gallery.appendChild(card);
+  });
+}
+
+// ==========================================
+// 4. LOGIQUE FILTRAGE ET ÉVÉNEMENTS DU MENU
+// ==========================================
+const navLinks = document.querySelectorAll("nav a");
+
+navLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    navLinks.forEach(l => l.classList.remove("active"));
+    link.classList.add("active");
+    
+    if (navMenu && navMenu.classList.contains("open")) {
+      navMenu.classList.remove("open");
+      if (hamburger) hamburger.textContent = "☰";
+    }
+    
+    const filter = link.id;
+    let filteredList = [];
+    
+    if (mainHeading) mainHeading.textContent = link.textContent;
+
+    switch (filter) {
+      case "filter-old":
+        filteredList = temples.filter(t => {
+          const year = parseInt(t.dedicated.split(",")[0].trim());
+          return year < 1900;
+        });
+        break;
+        
+      case "filter-new":
+        filteredList = temples.filter(t => {
+          const year = parseInt(t.dedicated.split(",")[0].trim());
+          return year > 2000;
+        });
+        break;
+        
+      case "filter-large":
+        filteredList = temples.filter(t => t.area > 90000);
+        break;
+        
+      case "filter-small":
+        filteredList = temples.filter(t => t.area < 10000);
+        break;
+        
+      default:
+        filteredList = temples;
+        if (mainHeading) mainHeading.textContent = "Home";
+        break;
+    }
+    
+    displayTemples(filteredList);
+  });
+});
+
+// ==========================================
+// 5. MISE À TRACE DU FOOTER (DATES)
+// ==========================================
+const currentYearSpan = document.getElementById("currentyear");
+const lastModifiedSpan = document.getElementById("lastModified");
+
+if (currentYearSpan) {
+  currentYearSpan.textContent = new Date().getFullYear();
+}
+
+if (lastModifiedSpan) {
+  lastModifiedSpan.textContent = document.lastModified;
+}
+
+// ==========================================
+// 6. INITIALISATION AU CHARGEMENT
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  displayTemples(temples);
+});
