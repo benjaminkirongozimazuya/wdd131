@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soko - Website Plan</title>
+    <meta name="description" content="Site planning document for Soko, an e-commerce platform for affordable imported products.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
+    <link rel="stylesheet" href="styles/siteplan.css">
+</head>
+<body>
+    <header>
+        <h1>Soko</h1>
+        <p class="subtitle">Website Planning Document</p>
+    </header>
+
+    <main>
+        <!-- SECTION 1: SITE NAME -->
+        <section class="plan-section">
+            <h2>1. Site Name & Identity</h2>
+            <div class="card">
+                <h3>Soko (E-commerce Market)</h3>
+                <p><strong>Why this name?</strong> "Soko" means "market" in Swahili. It represents a vibrant, accessible, and community-focused space. Choosing this name reflects a bridge between affordable global manufacturing and local consumers who are looking for high-quality, budget-friendly trending imports.</p>
+                <p><strong>Proposed Domain:</strong> <code>soko-market.shop</code> (or <code>soko-imports.com</code>)</p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SITE PURPOSE -->
+        <section class="plan-section">
+            <h2>2. Site Purpose</h2>
+            <div class="card">
+                <p>The purpose of <strong>Soko</strong> is to provide an interactive, lightning-fast, and responsive catalog showcasing trending imported products from China. It serves as a modern prototype proving that affordable consumer goods can be navigated easily through rich client-side features like real-time search, category filtering, and an instant-update shopping cart.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SCENARIOS -->
+        <section class="plan-section">
+            <h2>3. Target Audience & Scenarios</h2>
+            <div class="card">
+                <p>Our target audience consists of budget-conscious young professionals, students, and local retail entrepreneurs looking for hot, trending products at competitive prices.</p>
+                
+                <div class="scenario-box">
+                    <h4>Scenario 1: The Budget-Minded Tech Enthusiast</h4>
+                    <blockquote>
+                        "I am looking for a trending smart accessory (like wireless earbuds or a smart watch) but my budget is strictly under $25. Can I easily filter out more expensive items on this site to find exactly what fits my wallet?"
+                    </blockquote>
+                </div>
+
+                <div class="scenario-box">
+                    <h4>Scenario 2: The Returning Shopper</h4>
+                    <blockquote>
+                        "I've added two different items to my cart, but I want to adjust the quantity of one item and remove the other without the entire web page reloading. Does the cart calculate my new subtotal instantly?"
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: COLOR SCHEMA -->
+        <section class="plan-section">
+            <h2>4. Color Schema</h2>
+            <div class="card">
+                <p>The chosen color palette balances a modern corporate feel with warm, energetic commerce accents. It ensures a high contrast ratio compliant with accessibility (WCAG AA guidelines).</p>
+                
+                <div class="color-palette">
+                    <div class="color-swatch" style="background-color: #0d1b2a; color: white;">
+                        <strong>Primary Dark (#0d1b2a)</strong>
+                        <span>Header, Footer, Dark Backgrounds</span>
+                    </div>
+                    <div class="color-swatch" style="background-color: #f4a261; color: #0d1b2a;">
+                        <strong>Accent Amber (#f4a261)</strong>
+                        <span>Buttons, Active Links, Highlights</span>
+                    </div>
+                    <div class="color-swatch" style="background-color: #e2e8f0; color: #0d1b2a;">
+                        <strong>Light Neutral (#e2e8f0)</strong>
+                        <span>Card Backgrounds, Borders, Alternating Rows</span>
+                    </div>
+                    <div class="color-swatch" style="background-color: #ffffff; color: #0d1b2a; border: 1px solid #ccc;">
+                        <strong>White (#ffffff)</strong>
+                        <span>Main Content Areas, Text Contrast Zones</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: TYPOGRAPHY -->
+        <section class="plan-section">
+            <h2>5. Typography</h2>
+            <div class="card">
+                <div class="typography-preview">
+                    <div class="font-group">
+                        <h3>Heading Font: <span>Montserrat</span> (or sans-serif fallback)</h3>
+                        <p class="font-demo heading-demo">Soko: Quality Meets Affordability</p>
+                        <p>Used for all page titles (h1), section headings (h2), and sub-headings (h3, h4) to convey a bold, modern, and clean brand voice.</p>
+                    </div>
+                    <hr>
+                    <div class="font-group">
+                        <h3>Body Font: <span>Open Sans</span> (or system-ui fallback)</h3>
+                        <p class="font-demo body-demo">The shopping cart calculates totals instantly as items are added or removed.</p>
+                        <p>Used for all standard paragraphs, product descriptions, interface options, and navigational links to guarantee outstanding readability across various screen sizes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: WIREFRAMES -->
+        <section class="plan-section">
+            <h2>6. Layout Wireframes</h2>
+            <div class="card">
+                <p>These conceptual wireframes illustrate how the home page layout shifts cleanly between mobile portrait views and wider desktop monitors using CSS Flexbox and Grid.</p>
+
+                <div class="wireframe-container">
+                    <!-- Mobile Wireframe Mockup -->
+                    <div class="wireframe-box mobile-wire">
+                        <h4>Mobile View Layout (Single Column)</h4>
+                        <div class="wire-header">Header (Logo + Menu Button ☰)</div>
+                        <div class="wire-hero">Hero / Promo banner</div>
+                        <div class="wire-filters">Filters (Stack Vertically)</div>
+                        <div class="wire-grid-item">Product 1 (Full Width)</div>
+                        <div class="wire-grid-item">Product 2 (Full Width)</div>
+                        <div class="wire-footer">Footer (Copyright + Links)</div>
+                    </div>
+
+                    <!-- Desktop Wireframe Mockup -->
+                    <div class="wireframe-box desktop-wire">
+                        <h4>Desktop View Layout (Grid & Flex)</h4>
+                        <div class="wire-header">Header (Logo + Horizontal Nav Links + Cart Icon)</div>
+                        <div class="wire-hero">Hero / Featured Deals Banner</div>
+                        <div class="main-layout-split">
+                            <div class="wire-sidebar">Sidebar Filters</div>
+                            <div class="wire-grid-3">
+                                <div class="wire-grid-item">Prod 1</div>
+                                <div class="wire-grid-item">Prod 2</div>
+                                <div class="wire-grid-item">Prod 3</div>
+                                <div class="wire-grid-item">Prod 4</div>
+                                <div class="wire-grid-item">Prod 5</div>
+                                <div class="wire-grid-item">Prod 6</div>
+                            </div>
+                        </div>
+                        <div class="wire-footer">Footer</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
