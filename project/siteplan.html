@@ -10,8 +10,39 @@
 </head>
 <body>
     <header>
-        <h1>Soko</h1>
-        <p class="subtitle">Website Planning Document</p>
+        <div class="header-container">
+            <!-- LOGO VECTORIEL SOKO INTÉGRÉ DIRECTEMENT (Inline SVG) -->
+            <svg class="header-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 180">
+                <g transform="translate(10, 10)">
+                    <g id="brand-name">
+                        <!-- "Sok" en blanc/clair pour ressortir sur le fond sombre du header -->
+                        <text x="30" y="95" font-family="'Montserrat', 'Segoe UI', sans-serif" font-weight="900" font-size="82" fill="#ffffff" letter-spacing="-3">Sok</text>
+                        
+                        <!-- L'icône dynamique "O" -->
+                        <g transform="translate(202, 18)">
+                            <!-- Croissant Rose de gauche -->
+                            <path d="M 40,10 A 38,38 0 0,0 40,86 A 45,45 0 0,1 40,10 Z" fill="#c93b6d" />
+                            <!-- Éléments dynamiques blancs de droite -->
+                            <path d="M 46,15 A 35,35 0 0,1 68,38" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" />
+                            <path d="M 70,55 A 35,35 0 0,1 53,80" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" />
+                            <circle cx="73" cy="47" r="4" fill="#ffffff" />
+                        </g>
+                        
+                        <!-- Le deuxième "o" final -->
+                        <text x="282" y="95" font-family="'Montserrat', 'Segoe UI', sans-serif" font-weight="900" font-size="82" fill="#ffffff" letter-spacing="-3">o</text>
+                    </g>
+                    <!-- Ligne de séparation élégante -->
+                    <line x1="35" y1="125" x2="445" y2="125" stroke="#f4a261" stroke-width="2" stroke-linecap="round" />
+                    <!-- Slogan / Tagline d'E-commerce -->
+                    <text x="240" y="148" font-family="'Montserrat', 'Open Sans', sans-serif" font-weight="700" font-size="13" fill="#f4a261" letter-spacing="4" text-anchor="middle">E-COMMERCE TAGLINE GOES HERE</text>
+                </g>
+            </svg>
+            
+            <div class="header-text">
+                <h1>Soko Plan</h1>
+                <p class="subtitle">Website Planning Document</p>
+            </div>
+        </div>
     </header>
 
     <main>
@@ -33,21 +64,21 @@
             </div>
         </section>
 
-        <!-- SECTION 3: SCENARIOS -->
+        <!-- SECTION 3: SCENARIOS (Hiérarchie de titres h2 -> h3 corrigée !) -->
         <section class="plan-section">
             <h2>3. Target Audience & Scenarios</h2>
             <div class="card">
                 <p>Our target audience consists of budget-conscious young professionals, students, and local retail entrepreneurs looking for hot, trending products at competitive prices.</p>
                 
                 <div class="scenario-box">
-                    <h4>Scenario 1: The Budget-Minded Tech Enthusiast</h4>
+                    <h3>Scenario 1: The Budget-Minded Tech Enthusiast</h3>
                     <blockquote>
                         "I am looking for a trending smart accessory (like wireless earbuds or a smart watch) but my budget is strictly under $25. Can I easily filter out more expensive items on this site to find exactly what fits my wallet?"
                     </blockquote>
                 </div>
 
                 <div class="scenario-box">
-                    <h4>Scenario 2: The Returning Shopper</h4>
+                    <h3>Scenario 2: The Returning Shopper</h3>
                     <blockquote>
                         "I've added two different items to my cart, but I want to adjust the quantity of one item and remove the other without the entire web page reloading. Does the cart calculate my new subtotal instantly?"
                     </blockquote>
@@ -88,13 +119,13 @@
             <div class="card">
                 <div class="typography-preview">
                     <div class="font-group">
-                        <h3>Heading Font: <span>Montserrat</span> (or sans-serif fallback)</h3>
+                        <h3>Heading Font: Montserrat</h3>
                         <p class="font-demo heading-demo">Soko: Quality Meets Affordability</p>
-                        <p>Used for all page titles (h1), section headings (h2), and sub-headings (h3, h4) to convey a bold, modern, and clean brand voice.</p>
+                        <p>Used for all page titles (h1), section headings (h2), and sub-headings (h3) to convey a bold, modern, and clean brand voice.</p>
                     </div>
                     <hr>
                     <div class="font-group">
-                        <h3>Body Font: <span>Open Sans</span> (or system-ui fallback)</h3>
+                        <h3>Body Font: Open Sans</h3>
                         <p class="font-demo body-demo">The shopping cart calculates totals instantly as items are added or removed.</p>
                         <p>Used for all standard paragraphs, product descriptions, interface options, and navigational links to guarantee outstanding readability across various screen sizes.</p>
                     </div>
@@ -102,7 +133,7 @@
             </div>
         </section>
 
-        <!-- SECTION 6: WIREFRAMES -->
+        <!-- SECTION 6: WIREFRAMES (Hiérarchie de titres h2 -> h3 corrigée !) -->
         <section class="plan-section">
             <h2>6. Layout Wireframes</h2>
             <div class="card">
@@ -111,7 +142,7 @@
                 <div class="wireframe-container">
                     <!-- Mobile Wireframe Mockup -->
                     <div class="wireframe-box mobile-wire">
-                        <h4>Mobile View Layout (Single Column)</h4>
+                        <h3>Mobile View Layout (Single Column)</h3>
                         <div class="wire-header">Header (Logo + Menu Button ☰)</div>
                         <div class="wire-hero">Hero / Promo banner</div>
                         <div class="wire-filters">Filters (Stack Vertically)</div>
@@ -122,7 +153,7 @@
 
                     <!-- Desktop Wireframe Mockup -->
                     <div class="wireframe-box desktop-wire">
-                        <h4>Desktop View Layout (Grid & Flex)</h4>
+                        <h3>Desktop View Layout (Grid & Flex)</h3>
                         <div class="wire-header">Header (Logo + Horizontal Nav Links + Cart Icon)</div>
                         <div class="wire-hero">Hero / Featured Deals Banner</div>
                         <div class="main-layout-split">
