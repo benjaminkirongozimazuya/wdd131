@@ -1,9 +1,11 @@
-/* Importation des polices Google Fonts sélectionnées pour Soko */
+/* ==========================================================================
+   Importation des polices Google Fonts sélectionnées pour Soko
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap');
 
-/* ==========================================
+/* ==========================================================================
    VARIABLES DE LA CHARTE GRAPHIQUE (SOKO)
-   ========================================== */
+   ========================================================================== */
 :root {
     --primary-color: #0d1b2a;   /* Sombre / Élégant */
     --accent-color: #f4a261;    /* Ambre dynamique */
@@ -16,7 +18,9 @@
     --font-body: 'Open Sans', sans-serif;
 }
 
-/* Styles Généraux */
+/* ==========================================================================
+   Styles Généraux & Structure
+   ========================================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -57,7 +61,9 @@ main {
     margin: 0 auto;
 }
 
-/* Sections et Cartes */
+/* ==========================================================================
+   Sections et Cartes
+   ========================================================================== */
 .plan-section {
     margin-bottom: 40px;
 }
@@ -91,6 +97,7 @@ blockquote {
     color: #475569;
 }
 
+/* Blocs scénarios et architecture JS */
 .scenario-box {
     background-color: var(--light-bg);
     padding: 15px;
@@ -98,13 +105,36 @@ blockquote {
     margin-top: 15px;
 }
 
-.scenario-box h4 {
+/* FIX ACCESSIBILITÉ : Ciblage des h3 enfants pour respecter les niveaux de titres */
+.scenario-box h3, 
+.wireframe-box h3 {
     color: var(--primary-color);
     font-family: var(--font-heading);
+    font-size: 1.1rem;
     margin-bottom: 5px;
 }
 
-/* Visualisation de la palette */
+/* Styles pour la liste à puces de la section JavaScript */
+.scenario-box ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.scenario-box li {
+    margin-bottom: 8px;
+}
+
+.scenario-box code {
+    background-color: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Visualisation de la Palette de Couleurs
+   ========================================================================== */
 .color-palette {
     display: flex;
     flex-wrap: wrap;
@@ -133,7 +163,9 @@ blockquote {
     opacity: 0.9;
 }
 
-/* Visualisation de la typographie */
+/* ==========================================================================
+   Visualisation de la Typographie
+   ========================================================================== */
 .typography-preview .font-group {
     padding: 10px 0;
 }
@@ -162,9 +194,9 @@ hr {
     margin: 20px 0;
 }
 
-/* ==========================================
-   CONCEPTION DES WIREFRAMES EN CSS PUR
-   ========================================== */
+/* ==========================================================================
+   Conception des Wireframes en CSS pur (Responsives)
+   ========================================================================== */
 .wireframe-container {
     display: flex;
     flex-wrap: wrap;
@@ -191,14 +223,13 @@ hr {
     flex: 2 1 500px;
 }
 
-.wireframe-box h4 {
-    font-family: var(--font-heading);
-    text-align: center;
-    margin-bottom: 5px;
-}
-
 /* Éléments internes des wireframes */
-.wire-header, .wire-hero, .wire-filters, .wire-grid-item, .wire-footer, .wire-sidebar {
+.wire-header, 
+.wire-hero, 
+.wire-filters, 
+.wire-grid-item, 
+.wire-footer, 
+.wire-sidebar {
     background-color: #cbd5e1;
     border: 1px solid #94a3b8;
     border-radius: 4px;
@@ -237,7 +268,9 @@ hr {
     padding: 15px 5px;
 }
 
-/* Pied de page */
+/* ==========================================================================
+   Pied de page (Footer)
+   ========================================================================== */
 footer {
     background-color: var(--primary-color);
     color: #94a3b8;
