@@ -6,6 +6,12 @@
     <title>Soko - Website Plan</title>
     <meta name="description" content="Site planning document for Soko, an e-commerce platform for affordable imported products.">
     <meta name="author" content="Benjamin Kirongozi Mazuya">
+    
+    <!-- Google Fonts API (Lien direct obligatoire dans le HTML) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles/siteplan.css">
 </head>
 <body>
@@ -15,25 +21,16 @@
             <svg class="header-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 180">
                 <g transform="translate(10, 10)">
                     <g id="brand-name">
-                        <!-- "Sok" en blanc/clair pour ressortir sur le fond sombre du header -->
                         <text x="30" y="95" font-family="'Montserrat', 'Segoe UI', sans-serif" font-weight="900" font-size="82" fill="#ffffff" letter-spacing="-3">Sok</text>
-                        
-                        <!-- L'icône dynamique "O" -->
                         <g transform="translate(202, 18)">
-                            <!-- Croissant Rose de gauche -->
                             <path d="M 40,10 A 38,38 0 0,0 40,86 A 45,45 0 0,1 40,10 Z" fill="#c93b6d" />
-                            <!-- Éléments dynamiques blancs de droite -->
                             <path d="M 46,15 A 35,35 0 0,1 68,38" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" />
                             <path d="M 70,55 A 35,35 0 0,1 53,80" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" />
                             <circle cx="73" cy="47" r="4" fill="#ffffff" />
                         </g>
-                        
-                        <!-- Le deuxième "o" final -->
                         <text x="282" y="95" font-family="'Montserrat', 'Segoe UI', sans-serif" font-weight="900" font-size="82" fill="#ffffff" letter-spacing="-3">o</text>
                     </g>
-                    <!-- Ligne de séparation élégante -->
                     <line x1="35" y1="125" x2="445" y2="125" stroke="#f4a261" stroke-width="2" stroke-linecap="round" />
-                    <!-- Slogan / Tagline d'E-commerce -->
                     <text x="240" y="148" font-family="'Montserrat', 'Open Sans', sans-serif" font-weight="700" font-size="13" fill="#f4a261" letter-spacing="4" text-anchor="middle">E-COMMERCE TAGLINE GOES HERE</text>
                 </g>
             </svg>
@@ -64,7 +61,7 @@
             </div>
         </section>
 
-        <!-- SECTION 3: SCENARIOS (Hiérarchie de titres h2 -> h3 corrigée !) -->
+        <!-- SECTION 3: SCENARIOS -->
         <section class="plan-section">
             <h2>3. Target Audience & Scenarios</h2>
             <div class="card">
@@ -86,26 +83,26 @@
             </div>
         </section>
 
-        <!-- SECTION 4: COLOR SCHEMA -->
+        <!-- SECTION 4: COLOR SCHEMA (Styles en ligne supprimés) -->
         <section class="plan-section">
             <h2>4. Color Schema</h2>
             <div class="card">
                 <p>The chosen color palette balances a modern corporate feel with warm, energetic commerce accents. It ensures a high contrast ratio compliant with accessibility (WCAG AA guidelines).</p>
                 
                 <div class="color-palette">
-                    <div class="color-swatch" style="background-color: #0d1b2a; color: white;">
+                    <div class="color-swatch color-primary">
                         <strong>Primary Dark (#0d1b2a)</strong>
                         <span>Header, Footer, Dark Backgrounds</span>
                     </div>
-                    <div class="color-swatch" style="background-color: #f4a261; color: #0d1b2a;">
+                    <div class="color-swatch color-accent">
                         <strong>Accent Amber (#f4a261)</strong>
                         <span>Buttons, Active Links, Highlights</span>
                     </div>
-                    <div class="color-swatch" style="background-color: #e2e8f0; color: #0d1b2a;">
+                    <div class="color-swatch color-neutral">
                         <strong>Light Neutral (#e2e8f0)</strong>
                         <span>Card Backgrounds, Borders, Alternating Rows</span>
                     </div>
-                    <div class="color-swatch" style="background-color: #ffffff; color: #0d1b2a; border: 1px solid #ccc;">
+                    <div class="color-swatch color-white-bg">
                         <strong>White (#ffffff)</strong>
                         <span>Main Content Areas, Text Contrast Zones</span>
                     </div>
@@ -133,7 +130,7 @@
             </div>
         </section>
 
-        <!-- SECTION 6: WIREFRAMES (Hiérarchie de titres h2 -> h3 corrigée !) -->
+        <!-- SECTION 6: WIREFRAMES -->
         <section class="plan-section">
             <h2>6. Layout Wireframes</h2>
             <div class="card">
