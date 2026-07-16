@@ -1,0 +1,196 @@
+/* ==========================================================================
+   1. BASE SYSTEM & COLOR PALETTE
+   ========================================================================== */
+:root {
+    --primary-purple: #3d0c3a;    /* Violet foncé du header/footer */
+    --form-bg: #dbd3dc;           /* Gris-violet clair du fond du formulaire */
+    --form-border: #b5a9b7;       /* Bordure du formulaire */
+    --input-border: #a3a3a3;      /* Bordures des champs de saisie */
+    --text-color: #000000;        /* Texte principal noir */
+    --white: #ffffff;             /* Fond des inputs et de la page */
+    --optional-blue: #2b1ebd;     /* Bleu/violet pour le texte (Optional) */
+    --btn-bg: #ececec;            /* Fond gris clair du bouton */
+    --btn-hover: #dfdfdf;         /* Fond du bouton au survol */
+}
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background-color: var(--white);
+    color: var(--text-color);
+    margin: 0; /* Supprime l'espace blanc par défaut sur les bords */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header & Footer : Arrière-plan violet sur toute la largeur */
+header, footer {
+    background-color: var(--primary-purple);
+    color: var(--white);
+    padding: 1.2rem 1rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Alignement Uniforme : Aligne le texte du header/footer sur la largeur du formulaire */
+.container {
+    max-width: 468px; /* Correspond à la largeur interne du formulaire (500px - paddings) */
+    margin: 0 auto;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+footer p {
+    margin: 0.3rem 0;
+    font-size: 1.05rem;
+}
+
+footer .modification {
+    font-size: 0.9rem;
+    color: #e2e8f0;
+}
+
+/* ==========================================================================
+   2. FORM CONTAINER
+   ========================================================================== */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 500px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+form {
+    background-color: var(--form-bg);
+    border: 1px solid var(--form-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label, legend {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    color: var(--text-color);
+}
+
+legend .instructions {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+.optional {
+    color: var(--optional-blue);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Champs de saisie */
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.65rem;
+    border: 1px solid var(--input-border);
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: var(--white);
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   3. RATING BLOCKS (Disposition horizontale)
+   ========================================================================== */
+.rating-fieldset, .features-fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 1.25rem;
+}
+
+.rating-row {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 0.5rem 0;
+}
+
+.rating-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.rating-option label {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    font-weight: 400;
+}
+
+.rating-option input[type="radio"] {
+    width: 1.6rem;
+    height: 1.6rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   4. CHECKBOX LAYOUT
+   ========================================================================== */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 1.35rem;
+    height: 1.35rem;
+    cursor: pointer;
+}
+
+.checkbox-item label {
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   5. POST REVIEW BUTTON
+   ========================================================================== */
+.submit-btn {
+    width: 100%;
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border: 1px solid #767676;
+    border-radius: 3px;
+    padding: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.6);
+    transition: background-color 0.1s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--btn-hover);
+}

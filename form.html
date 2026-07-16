@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Review Form</title>
+    <meta name="description" content="Product review form page following BYU-Idaho specifications.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/form.css">
+    <script src="form.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Product Review</h1>
+        </div>
+    </header>
+
+    <main>
+        <form method="get" action="review.html">
+            
+            <!-- PRODUCT NAME -->
+            <div class="form-group">
+                <label for="product-name">Product Name</label>
+                <select id="product-name" name="productName" required>
+                    <option value="" disabled selected>Choose a Product ...</option>
+                </select>
+            </div>
+
+            <!-- OVERALL RATING -->
+            <fieldset class="form-group rating-fieldset">
+                <legend>Overall Rating</legend>
+                <div class="rating-row">
+                    <div class="rating-option">
+                        <label for="star1">☆</label>
+                        <input type="radio" id="star1" name="rating" value="1" required>
+                    </div>
+                    <div class="rating-option">
+                        <label for="star2">☆☆</label>
+                        <input type="radio" id="star2" name="rating" value="2" required>
+                    </div>
+                    <div class="rating-option">
+                        <label for="star3">☆☆☆</label>
+                        <input type="radio" id="star3" name="rating" value="3" required>
+                    </div>
+                    <div class="rating-option">
+                        <label for="star4">☆☆☆☆</label>
+                        <input type="radio" id="star4" name="rating" value="4" required>
+                    </div>
+                    <div class="rating-option">
+                        <label for="star5">☆☆☆☆☆</label>
+                        <input type="radio" id="star5" name="rating" value="5" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- DATE OF INSTALLATION -->
+            <div class="form-group">
+                <label for="install-date">Date of Installation</label>
+                <input type="date" id="install-date" name="installDate" required>
+            </div>
+
+            <!-- USEFUL FEATURES -->
+            <fieldset class="form-group features-fieldset">
+                <legend>Which features did you find useful in the product?<br><span class="instructions">(Check all that apply)</span></legend>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="feat-durability" name="features" value="durability">
+                    <label for="feat-durability">Durability</label>
+                </div>
+
+                <div class="checkbox-item">
+                    <input type="checkbox" id="feat-ease" name="features" value="easeOfUse">
+                    <label for="feat-ease">Ease of Use</label>
+                </div>
+
+                <div class="checkbox-item">
+                    <input type="checkbox" id="feat-performance" name="features" value="performance">
+                    <label for="feat-performance">Performance</label>
+                </div>
+
+                <div class="checkbox-item">
+                    <input type="checkbox" id="feat-design" name="features" value="design">
+                    <label for="feat-design">Design</label>
+                </div>
+            </fieldset>
+
+            <!-- WRITTEN REVIEW -->
+            <div class="form-group">
+                <label for="written-review">Written Review <span class="optional">(Optional)</span></label>
+                <textarea id="written-review" name="writtenReview" rows="6"></textarea>
+            </div>
+
+            <!-- USER NAME -->
+            <div class="form-group">
+                <label for="user-name">Your Name <span class="optional">(Optional)</span></label>
+                <input type="text" id="user-name" name="userName">
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="submit-btn">Post Review</button>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> 🌸 Benjamin Kirongozi Mazuya 🌸</p>
+            <p>Democratic Republic of the Congo</p>
+            <p class="modification">Last Modification: <span id="lastModified"></span></p>
+        </div>
+    </footer>
+</body>
+</html>
