@@ -5,43 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soko - Quality Meets Affordability</title>
     
-    <!-- 1. Balises Meta (Requises pour la validation) -->
+    <!-- Balises Meta de validation -->
     <meta name="description" content="Découvrez Soko, votre plateforme d'importation d'accessoires de qualité et de technologies intelligentes aux meilleurs prix locaux.">
-    <meta name="author" content="Benjamin Kirongozi Mazuya">
+    <meta name="author" content="Benjamin Kirongozi Mazuya"> <!--[cite: 1] -->
     
-    <!-- 2. Liens Preconnect Google Fonts (Requis si vous utilisez Google Fonts) -->
+    <!-- Preconnect Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Polices Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles/soko.css">
 </head>
 <body>
+    <!-- En-tête global -->
     <header>
         <div class="header-container">
             <div class="logo">
-                <h1>Soko</h1>
+                <div class="logo-flex">
+                    <img src="images/logo.png" alt="Soko Logo" class="logo-img" onerror="this.style.display='none'">
+                    <h1>Soko</h1>
+                </div>
                 <div class="tagline">Quality Meets Affordability</div>
             </div>
+            
             <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+            
             <nav class="nav-menu">
-                <a href="index.html" class="active">Home</a>
-                <a href="form.html">Request Import</a>
+                <a href="index.html" class="nav-btn active">Home</a>
+                <a href="form.html" class="nav-btn">Request Import</a>
+                <a href="references.html" class="nav-btn">References</a>
             </nav>
+            
             <div class="cart-icon">
                 🛒 <span id="cart-count">0</span>
             </div>
         </div>
     </header>
 
+    <!-- Zone Hero -->
     <section class="hero">
         <h2>Trending Imports, Local Prices</h2>
         <p>Explore high-quality accessories, smart tech, and daily essentials sourced directly from leading manufacturers.</p>
         <a href="#products-section" class="cta-btn" id="shop-now-btn">Shop Now</a>
     </section>
 
+    <!-- Section Principale avec Filtres & Grille de Produits -->
     <main id="products-section">
         <aside class="filters">
             <h3>Filter Products</h3>
@@ -60,15 +68,28 @@
             <button id="reset-filters" class="reset-btn">Reset Filters</button>
         </aside>
 
+        <!-- Catalogue dynamique -->
         <section class="products-grid" id="products-container" aria-label="Product Catalog">
-            <!-- Les cartes de produits seront injectées de manière dynamique par soko.js -->
+            <!-- Injecté de manière dynamique par soko.js -->
         </section>
     </main>
 
+    <!-- Pied de page global -->
     <footer>
         <div class="footer-container">
-            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p>
-            <p><a href="references.html" class="footer-link">View Project References & Citations</a></p>
+            <!-- Section de Contact globale (Disponible sur toutes les pages) -->
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Des questions ou des suggestions ? Écrivez-nous à : <a href="mailto:contact@soko.com" class="footer-link">contact@soko.com</a></p>
+                <p>Kolwezi, Lualaba, République Démocratique du Congo</p>
+            </div>
+            
+            <hr class="footer-divider">
+            
+            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p> <!--[cite: 1] -->
+            <p>
+                <a href="references.html" class="footer-btn">View References & Citations</a>
+            </p>
         </div>
     </footer>
 

@@ -29,7 +29,7 @@ body {
 }
 
 /* ==========================================================================
-   2. HEADER & STICKY NAVIGATION
+   2. HEADER, LOGO & NAV BUTTONS
    ========================================================================== */
 header {
     background-color: var(--primary-dark);
@@ -50,6 +50,23 @@ header {
     position: relative;
 }
 
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-flex {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
 .logo h1 {
     font-family: var(--heading-font);
     font-size: 1.8rem;
@@ -66,21 +83,27 @@ header {
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
-.nav-menu a {
+/* Transformation des liens en boutons stylisés */
+.nav-btn {
+    background-color: transparent;
     color: var(--white);
+    border: 2px solid var(--accent-amber);
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: color 0.2s ease-in-out;
-    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease-in-out;
 }
 
-.nav-menu a:hover, .nav-menu a.active {
-    color: var(--accent-amber);
-    border-bottom: 2px solid var(--accent-amber);
+.nav-btn:hover, .nav-btn.active {
+    background-color: var(--accent-amber);
+    color: var(--primary-dark) !important;
+    border-color: var(--accent-amber);
+    box-shadow: 0 4px 8px rgba(244, 162, 97, 0.25);
 }
 
 .cart-icon {
@@ -140,6 +163,7 @@ header {
     transition: transform 0.2s, background-color 0.2s;
     border: none;
     cursor: pointer;
+    text-align: center;
 }
 
 .cta-btn:hover {
@@ -160,7 +184,6 @@ main {
     flex: 1;
 }
 
-/* FILTERS SIDEBAR */
 .filters {
     background-color: var(--white);
     border: 1px solid var(--light-neutral);
@@ -220,7 +243,7 @@ main {
     color: var(--white);
 }
 
-/* PRODUCT CARD STYLING & GRID */
+/* PRODUCT GRID & CARDS */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -259,8 +282,8 @@ main {
 .product-image-container {
     position: relative;
     width: 100%;
-    padding-top: 75%; /* 4:3 Aspect Ratio */
-    background-color: #f1f5f9;
+    padding-top: 75%;
+    background-color: #e2e8f0;
 }
 
 .product-image-container img {
@@ -322,7 +345,7 @@ main {
 }
 
 /* ==========================================================================
-   5. FORM STYLES
+   5. FORM STYLES & SPECIAL BUTTONS
    ========================================================================== */
 .form-main {
     display: flex;
@@ -386,31 +409,75 @@ main {
     border-color: transparent;
 }
 
-.confirmation-container {
-    text-align: center;
-    padding: 4rem 1rem;
-    max-width: 500px;
-    margin: 4rem auto;
-    background-color: var(--white);
-    border-radius: 8px;
-    border: 1px solid var(--light-neutral);
+.submit-form-btn {
+    width: 100%;
+    font-size: 1rem;
 }
 
-.confirmation-container h1 {
-    font-family: var(--heading-font);
+/* Stylisation du bouton de retour */
+.back-home-container {
+    margin-top: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--light-neutral);
+    padding-top: 1.5rem;
+}
+
+.back-home-btn {
+    display: inline-block;
+    background-color: transparent;
     color: var(--primary-dark);
-    margin-bottom: 1rem;
+    border: 2px solid var(--primary-dark);
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.back-home-btn:hover {
+    background-color: var(--primary-dark);
+    color: var(--white);
 }
 
 /* ==========================================================================
-   6. FOOTER
+   6. FOOTER & GLOBAL CONTACT US
    ========================================================================== */
 footer {
     background-color: var(--primary-dark);
     color: var(--white);
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
     margin-top: auto;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-contact {
+    margin-bottom: 1.5rem;
+}
+
+.footer-contact h3 {
+    font-family: var(--heading-font);
+    color: var(--accent-amber);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.footer-contact p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-bottom: 0.3rem;
+}
+
+.footer-divider {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 1.5rem 0;
 }
 
 .footer-container p {
@@ -423,29 +490,47 @@ footer {
     color: var(--accent-amber);
     text-decoration: none;
     font-weight: 600;
-    transition: text-decoration 0.2s;
 }
 
 .footer-link:hover {
     text-decoration: underline;
 }
 
+.footer-btn {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.footer-btn:hover {
+    background-color: var(--white);
+    color: var(--primary-dark);
+}
+
 /* ==========================================================================
-   7. MEDIA QUERIES (Responsiveness & Mobile layout)
+   7. MEDIA QUERIES (Responsiveness)
    ========================================================================== */
 @media screen and (max-width: 768px) {
     main {
-        grid-template-columns: 1fr; /* Single column flow on Mobile/Tablets */
+        grid-template-columns: 1fr;
         gap: 1.5rem;
         margin: 1rem auto;
     }
 
     .menu-toggle {
-        display: block; /* Show hamburger button */
+        display: block;
     }
 
     .nav-menu {
-        display: none; /* Collapsed by default */
+        display: none;
         flex-direction: column;
         width: 100%;
         position: absolute;
@@ -458,16 +543,16 @@ footer {
     }
 
     .nav-menu.open {
-        display: flex; /* Interactive toggle */
+        display: flex;
     }
 
-    .nav-menu a {
+    .nav-btn {
         width: 100%;
         text-align: center;
     }
 
     .hero {
-        padding: 3rem 1rem;
+        padding: 3.5rem 1rem;
     }
 
     .hero h2 {

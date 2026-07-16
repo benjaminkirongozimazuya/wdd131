@@ -1,79 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soko | Contact & Import Requests</title>
-    <meta name="description" content="Request specific custom imports through Soko.">
-    <meta name="author" content="Benjamin Kirongozi Mazuya">
+    <title>Soko - Request an Import</title>
+    
+    <meta name="description" content="Soumettez vos demandes d'importation personnalisées sur Soko pour obtenir vos accessoires préférés au meilleur prix.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya"> <!--[cite: 1] -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles/soko.css">
-    <script src="scripts/form-handler.js" defer></script>
 </head>
 <body>
     <header>
         <div class="header-container">
             <div class="logo">
-                <h1>Soko</h1>
-                <p class="tagline">Quality Meets Affordability</p>
+                <div class="logo-flex">
+                    <img src="images/logo.png" alt="Soko Logo" class="logo-img" onerror="this.style.display='none'">
+                    <h1>Soko</h1>
+                </div>
+                <div class="tagline">Quality Meets Affordability</div>
             </div>
+            <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
             <nav class="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="form.html" class="active">Request Import</a>
-                <a href="references.html">References</a>
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="form.html" class="nav-btn active">Request Import</a>
+                <a href="references.html" class="nav-btn">References</a>
             </nav>
+            <div class="cart-icon">
+                🛒 <span id="cart-count">0</span>
+            </div>
         </div>
     </header>
 
     <main class="form-main">
         <section class="form-container-box">
-            <h2>Custom Import Request</h2>
-            <p>Can't find the trending product you want? Describe it below, and our sourcing team will find it at the best factory-direct price.</p>
+            <h2>Request a Custom Import</h2>
+            <p>Vous ne trouvez pas l'article de vos rêves dans notre catalogue ? Remplissez ce formulaire et nous le trouverons pour vous au meilleur prix.</p>
             
-            <form id="import-request-form" method="get" action="index.html">
+            <form action="#" method="get">
                 <div class="form-group">
-                    <label for="user-fullname">Full Name</label>
-                    <input type="text" id="user-fullname" name="fullname" required placeholder="Enter your full name">
+                    <label for="full-name">Nom complet</label>
+                    <input type="text" id="full-name" name="name" required placeholder="Ex: Jean Mukendi">
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="user-email">Email Address</label>
-                    <input type="email" id="user-email" name="email" required placeholder="name@example.com">
+                    <label for="email">Adresse e-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="Ex: jean.mukendi@example.com">
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="product-category">Desired Category</label>
+                    <label for="product-name">Nom de l'article recherché</label>
+                    <input type="text" id="product-name" name="product_name" required placeholder="Ex: Trépied flexible pour smartphone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-category">Catégorie</label>
                     <select id="product-category" name="category" required>
-                        <option value="" disabled selected>Select a Category ...</option>
-                        <option value="electronics">Consumer Electronics</option>
-                        <option value="apparel">Fashion & Apparel</option>
-                        <option value="home">Home & Kitchen</option>
-                        <option value="other">Other Accessories</option>
+                        <option value="" disabled selected>Choisissez une catégorie</option>
+                        <option value="electronics">Tech & Gadgets</option>
+                        <option value="accessories">Home & Accessories</option>
                     </select>
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="target-budget">Target Price / Budget (USD)</label>
-                    <input type="number" id="target-budget" name="budget" min="1" max="1000" required placeholder="e.g. 25">
+                    <label for="target-price">Budget cible ($)</label>
+                    <input type="number" id="target-price" name="budget" min="1" required placeholder="Ex: 25">
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="product-desc">Product Description & Special Features</label>
-                    <textarea id="product-desc" name="description" rows="5" required placeholder="What features should it have? Provide links if you have examples..."></textarea>
+                    <label for="details">Détails ou lien de l'article (Optionnel)</label>
+                    <textarea id="details" name="details" rows="4" placeholder="Donnez-nous plus de détails (couleurs, spécifications, etc.)..."></textarea>
                 </div>
-
-                <button type="submit" class="cta-btn">Submit Request</button>
+                
+                <button type="submit" class="cta-btn submit-form-btn">Envoyer la demande</button>
             </form>
+            
+            <!-- Bouton Retour à l'accueil sous forme de bouton d'action -->
+            <div class="back-home-container">
+                <a href="index.html" class="back-home-btn">← Back to Home</a>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-container">
-            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p>
-            <p><a href="references.html" style="color: var(--accent-amber); text-decoration: none;">View Project References & Citations</a></p>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Des questions ou des suggestions ? Écrivez-nous à : <a href="mailto:contact@soko.com" class="footer-link">contact@soko.com</a></p>
+                <p>Kolwezi, Lualaba, République Démocratique du Congo</p>
+            </div>
+            <hr class="footer-divider">
+            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p> <!--[cite: 1] -->
+            <p>
+                <a href="references.html" class="footer-btn">View References & Citations</a>
+            </p>
         </div>
     </footer>
+
+    <script src="soko.js"></script>
 </body>
 </html>

@@ -1,32 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/soko.css">
     <title>Soko - References & Citations</title>
+    
+    <meta name="description" content="Consultez les références de conception, les sources d'images et les ressources documentaires du projet Soko.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya"> <!--[cite: 1] -->
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles/soko.css">
 </head>
 <body>
     <header>
-        <h1>Soko Project References</h1>
-        <p><a href="index.html">Back to Home</a></p>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-flex">
+                    <img src="images/logo.png" alt="Soko Logo" class="logo-img" onerror="this.style.display='none'">
+                    <h1>Soko</h1>
+                </div>
+                <div class="tagline">Quality Meets Affordability</div>
+            </div>
+            <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="form.html" class="nav-btn">Request Import</a>
+                <a href="references.html" class="nav-btn active">References</a>
+            </nav>
+            <div class="cart-icon">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </div>
     </header>
-    <main>
-        <h2>Image & Asset Sources</h2>
-        <ul>
-            <li><strong>Product Images:</strong> Placeholder icons and images generated/referenced from Unsplash (free-to-use photography platform).</li>
-            <li><strong>Typography:</strong> Google Fonts (Montserrat & Open Sans) - Licensed under Open Font License.</li>
-            <li><strong>Design Guidelines:</strong> Layout inspired by BYU-Idaho WDD 131 project guidelines and PARC design principles.</li>
-        </ul>
 
-        <h2>Text Content Sources</h2>
-        <ul>
-            <li><strong>Product Specifications:</strong> Technical details adapted from various generic consumer tech specifications (smart watches, wireless earbuds, etc.).</li>
-            <li><strong>Swahili Concept:</strong> "Soko" translation and cultural context sourced from common Swahili-English vocabulary.</li>
-        </ul>
+    <main class="form-main">
+        <section class="form-container-box">
+            <h2>References & Citations</h2>
+            <p>Voici la liste complète des ressources, inspirations et banques d'images tierces exploitées pour la création et la conception de notre boutique d'importation <strong>Soko</strong>.</p>
+            
+            <div class="citations-list" style="text-align: left; margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 0.8rem; font-family: var(--heading-font); color: var(--primary-dark);">Ressources Visuelles & Polices</h3>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                    <li><strong>Images des produits :</strong> Fournies gracieusement par l'API libre de droits d'auteur de <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>.</li>
+                    <li><strong>Polices typographiques :</strong> Polices <em>Montserrat</em> et <em>Open Sans</em> fournies par l'infrastructure de <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>.</li>
+                    <li><strong>Icônes :</strong> Icônes standardisées issues du format Unicode local (Émojis standardisés).</li>
+                </ul>
+                
+                <h3 style="margin-bottom: 0.8rem; font-family: var(--heading-font); color: var(--primary-dark);">Infrastructures de Code & Tutoriels</h3>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li><strong>Règles de flexibilité adaptative (CSS Grids & Flexbox) :</strong> Inspirées de la documentation MDN Web Docs de Mozilla et du cours BYU-Idaho WDD 131[cite: 1].</li>
+                    <li><strong>Filtres dynamiques (JS Arrays) :</strong> Structurés sur la base des travaux pratiques JavaScript dispensés par l'Université de Brigham Young-Idaho[cite: 1].</li>
+                </ul>
+            </div>
+            
+            <div class="back-home-container">
+                <a href="index.html" class="back-home-btn">← Back to Home</a>
+            </div>
+        </section>
     </main>
+
     <footer>
-        <p>&copy; 2026 | Benjamin Kirongozi Mazuya | BYU-Idaho</p>
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Des questions ou des suggestions ? Écrivez-nous à : <a href="mailto:contact@soko.com" class="footer-link">contact@soko.com</a></p>
+                <p>Kolwezi, Lualaba, République Démocratique du Congo</p>
+            </div>
+            <hr class="footer-divider">
+            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p> <!--[cite: 1] -->
+            <p>
+                <a href="references.html" class="footer-btn">View References & Citations</a>
+            </p>
+        </div>
     </footer>
+
+    <script src="soko.js"></script>
 </body>
 </html>
