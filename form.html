@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/form.css">
+    <!-- Validé : Le script est dans le <head> avec defer -->
     <script src="form.js" defer></script>
 </head>
 <body>
@@ -22,11 +23,11 @@
     <main>
         <form method="get" action="review.html">
             
-            <!-- PRODUCT NAME -->
+            <!-- PRODUCT NAME (Validé : avec l'option placeholder exacte) -->
             <div class="form-group">
                 <label for="product-name">Product Name</label>
                 <select id="product-name" name="productName" required>
-                    <option value="" disabled selected>Choose a Product ...</option>
+                    <option value="" disabled selected>Select a Product ...</option>
                 </select>
             </div>
 

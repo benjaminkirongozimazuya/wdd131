@@ -1,4 +1,3 @@
-// Product Array provided by the assignment instructions
 const products = [
   { id: "fc-1888", name: "flux capacitor", averagerating: 4.5 },
   { id: "fc-2050", name: "power laces", averagerating: 4.7 },
@@ -16,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (productSelect) {
         products.forEach(product => {
             const option = document.createElement("option");
-            option.value = product.id; // L'ID va dans l'attribut value
-            option.textContent = capitalizeWords(product.name); // Le nom va dans le texte affiché
+            option.value = product.id; 
+            option.textContent = capitalizeWords(product.name); 
             productSelect.appendChild(option);
         });
     }
@@ -27,11 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // 3. Extraction et formatage strict de la date de dernière modification (Format : MM/DD/YYYY HH:MM:SS)
+    // 3. Date de dernière modification (Format : MM/DD/YYYY HH:MM:SS)
     if (lastModSpan) {
         const modificationDate = new Date(document.lastModified);
-        
-        // Fonction utilitaire pour ajouter un zéro devant les chiffres inférieurs à 10
         const pad = (num) => String(num).padStart(2, '0');
         
         const month = pad(modificationDate.getMonth() + 1);
@@ -42,12 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const minutes = pad(modificationDate.getMinutes());
         const seconds = pad(modificationDate.getSeconds());
         
-        // Affichage dynamique final dans le span
         lastModSpan.textContent = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
     }
 });
 
-// Fonction pour mettre une majuscule au début de chaque mot des produits
 function capitalizeWords(str) {
     return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
