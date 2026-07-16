@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soko | Contact & Import Requests</title>
+    <meta name="description" content="Request specific custom imports through Soko.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/soko.css">
+    <script src="scripts/form-handler.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Soko</h1>
+                <p class="tagline">Quality Meets Affordability</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="form.html" class="active">Request Import</a>
+                <a href="references.html">References</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="form-main">
+        <section class="form-container-box">
+            <h2>Custom Import Request</h2>
+            <p>Can't find the trending product you want? Describe it below, and our sourcing team will find it at the best factory-direct price.</p>
+            
+            <form id="import-request-form" method="get" action="index.html">
+                <div class="form-group">
+                    <label for="user-fullname">Full Name</label>
+                    <input type="text" id="user-fullname" name="fullname" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="user-email">Email Address</label>
+                    <input type="email" id="user-email" name="email" required placeholder="name@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-category">Desired Category</label>
+                    <select id="product-category" name="category" required>
+                        <option value="" disabled selected>Select a Category ...</option>
+                        <option value="electronics">Consumer Electronics</option>
+                        <option value="apparel">Fashion & Apparel</option>
+                        <option value="home">Home & Kitchen</option>
+                        <option value="other">Other Accessories</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="target-budget">Target Price / Budget (USD)</label>
+                    <input type="number" id="target-budget" name="budget" min="1" max="1000" required placeholder="e.g. 25">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-desc">Product Description & Special Features</label>
+                    <textarea id="product-desc" name="description" rows="5" required placeholder="What features should it have? Provide links if you have examples..."></textarea>
+                </div>
+
+                <button type="submit" class="cta-btn">Submit Request</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p>
+            <p><a href="references.html" style="color: var(--accent-amber); text-decoration: none;">View Project References & Citations</a></p>
+        </div>
+    </footer>
+</body>
+</html>

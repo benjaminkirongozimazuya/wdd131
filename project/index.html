@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soko - Quality Meets Affordability</title>
+    <!-- Polices Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/soko.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Soko</h1>
+                <div class="tagline">Quality Meets Affordability</div>
+            </div>
+            <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+            <nav class="nav-menu">
+                <a href="index.html" class="active">Home</a>
+                <a href="form.html">Request Import</a>
+            </nav>
+            <div class="cart-icon">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Trending Imports, Local Prices</h2>
+        <p>Explore high-quality accessories, smart tech, and daily essentials sourced directly from leading manufacturers.</p>
+        <a href="#products-section" class="cta-btn" id="shop-now-btn">Shop Now</a>
+    </section>
+
+    <main id="products-section">
+        <aside class="filters">
+            <h3>Filter Products</h3>
+            <div class="filter-group">
+                <label id="category-label" for="category-select">Category</label>
+                <select id="category-select" aria-labelledby="category-label">
+                    <option value="all">All Categories</option>
+                    <option value="electronics">Tech & Gadgets</option>
+                    <option value="accessories">Home & Accessories</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label id="price-label" for="price-range">Max Price: <span id="price-value">$25</span></label>
+                <input type="range" id="price-range" min="5" max="25" value="25" step="1" aria-labelledby="price-label">
+            </div>
+            <button id="reset-filters" class="reset-btn">Reset Filters</button>
+        </aside>
+
+        <section class="products-grid" id="products-container" aria-label="Product Catalog">
+            <!-- Les cartes de produits seront injectées de manière dynamique par soko.js -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p>
+            <p><a href="references.html" class="footer-link">View Project References & Citations</a></p>
+        </div>
+    </footer>
+
+    <script src="soko.js"></script>
+</body>
+</html>
