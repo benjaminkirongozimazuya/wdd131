@@ -1,15 +1,16 @@
 /* ==========================================================================
-   1. VARIABLES, RESET & GENERAL STYLES
+   1. VARIABLES & CORE RESETS
    ========================================================================== */
 :root {
-    --primary-dark: #0d1b2a;     /* Deep navy for headers, footer, primary branding */
-    --accent-amber: #f4a261;     /* Warm copper/amber for buttons, active elements */
-    --light-neutral: #e2e8f0;    /* Soft gray for borders, structured dividers */
-    --white: #ffffff;            /* Card backgrounds & text contrast */
-    --text-dark: #1e293b;        /* High-contrast charcoal text */
-    --bg-light: #f8fafc;         /* Global off-white background */
+    --primary-dark: #0d1b2a;     
+    --accent-amber: #f4a261;     
+    --light-neutral: #e2e8f0;    
+    --white: #ffffff;            
+    --text-dark: #1e293b;        
+    --bg-light: #fdfbf7;         
     --heading-font: 'Montserrat', sans-serif;
     --body-font: 'Open Sans', sans-serif;
+    --gj-forest: #0c4a34;
 }
 
 *, *::before, *::after {
@@ -29,186 +30,254 @@ body {
 }
 
 /* ==========================================================================
-   2. HEADER, LOGO & NAV BUTTONS
+   2. REFINED SYMMETRICAL HEADER & LINK ALIGNMENT
    ========================================================================== */
-header {
-    background-color: var(--primary-dark);
-    color: var(--white);
-    padding: 1rem;
+.announcement-bar {
+    background-color: var(--gj-forest);
+    color: #ffffff;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.gj-header {
+    background-color: #fcf9f4; 
+    border-bottom: 1px solid #e5e5e5;
+    padding: 1.2rem 2rem;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.header-container {
-    max-width: 1200px;
+.gj-header .header-container {
+    max-width: 1400px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; 
     align-items: center;
-    position: relative;
+    width: 100%;
 }
 
-.logo {
+.nav-left, .nav-right {
     display: flex;
-    flex-direction: column;
-}
-
-.logo-flex {
-    display: flex;
+    gap: 2rem;
     align-items: center;
-    gap: 10px;
 }
 
-.logo-img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
+.nav-right {
+    justify-content: flex-end;
 }
 
-.logo h1 {
-    font-family: var(--heading-font);
-    font-size: 1.8rem;
-    color: var(--accent-amber);
-    line-height: 1.1;
-}
-
-.logo .tagline {
-    font-size: 0.75rem;
-    font-weight: 300;
-    opacity: 0.8;
-}
-
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-/* Transformation des liens en boutons stylisés */
-.nav-btn {
-    background-color: transparent;
-    color: var(--white);
-    border: 2px solid var(--accent-amber);
-    padding: 0.5rem 1.2rem;
-    border-radius: 25px;
+/* Redesigned Premium Structural Properties for All Nav Items */
+.nav-link {
+    color: var(--text-dark);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease-in-out;
-}
-
-.nav-btn:hover, .nav-btn.active {
-    background-color: var(--accent-amber);
-    color: var(--primary-dark) !important;
-    border-color: var(--accent-amber);
-    box-shadow: 0 4px 8px rgba(244, 162, 97, 0.25);
-}
-
-.cart-icon {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-weight: 600;
     font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
+    font-family: var(--heading-font);
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.25s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--gj-forest);
+    transition: width 0.25s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--gj-forest);
+}
+
+.logo-centered .logo-text {
+    font-family: var(--heading-font);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+    letter-spacing: -1.5px;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.search-btn:hover {
+    transform: scale(1.1);
+}
+
+.cart-icon-gj {
+    border: 1px solid var(--text-dark);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: transparent;
+    font-family: var(--heading-font);
+    font-size: 0.9rem;
 }
 
 .menu-toggle {
     display: none;
     background: none;
     border: none;
-    color: var(--white);
+    color: var(--text-dark);
     font-size: 1.8rem;
     cursor: pointer;
-    padding: 0.2rem;
 }
 
 /* ==========================================================================
-   3. HERO BANNER
+   3. HERO SEGMENTS & ALIGNMENTS (CORRIGÉ)
    ========================================================================== */
-.hero {
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    color: var(--white);
+.hero-gj {
+    height: 60vh;
+    min-height: 420px;
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), 
+                url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 5rem 1rem;
+    padding: 2rem;
+    width: 100%;
 }
 
-.hero h2 {
+.hero-overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Forcer l'affichage du titre principal */
+.promo-badge-main {
+    display: block !important;
+    background-color: #800040; 
+    color: #ffffff;
     font-family: var(--heading-font);
-    font-size: 2.4rem;
-    margin-bottom: 1rem;
-    letter-spacing: -0.5px;
-}
-
-.hero p {
-    font-size: 1.15rem;
-    max-width: 650px;
-    margin: 0 auto 1.8rem auto;
-    opacity: 0.9;
-}
-
-.cta-btn {
-    display: inline-block;
-    background-color: var(--accent-amber);
-    color: var(--primary-dark);
-    text-decoration: none;
-    padding: 0.8rem 2.2rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 0.8rem 2rem;
     border-radius: 4px;
-    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    margin-bottom: 0.5rem;
+}
+
+.promo-badge-sub {
+    display: block !important;
+    background-color: #800040;
+    color: #ffffff;
+    font-size: 1.1rem;
+    padding: 0.4rem 2rem;
+    border-radius: 4px;
+}
+
+.cta-btn-gj {
+    margin-top: 1rem;
+    background-color: #1d3557; 
+    color: #ffffff;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 4px;
     font-family: var(--heading-font);
     transition: transform 0.2s, background-color 0.2s;
-    border: none;
-    cursor: pointer;
-    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: inline-block;
 }
 
-.cta-btn:hover {
+.cta-btn-gj:hover {
     transform: translateY(-2px);
-    background-color: #e76f51;
+    background-color: #0f172a;
+}
+
+/* Fix absolu pour la barre de confiance en bas de l'image */
+.trust-bar {
+    background-color: #580c3a !important; 
+    color: #ffffff !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 2.5rem !important;
+    padding: 0.9rem 1rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+    clear: both;
+}
+
+.trust-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    color: #ffffff !important;
 }
 
 /* ==========================================================================
-   4. LAYOUT, GRIDS & FILTERS
+   4. E-COMMERCE CATALOG SYSTEM (INTÉGRÉ & OPTIMISÉ POUR SOKO.JS)
    ========================================================================== */
 main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 2rem;
-    flex: 1;
+    max-width: 1300px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    display: flex !important; /* Force l'alignement horizontal Filtres / Produits */
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 2.5rem !important;
+    align-items: flex-start !important;
+    width: 100%;
 }
 
 .filters {
+    width: 280px !important; /* Largeur fixe stricte pour le bloc de gauche */
+    flex-shrink: 0 !important;
     background-color: var(--white);
-    border: 1px solid var(--light-neutral);
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
     padding: 1.5rem;
-    height: fit-content;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    height: auto;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem;
 }
 
 .filters h3 {
     font-family: var(--heading-font);
-    margin-bottom: 1.2rem;
+    margin: 0;
     font-size: 1.2rem;
     border-bottom: 2px solid var(--light-neutral);
     padding-bottom: 0.5rem;
 }
 
 .filter-group {
-    margin-bottom: 1.5rem;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem;
 }
 
 .filter-group label {
-    display: block;
     font-weight: 600;
-    margin-bottom: 0.5rem;
     font-size: 0.9rem;
 }
 
@@ -217,135 +286,141 @@ main {
     padding: 0.6rem;
     border: 1px solid var(--light-neutral);
     border-radius: 4px;
-    background-color: var(--bg-light);
+    background-color: #f8fafc;
     font-family: var(--body-font);
 }
 
 .filter-group input[type="range"] {
     width: 100%;
-    margin-top: 0.3rem;
 }
 
 .reset-btn {
     width: 100%;
-    padding: 0.6rem;
+    padding: 0.7rem;
     background-color: transparent;
-    border: 1px solid var(--primary-dark);
-    color: var(--primary-dark);
+    border: 1px solid var(--text-dark);
+    color: var(--text-dark);
     font-weight: 600;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: all 0.2s ease;
 }
 
 .reset-btn:hover {
-    background-color: var(--primary-dark);
+    background-color: var(--text-dark);
     color: var(--white);
 }
 
-/* PRODUCT GRID & CARDS */
+/* La Grille principale qui reçoit les <article> de soko.js */
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
+    flex-grow: 1 !important; /* Occupe tout l'espace restant à droite */
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+    gap: 2rem !important;
+    padding: 0;
+    margin: 0;
 }
 
+/* Style des cartes générées en JS */
 .product-card {
     background-color: var(--white);
-    border: 1px solid var(--light-neutral);
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
     transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
 }
 
 .product-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-}
-
-.product-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background-color: #ef4444;
-    color: var(--white);
-    font-size: 0.7rem;
-    font-weight: bold;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .product-image-container {
-    position: relative;
     width: 100%;
-    padding-top: 75%;
-    background-color: #e2e8f0;
+    height: 200px;
+    overflow: hidden;
+    background-color: #f8fafc;
+}
+
+.product-image-container {
+    width: 100%;
+    height: 220px;          /* Fixe une hauteur identique pour TOUTES les boîtes d'images */
+    overflow: hidden;       /* Coupe tout ce qui dépasse pour garder des cartes uniformes */
+    background-color: #f8fafc;
+    position: relative;
 }
 
 .product-image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;      /* C'est la propriété magique : elle中心 et recadre l'image sans la déformer */
+    object-position: center;/* Centre la photo dans son cadre */
+    transition: transform 0.3s ease;
 }
 
 .product-info {
     padding: 1.2rem;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    gap: 0.5rem;
+    flex-grow: 1;
 }
 
 .product-info h4 {
     font-family: var(--heading-font);
-    font-size: 1.05rem;
-    margin-bottom: 0.4rem;
-    color: var(--primary-dark);
+    font-size: 1.1rem;
+    color: var(--text-dark);
 }
 
 .product-desc-snippet {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: #64748b;
-    margin-bottom: 0.8rem;
-    flex: 1;
+    line-height: 1.4;
+    flex-grow: 1;
 }
 
-.product-info .price {
-    font-weight: bold;
+.price {
     font-size: 1.2rem;
+    font-weight: 700;
     color: var(--primary-dark);
-    margin-bottom: 1rem;
+    margin-top: 0.5rem;
 }
 
 .add-to-cart-btn {
-    margin-top: auto;
+    width: 100%;
+    padding: 0.6rem;
     background-color: var(--primary-dark);
     color: var(--white);
     border: none;
-    padding: 0.7rem;
-    font-weight: 600;
     border-radius: 4px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
+    transition: background-color 0.2s;
 }
 
 .add-to-cart-btn:hover {
-    background-color: var(--accent-amber);
-    color: var(--primary-dark);
+    background-color: #1e293b;
 }
 
-.add-to-cart-btn:active {
-    transform: scale(0.98);
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--accent-amber);
+    color: var(--primary-dark);
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 4px;
+    z-index: 10;
 }
 
 /* ==========================================================================
-   5. FORM STYLES & SPECIAL BUTTONS
+   5. TRANSACTION FORMS & PANELS
    ========================================================================== */
 .form-main {
     display: flex;
@@ -356,24 +431,21 @@ main {
 
 .form-container-box {
     background-color: var(--white);
-    border: 1px solid var(--light-neutral);
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     padding: 2.5rem;
     max-width: 600px;
     width: 100%;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .form-container-box h2 {
     font-family: var(--heading-font);
-    color: var(--primary-dark);
     margin-bottom: 0.8rem;
 }
 
 .form-container-box p {
-    color: #64748b;
+    color: #4b5563;
     margin-bottom: 2rem;
-    font-size: 0.95rem;
 }
 
 .form-group {
@@ -384,70 +456,59 @@ main {
     display: block;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: var(--primary-dark);
     font-size: 0.9rem;
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="number"],
-.form-group select,
-.form-group textarea {
+.form-group input, .form-group select, .form-group textarea {
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid var(--light-neutral);
+    border: 1px solid #d1d5db;
     border-radius: 4px;
     font-family: var(--body-font);
-    background-color: var(--bg-light);
-    font-size: 0.95rem;
+    background-color: #f9fafb;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: 2px solid var(--accent-amber);
-    border-color: transparent;
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: 2px solid var(--gj-forest);
 }
 
 .submit-form-btn {
     width: 100%;
-    font-size: 1rem;
 }
 
-/* Stylisation du bouton de retour */
 .back-home-container {
     margin-top: 2rem;
     text-align: center;
-    border-top: 1px solid var(--light-neutral);
+    border-top: 1px solid #e5e7eb;
     padding-top: 1.5rem;
 }
 
 .back-home-btn {
     display: inline-block;
     background-color: transparent;
-    color: var(--primary-dark);
-    border: 2px solid var(--primary-dark);
+    color: #111827;
+    border: 2px solid #111827;
     padding: 0.6rem 1.5rem;
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9rem;
-    transition: all 0.2s ease-in-out;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .back-home-btn:hover {
-    background-color: var(--primary-dark);
+    background-color: #111827;
     color: var(--white);
 }
 
 /* ==========================================================================
-   6. FOOTER & GLOBAL CONTACT US
+   6. GLOBALIZED FOOTER SYSTEM
    ========================================================================== */
 footer {
-    background-color: var(--primary-dark);
+    background-color: #0d1b2a;
     color: var(--white);
     text-align: center;
-    padding: 2.5rem 1rem;
+    padding: 3rem 1rem;
     margin-top: auto;
 }
 
@@ -456,21 +517,16 @@ footer {
     margin: 0 auto;
 }
 
-.footer-contact {
-    margin-bottom: 1.5rem;
-}
-
 .footer-contact h3 {
     font-family: var(--heading-font);
     color: var(--accent-amber);
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
 }
 
 .footer-contact p {
     font-size: 0.95rem;
     opacity: 0.9;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
 }
 
 .footer-divider {
@@ -478,12 +534,6 @@ footer {
     height: 1px;
     background: rgba(255, 255, 255, 0.15);
     margin: 1.5rem 0;
-}
-
-.footer-container p {
-    font-size: 0.85rem;
-    opacity: 0.8;
-    margin-bottom: 0.5rem;
 }
 
 .footer-link {
@@ -500,66 +550,81 @@ footer {
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.08);
     color: var(--white);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.5rem 1.5rem;
     border-radius: 4px;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.85rem;
     margin-top: 10px;
-    transition: all 0.2s ease-in-out;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .footer-btn:hover {
     background-color: var(--white);
-    color: var(--primary-dark);
+    color: #0d1b2a;
 }
 
 /* ==========================================================================
-   7. MEDIA QUERIES (Responsiveness)
+   7. ADAPTIVE RESPONSIVE VIEWPORTS
    ========================================================================== */
+@media screen and (max-width: 992px) {
+    .nav-left, .nav-right {
+        gap: 1rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
     main {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        flex-direction: column !important; /* Aligne les filtres au-dessus sur mobile */
+        gap: 2rem !important;
         margin: 1rem auto;
+    }
+
+    .filters {
+        width: 100% !important; /* Filtres sur toute la largeur en mode mobile */
     }
 
     .menu-toggle {
         display: block;
+        grid-column: 3;
+        justify-self: end;
     }
 
-    .nav-menu {
+    .gj-header .header-container {
+        grid-template-columns: 1fr auto auto;
+    }
+
+    .logo-centered {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .nav-left {
         display: none;
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 60px;
+        top: 65px;
         left: 0;
-        background-color: var(--primary-dark);
+        background-color: #fcf9f4;
         padding: 1.5rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
+        border-top: 1px solid #e5e5e5;
         gap: 1rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
 
-    .nav-menu.open {
+    .nav-left.open {
         display: flex;
+        z-index: 100;
     }
 
-    .nav-btn {
-        width: 100%;
-        text-align: center;
+    .nav-right .nav-link, .search-btn {
+        display: none;
     }
 
-    .hero {
-        padding: 3.5rem 1rem;
-    }
-
-    .hero h2 {
-        font-size: 1.8rem;
-    }
-
-    .form-container-box {
-        padding: 1.5rem;
+    .trust-bar {
+        flex-direction: column;
+        gap: 1rem;
     }
 }

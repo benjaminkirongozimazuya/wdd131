@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soko - References & Citations</title>
     
-    <meta name="description" content="Consultez les références de conception, les sources d'images et les ressources documentaires du projet Soko.">
-    <meta name="author" content="Benjamin Kirongozi Mazuya"> <!--[cite: 1] -->
+    <meta name="description" content="Review layout documentation, visual assets, and references behind the Soko platform structure.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,45 +14,62 @@
     
     <link rel="stylesheet" href="styles/soko.css">
 </head>
+
+<!-- Hero Showcase Section avec texte et bouton intégrés -->
+<section class="hero-gj">
+    <div class="hero-overlay-content">
+        <div class="promo-badge-main">$25 off Holy Sheet Duo & Little Sheet Duo!</div>
+        <div class="promo-badge-sub">Save on premium duos through July 20.</div>
+        <a href="#products-section" class="cta-btn-gj">Shop Now</a>
+    </div>
+</section>
+
 <body>
-    <header>
+    <div class="announcement-bar">
+        Free shipping $100+, 30-day trial, free returns
+    </div>
+
+    <header class="gj-header">
         <div class="header-container">
-            <div class="logo">
-                <div class="logo-flex">
-                    <img src="images/logo.png" alt="Soko Logo" class="logo-img" onerror="this.style.display='none'">
-                    <h1>Soko</h1>
-                </div>
-                <div class="tagline">Quality Meets Affordability</div>
-            </div>
-            <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-btn">Home</a>
-                <a href="form.html" class="nav-btn">Request Import</a>
-                <a href="references.html" class="nav-btn active">References</a>
+            <nav class="nav-left">
+                <a href="index.html" class="nav-link">New Arrivals</a>
+                <a href="form.html" class="nav-link">Request Import</a>
+                <a href="references.html" class="nav-link active">Bundle & Save</a>
             </nav>
-            <div class="cart-icon">
-                🛒 <span id="cart-count">0</span>
+
+            <div class="logo-centered">
+                <a href="index.html" class="logo-text">Soko</a>
             </div>
+
+            <div class="nav-right">
+                <button class="search-btn" aria-label="Search Catalog">🔍</button>
+                <a href="references.html" class="nav-link">References</a>
+                <a href="form.html" class="nav-link">Account</a>
+                <div class="cart-icon-gj">
+                    🛒 <span id="cart-count">0</span>
+                </div>
+            </div>
+            <button class="menu-toggle" aria-expanded="false" aria-label="Toggle navigation menu">☰</button>
         </div>
     </header>
 
     <main class="form-main">
         <section class="form-container-box">
             <h2>References & Citations</h2>
-            <p>Voici la liste complète des ressources, inspirations et banques d'images tierces exploitées pour la création et la conception de notre boutique d'importation <strong>Soko</strong>.</p>
+            <p>Below is the structured index highlighting the assets, educational resources, and design frameworks leveraged to construct the Soko web platform prototype.</p>
             
             <div class="citations-list" style="text-align: left; margin-bottom: 2rem;">
-                <h3 style="margin-bottom: 0.8rem; font-family: var(--heading-font); color: var(--primary-dark);">Ressources Visuelles & Polices</h3>
+                <h3 style="margin-bottom: 0.8rem; font-family: var(--heading-font); color: #0c4a34;">Visual Assets & Branding</h3>
                 <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
-                    <li><strong>Images des produits :</strong> Fournies gracieusement par l'API libre de droits d'auteur de <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>.</li>
-                    <li><strong>Polices typographiques :</strong> Polices <em>Montserrat</em> et <em>Open Sans</em> fournies par l'infrastructure de <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>.</li>
-                    <li><strong>Icônes :</strong> Icônes standardisées issues du format Unicode local (Émojis standardisés).</li>
+                    <li><strong>Product Imagery:</strong> High-definition stock cards curated via the open-source developer API of <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>.</li>
+                    <li><strong>E-commerce Layout Architecture:</strong> Spatial compositions, UI flow styling directions, and color harmony palettes inspired by <em>Great Jones</em>.</li>
+                    <li><strong>Web Typography:</strong> Integrated <em>Montserrat</em> and <em>Open Sans</em> collections via <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>.</li>
                 </ul>
                 
-                <h3 style="margin-bottom: 0.8rem; font-family: var(--heading-font); color: var(--primary-dark);">Infrastructures de Code & Tutoriels</h3>
+                <h3 style="margin-bottom: 0.8rem; font-family: var(--heading-font); color: #0c4a34;">Technical Frameworks & Modules</h3>
                 <ul style="margin-left: 1.5rem; line-height: 1.8;">
-                    <li><strong>Règles de flexibilité adaptative (CSS Grids & Flexbox) :</strong> Inspirées de la documentation MDN Web Docs de Mozilla et du cours BYU-Idaho WDD 131[cite: 1].</li>
-                    <li><strong>Filtres dynamiques (JS Arrays) :</strong> Structurés sur la base des travaux pratiques JavaScript dispensés par l'Université de Brigham Young-Idaho[cite: 1].</li>
+                    <li><strong>Responsive Styling (Grid & Flexbox):</strong> Constructed using Mozilla Developer Network (MDN) documentation guidelines and BYU-Idaho WDD 131 coursework principles.</li>
+                    <li><strong>Dynamic Filtering & Persistence:</strong> Engineered with structured JavaScript arrays and LocalStorage API workflows.</li>
                 </ul>
             </div>
             
@@ -66,17 +83,17 @@
         <div class="footer-container">
             <div class="footer-contact">
                 <h3>Contact Us</h3>
-                <p>Des questions ou des suggestions ? Écrivez-nous à : <a href="mailto:contact@soko.com" class="footer-link">contact@soko.com</a></p>
-                <p>Kolwezi, Lualaba, République Démocratique du Congo</p>
+                <p>Have questions? Email us: <a href="mailto:contact@soko.com" class="footer-link">contact@soko.com</a></p>
+                <p>Kolwezi, Lualaba, Democratic Republic of the Congo</p>
             </div>
             <hr class="footer-divider">
-            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p> <!--[cite: 1] -->
+            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p>
             <p>
                 <a href="references.html" class="footer-btn">View References & Citations</a>
             </p>
         </div>
     </footer>
 
-    <script src="soko.js"></script>
+    <script src="scripts/soko.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 // ==========================================================================
-// 1. BASE DE DONNÉES DE PRODUITS (Photos d'Unsplash réelles en haute définition)
+// 1. DATA ACCESS STORES
 // ==========================================================================
 const products = [
     {
@@ -8,7 +8,7 @@ const products = [
         category: "electronics",
         price: 24.99,
         image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=500&auto=format&fit=crop&q=60",
-        desc: "Suivi d'activité complet, notifications intelligentes et autonomie de 7 jours.",
+        desc: "Comprehensive activity tracker, smart notifications, and up to 7 days of battery life.",
         badge: "Trending"
     },
     {
@@ -17,7 +17,7 @@ const products = [
         category: "electronics",
         price: 18.50,
         image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format&fit=crop&q=60",
-        desc: "Réduction active du bruit de fond pour une expérience d'écoute immersive.",
+        desc: "Active noise cancellation for an immersive, clear listening experience.",
         badge: "Hot Deal"
     },
     {
@@ -26,7 +26,7 @@ const products = [
         category: "electronics",
         price: 12.00,
         image: "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=500&auto=format&fit=crop&q=60",
-        desc: "Compatible dans plus de 150 pays avec 4 ports de charge USB rapides.",
+        desc: "Compatible in over 150 global locations with 4 high-speed USB ports.",
         badge: "Essential"
     },
     {
@@ -35,7 +35,7 @@ const products = [
         category: "accessories",
         price: 15.00,
         image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&auto=format&fit=crop&q=60",
-        desc: "Garde vos boissons glacées pendant 24 heures ou chaudes pendant 12 heures.",
+        desc: "Keeps drinks ice-cold for up to 24 hours or steaming hot for 12 hours.",
         badge: "New"
     },
     {
@@ -44,7 +44,7 @@ const products = [
         category: "accessories",
         price: 22.00,
         image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=60",
-        desc: "Aluminium ultra-léger et pliable pour soulager la fatigue du cou.",
+        desc: "Ultra-lightweight, foldable aluminum frame designed to optimize neck posture.",
         badge: "Top Rated"
     },
     {
@@ -53,23 +53,22 @@ const products = [
         category: "accessories",
         price: 9.99,
         image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=500&auto=format&fit=crop&q=60",
-        desc: "Portefeuille fin anti-piratage RFID pouvant accueillir jusqu'à 8 cartes.",
+        desc: "Slim profile cardholder equipped with RFID blocking protection for 8 cards.",
         badge: "Sale"
     }
 ];
 
 // ==========================================================================
-// 2. RENDU DYNAMIQUE DES CARTES DE PRODUITS
+// 2. RENDERING ARCHITECTURE
 // ==========================================================================
 const productsContainer = document.getElementById("products-container");
 
 function displayProducts(filteredList) {
     if (!productsContainer) return;
-
     productsContainer.innerHTML = "";
 
     if (filteredList.length === 0) {
-        productsContainer.innerHTML = `<p class="no-results" style="grid-column: 1/-1; text-align: center; font-weight: 600; padding: 2rem;">Aucun article ne correspond à vos filtres.</p>`;
+        productsContainer.innerHTML = `<p style="grid-column: 1/-1; text-align: center; font-weight: 600; padding: 2rem;">No items match your filter criteria.</p>`;
         return;
     }
 
@@ -96,7 +95,7 @@ function displayProducts(filteredList) {
 }
 
 // ==========================================================================
-// 3. LOGIQUE DES FILTRES
+// 3. ARRAY MANIPULATION & INTERACTIVE FILTERS
 // ==========================================================================
 const categorySelect = document.getElementById("category-select");
 const priceRange = document.getElementById("price-range");
@@ -135,7 +134,7 @@ if (resetBtn) {
 }
 
 // ==========================================================================
-// 4. LOGIQUE DU PANIER D'ACHAT
+// 4. STORAGE PERSISTENCE WORKFLOWS
 // ==========================================================================
 let cartCount = parseInt(localStorage.getItem("soko-cart-count")) || 0;
 const cartCountDisplay = document.getElementById("cart-count");
@@ -155,24 +154,26 @@ function attachCartEvents() {
             localStorage.setItem("soko-cart-count", cartCount);
             
             button.textContent = "Added! ✓";
-            button.style.backgroundColor = "#2ec4b6";
+            button.style.backgroundColor = "#0c4a34";
+            button.style.color = "#ffffff";
             setTimeout(() => {
                 button.textContent = "Add to Cart";
                 button.style.backgroundColor = "";
+                button.style.color = "";
             }, 1000);
         });
     });
 }
 
 // ==========================================================================
-// 5. MENU ADAPTATIF HAMBURGER (Mobile)
+// 5. MOBILE COLLAPSIBLE DRAWER MENU
 // ==========================================================================
 const menuToggle = document.querySelector(".menu-toggle");
-const navMenu = document.querySelector(".nav-menu");
+const navLeft = document.querySelector(".nav-left");
 
-if (menuToggle && navMenu) {
+if (menuToggle && navLeft) {
     menuToggle.addEventListener("click", () => {
-        const isOpen = navMenu.classList.toggle("open");
+        const isOpen = navLeft.classList.toggle("open");
         menuToggle.setAttribute("aria-expanded", isOpen);
         menuToggle.textContent = isOpen ? "✕" : "☰";
     });

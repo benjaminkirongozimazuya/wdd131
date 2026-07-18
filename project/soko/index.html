@@ -1,55 +1,70 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soko - Quality Meets Affordability</title>
     
-    <!-- Balises Meta de validation -->
-    <meta name="description" content="Découvrez Soko, votre plateforme d'importation d'accessoires de qualité et de technologies intelligentes aux meilleurs prix locaux.">
-    <meta name="author" content="Benjamin Kirongozi Mazuya"> <!--[cite: 1] -->
+    <meta name="description" content="Discover Soko, your premier import platform for quality accessories and smart technology at the best local prices.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
     
     <!-- Preconnect Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=1600&auto=format&fit=crop&q=80">
     <link rel="stylesheet" href="styles/soko.css">
 </head>
 <body>
-    <!-- En-tête global -->
-    <header>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        Free shipping $100+, 30-day trial, free returns
+    </div>
+
+    <!-- Symmetrical Premium Header -->
+    <header class="gj-header">
         <div class="header-container">
-            <div class="logo">
-                <div class="logo-flex">
-                    <img src="images/logo.png" alt="Soko Logo" class="logo-img" onerror="this.style.display='none'">
-                    <h1>Soko</h1>
-                </div>
-                <div class="tagline">Quality Meets Affordability</div>
-            </div>
-            
-            <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
-            
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-btn active">Home</a>
-                <a href="form.html" class="nav-btn">Request Import</a>
-                <a href="references.html" class="nav-btn">References</a>
+            <nav class="nav-left">
+                <a href="index.html" class="nav-link active">New Arrivals</a>
+                <a href="form.html" class="nav-link">Request Import</a>
+                <a href="references.html" class="nav-link">Bundle & Save</a>
             </nav>
-            
-            <div class="cart-icon">
-                🛒 <span id="cart-count">0</span>
+
+            <div class="logo-centered">
+                <a href="index.html" class="logo-text">Soko</a>
             </div>
+
+            <div class="nav-right">
+                <button class="search-btn" aria-label="Search Catalog">🔍</button>
+                <a href="references.html" class="nav-link">References</a>
+                <a href="form.html" class="nav-link">Account</a>
+                <div class="cart-icon-gj">
+                    🛒 <span id="cart-count">0</span>
+                </div>
+            </div>
+            <button class="menu-toggle" aria-expanded="false" aria-label="Toggle navigation menu">☰</button>
         </div>
     </header>
 
-    <!-- Zone Hero -->
-    <section class="hero">
-        <h2>Trending Imports, Local Prices</h2>
-        <p>Explore high-quality accessories, smart tech, and daily essentials sourced directly from leading manufacturers.</p>
-        <a href="#products-section" class="cta-btn" id="shop-now-btn">Shop Now</a>
+    <!-- Hero Showcase Section -->
+<!-- Hero Showcase Section avec texte et bouton intégrés -->
+    <section class="hero-gj">
+       <div class="hero-overlay-content">
+         <div class="promo-badge-main">$25 off Holy Sheet Duo & Little Sheet Duo!</div>
+         <div class="promo-badge-sub">Save on premium duos through July 20.</div>
+         <a href="#products-section" class="cta-btn-gj">Shop Now</a>
+       </div>
     </section>
 
-    <!-- Section Principale avec Filtres & Grille de Produits -->
+    <!-- Trust Badges -->
+    <div class="trust-bar">
+        <div class="trust-item">🚚 Free Shipping $100+</div>
+        <div class="trust-item">⭐ 2000+ 5-Star Reviews</div>
+        <div class="trust-item">📅 30-Day Trial</div>
+        <div class="trust-item">📦 Free Returns</div>
+    </div>
+
+    <!-- E-Commerce Dynamic Catalog Layout -->
     <main id="products-section">
         <aside class="filters">
             <h3>Filter Products</h3>
@@ -68,31 +83,29 @@
             <button id="reset-filters" class="reset-btn">Reset Filters</button>
         </aside>
 
-        <!-- Catalogue dynamique -->
         <section class="products-grid" id="products-container" aria-label="Product Catalog">
-            <!-- Injecté de manière dynamique par soko.js -->
+            <!-- Dynamically populated by JavaScript -->
         </section>
     </main>
 
-    <!-- Pied de page global -->
+    <!-- Global Footer -->
     <footer>
         <div class="footer-container">
-            <!-- Section de Contact globale (Disponible sur toutes les pages) -->
             <div class="footer-contact">
                 <h3>Contact Us</h3>
-                <p>Des questions ou des suggestions ? Écrivez-nous à : <a href="mailto:contact@soko.com" class="footer-link">contact@soko.com</a></p>
-                <p>Kolwezi, Lualaba, République Démocratique du Congo</p>
+                <p>Have questions? Email us: <a href="mailto:contact@soko.com" class="footer-link">contact@soko.com</a></p>
+                <p>Kolwezi, Lualaba, Democratic Republic of the Congo</p>
             </div>
             
             <hr class="footer-divider">
             
-            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p> <!--[cite: 1] -->
+            <p>&copy; 2026 | Soko Project Plan | Benjamin Kirongozi Mazuya | BYU-Idaho WDD 131</p>
             <p>
                 <a href="references.html" class="footer-btn">View References & Citations</a>
             </p>
         </div>
     </footer>
 
-    <script src="soko.js"></script>
+    <script src="scripts/soko.js"></script>
 </body>
 </html>
