@@ -628,3 +628,22 @@ footer {
         gap: 1rem;
     }
 }
+
+/* Style du conteneur du logo */
+.logo-brand-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.logo-brand-link:hover {
+    transform: scale(1.05); /* Léger effet de zoom au survol */
+}
+
+/* Style de l'image du logo */
+.brand-logo {
+    max-height: 45px;      /* Empêche le logo de déformer la hauteur du header */
+    width: auto;           /* Conserve les proportions parfaites de votre image */
+    object-fit: contain;
+}

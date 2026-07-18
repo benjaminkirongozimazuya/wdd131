@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 180" width="100%" height="100%">
+  <!-- Arrière-plan transparent -->
+  <rect width="100%" height="100%" fill="none"/>
+  
+  <g transform="translate(10, 10)">
+    <!-- BLOC NOM DE MARQUE UNIFIÉ (Sok + O-icône + o) -->
+    <g id="brand-name">
+      <!-- "S" et "ok" en bleu sombre très épais -->
+      <text x="30" y="95" font-family="'Montserrat', 'Segoe UI', sans-serif" font-weight="900" font-size="82" fill="#0d1b2a" letter-spacing="-3">Sok</text>
+      
+      <!-- L'icône dynamique fusionnée jouant le rôle du premier "O" -->
+      <g transform="translate(202, 18)">
+        <!-- Croissant Rose de gauche (corps du O) -->
+        <path d="M 40,10 A 38,38 0 0,0 40,86 A 45,45 0 0,1 40,10 Z" fill="#c93b6d" />
+        
+        <!-- Éléments dynamiques bleus de droite (fermeture esthétique du O) -->
+        <path d="M 46,15 A 35,35 0 0,1 68,38" fill="none" stroke="#0d1b2a" stroke-width="7" stroke-linecap="round" />
+        <path d="M 70,55 A 35,35 0 0,1 53,80" fill="none" stroke="#0d1b2a" stroke-width="7" stroke-linecap="round" />
+        <circle cx="73" cy="47" r="4" fill="#0d1b2a" />
+      </g>
+      
+      <!-- Le deuxième "o" final pour compléter "Soko" de manière fluide -->
+      <text x="282" y="95" font-family="'Montserrat', 'Segoe UI', sans-serif" font-weight="900" font-size="82" fill="#0d1b2a" letter-spacing="-3">o</text>
+    </g>
+    
+    <!-- Ligne de séparation moderne et épurée -->
+    <line x1="35" y1="125" x2="445" y2="125" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round" />
+    
+    <!-- Slogan (Tagline) d'E-commerce élégant -->
+    <text x="240" y="148" font-family="'Montserrat', 'Open Sans', sans-serif" font-weight="700" font-size="13" fill="#f4a261" letter-spacing="4" text-anchor="middle">E-COMMERCE TAGLINE GOES HERE</text>
+  </g>
+</svg>
