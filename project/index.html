@@ -4,53 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soko | Home</title>
-    <meta name="description" content="Discover Soko, your premier local e-commerce platform for unique, high-quality products curated just for you.">
+    <meta name="description" content="Discover Soko, your premier digital marketplace bridging trending global imports with affordable local pricing.">
+    <!-- Google Fonts Integration matching Site Plan -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/soko.css">
     <script src="scripts/soko.js" defer></script>
 </head>
 <body>
 
     <header>
-        <div class="top-bar">
-            <!-- Social media links aligned top-left -->
-            <div class="social-links-top">
-                <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
-                <a href="https://wa.me/123456789" target="_blank" rel="noopener">WhatsApp</a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-            </div>
-            <!-- Brand Logo aligned top-right -->
-            <div class="logo-container">
+        <div class="header-container">
+            <div class="brand-identity">
                 <a href="index.html" class="logo-text">SOKO</a>
+                <span class="tagline">Quality Meets Affordability</span>
+            </div>
+            <!-- Interactive Hamburger Menu Button for Mobile View Layout -->
+            <button id="menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
+            <nav id="primary-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="catalog.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- Cart Icon Element tracking instant-update counter metrics -->
+            <div class="cart-status-box">
+                <span class="cart-icon">🛒</span>
+                <span id="cart-counter">0</span>
             </div>
         </div>
-        
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="catalog.html">Shop</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Welcome to Soko</h1>
-            <p>Your digital marketplace for exceptional items sourced with professional care.</p>
+        <!-- Hero Display matching Wireframe Layout -->
+        <section class="hero-banner">
+            <h1>Soko: Quality Meets Affordability</h1>
+            <p>Your ultimate interactive showcase for hot, budget-friendly trending imports.</p>
         </section>
 
-        <section class="featured-section">
-            <h2>Featured Products</h2>
-            <div id="featured-grid" class="product-grid">
-                <!-- Product cards dynamically loaded via JavaScript -->
-            </div>
-        </section>
+        <!-- Main Workspace splits into Sidebar + Grid on Desktop Layout -->
+        <div class="layout-wrapper">
+            <aside class="sidebar-filters">
+                <h2>Filter Products</h2>
+                <div class="filter-controls">
+                    <button id="filter-all" class="filter-btn active">All Items</button>
+                    <button id="filter-tech" class="filter-btn">Tech & Audio</button>
+                    <button id="filter-apparel" class="filter-btn">Fashion Apparel</button>
+                    <button id="filter-home" class="filter-btn">Home Gear</button>
+                </div>
+            </aside>
+
+            <section class="catalog-display">
+                <h2>Trending Deals</h2>
+                <div id="product-grid" class="product-grid">
+                    <!-- Dynamically populated card blocks loaded by soko.js -->
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Soko | Benjamin K. Mazuya. All rights reserved.</p>
-        <p id="visit-counter">Loading visit statistics...</p>
-        <p><a href="references.html">References Page</a></p>
+        <div class="footer-content">
+            <p>&copy; 2026 Soko | Benjamin K. Mazuya. All rights reserved.</p>
+            <p id="visit-counter">Initializing system stats...</p>
+            <p><a href="references.html">References Ledger</a></p>
+        </div>
     </footer>
 
 </body>

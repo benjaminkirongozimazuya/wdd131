@@ -4,55 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soko | Shop</title>
-    <meta name="description" content="Explore the full catalog of items available on the Soko marketplace platform.">
+    <meta name="description" content="Browse our complete interactive directory featuring high-quality items and instant filter criteria controls.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/soko.css">
     <script src="scripts/soko.js" defer></script>
 </head>
 <body>
 
     <header>
-        <div class="top-bar">
-            <div class="social-links-top">
-                <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
-                <a href="https://wa.me/123456789" target="_blank" rel="noopener">WhatsApp</a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-            </div>
-            <div class="logo-container">
+        <div class="header-container">
+            <div class="brand-identity">
                 <a href="index.html" class="logo-text">SOKO</a>
+                <span class="tagline">Quality Meets Affordability</span>
+            </div>
+            <button id="menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
+            <nav id="primary-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catalog.html" class="active">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-status-box">
+                <span class="cart-icon">🛒</span>
+                <span id="cart-counter">0</span>
             </div>
         </div>
-        
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalog.html" class="active">Shop</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <section class="catalog-header">
-            <h1>Our Catalog</h1>
-            <div class="filter-controls">
-                <button id="filter-all" class="btn active">All Items</button>
-                <button id="filter-electronics" class="btn">Electronics</button>
-                <button id="filter-fashion" class="btn">Fashion</button>
-                <button id="filter-home" class="btn">Home Decor</button>
-            </div>
+        <section class="hero-banner">
+            <h1>The Soko Marketplace Directory</h1>
+            <p>Explore hot trends and adjust item preferences seamlessly without interface reloads.</p>
         </section>
 
-        <section class="catalog-section">
-            <div id="catalog-grid" class="product-grid">
-                <!-- Dynamically populated via JavaScript -->
-            </div>
-        </section>
+        <div class="layout-wrapper">
+            <aside class="sidebar-filters">
+                <h2>Categories</h2>
+                <div class="filter-controls">
+                    <button id="filter-all" class="filter-btn active">All Items</button>
+                    <button id="filter-tech" class="filter-btn">Tech & Audio</button>
+                    <button id="filter-apparel" class="filter-btn">Fashion Apparel</button>
+                    <button id="filter-home" class="filter-btn">Home Gear</button>
+                </div>
+                <div class="cart-reset-panel">
+                    <h3>Cart Status</h3>
+                    <button id="clear-cart-btn" class="action-btn">Empty Cart</button>
+                </div>
+            </aside>
+
+            <section class="catalog-display">
+                <h2>Complete Catalog Inventory</h2>
+                <div id="product-grid" class="product-grid">
+                    <!-- Loaded dynamically via the custom JavaScript filter module mappings -->
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Soko | Benjamin K. Mazuya. All rights reserved.</p>
-        <p id="visit-counter">Loading visit statistics...</p>
-        <p><a href="references.html">References Page</a></p>
+        <div class="footer-content">
+            <p>&copy; 2026 Soko | Benjamin K. Mazuya. All rights reserved.</p>
+            <p id="visit-counter">Initializing system stats...</p>
+            <p><a href="references.html">References Ledger</a></p>
+        </div>
     </footer>
 
 </body>

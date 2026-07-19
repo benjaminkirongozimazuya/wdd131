@@ -4,73 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soko | Contact</title>
-    <meta name="description" content="Get in touch with the Soko team for custom orders, account queries, or support.">
+    <meta name="description" content="Get in touch with Soko for distribution partner agreements, product sourcing, or direct support requests.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/soko.css">
     <script src="scripts/soko.js" defer></script>
 </head>
 <body>
 
     <header>
-        <div class="top-bar">
-            <div class="social-links-top">
-                <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
-                <a href="https://wa.me/123456789" target="_blank" rel="noopener">WhatsApp</a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-            </div>
-            <div class="logo-container">
+        <div class="header-container">
+            <div class="brand-identity">
                 <a href="index.html" class="logo-text">SOKO</a>
+                <span class="tagline">Quality Meets Affordability</span>
+            </div>
+            <button id="menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
+            <nav id="primary-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catalog.html">Shop</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-status-box">
+                <span class="cart-icon">🛒</span>
+                <span id="cart-counter">0</span>
             </div>
         </div>
-        
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalog.html">Shop</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <section class="form-section">
-            <h1>Contact Us</h1>
-            <p>Have questions about a product or order? Fill out the secure form below and our team will follow up within 24 hours.</p>
+        <section class="form-wrapper-block">
+            <h1>Submit a Product Inquiry</h1>
+            <p>Are you a retail merchant seeking customized bulk orders or trending target products? Message us details below.</p>
             
-            <form action="#" method="get" class="soko-form">
-                <div class="form-group">
-                    <label for="username">Full Name:</label>
-                    <input type="text" id="username" name="username" required placeholder="e.g., Benjamin Mazuya">
+            <form action="#" method="get" class="soko-submission-form">
+                <div class="field-control-group">
+                    <label for="shoppername">Your Legal Full Name:</label>
+                    <input type="text" id="shoppername" name="shoppername" required placeholder="e.g., Benjamin Mazuya">
                 </div>
 
-                <div class="form-group">
-                    <label for="useremail">Email Address:</label>
-                    <input type="email" id="useremail" name="useremail" required placeholder="e.g., name@example.com">
+                <div class="field-control-group">
+                    <label for="shopperemail">Secure Email Node:</label>
+                    <input type="email" id="shopperemail" name="shopperemail" required placeholder="e.g., name@example.com">
                 </div>
 
-                <div class="form-group">
-                    <label for="subject">Inquiry Subject:</label>
-                    <select id="subject" name="subject" required>
-                        <option value="" disabled selected>Select an option...</option>
-                        <option value="order">Place a Custom Order</option>
-                        <option value="support">Technical Support</option>
-                        <option value="partnership">Business Partnership</option>
+                <div class="field-control-group">
+                    <label for="inquirypurpose">Reason for Outreach:</label>
+                    <select id="inquirypurpose" name="inquirypurpose" required>
+                        <option value="" disabled selected>Choose a descriptive category option...</option>
+                        <option value="import">Bulk Sourcing & Imports</option>
+                        <option value="tracking">Order Tracking Details</option>
+                        <option value="feedback">General Platform Evaluation</option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="message">Message Details:</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="Type your message details here..."></textarea>
+                <div class="field-control-group">
+                    <label for="inquirymessage">Message Content Requirements:</label>
+                    <textarea id="inquirymessage" name="inquirymessage" rows="6" required placeholder="Provide clear contextual requirements for our platform tracking agents..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit">Submit Inquiry</button>
+                <button type="submit" class="submit-action-btn">Dispatch Document Message</button>
             </form>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Soko | Benjamin K. Mazuya. All rights reserved.</p>
-        <p id="visit-counter">Loading visit statistics...</p>
-        <p><a href="references.html">References Page</a></p>
+        <div class="footer-content">
+            <p>&copy; 2026 Soko | Benjamin K. Mazuya. All rights reserved.</p>
+            <p id="visit-counter">Initializing system stats...</p>
+            <p><a href="references.html">References Ledger</a></p>
+        </div>
     </footer>
 
 </body>
