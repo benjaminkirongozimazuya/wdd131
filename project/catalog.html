@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soko | Shop</title>
+    <meta name="description" content="Explore the full catalog of items available on the Soko marketplace platform.">
+    <link rel="stylesheet" href="styles/soko.css">
+    <script src="scripts/soko.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="social-links-top">
+                <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+                <a href="https://wa.me/123456789" target="_blank" rel="noopener">WhatsApp</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+            <div class="logo-container">
+                <a href="index.html" class="logo-text">SOKO</a>
+            </div>
+        </div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalog.html" class="active">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="catalog-header">
+            <h1>Our Catalog</h1>
+            <div class="filter-controls">
+                <button id="filter-all" class="btn active">All Items</button>
+                <button id="filter-electronics" class="btn">Electronics</button>
+                <button id="filter-fashion" class="btn">Fashion</button>
+                <button id="filter-home" class="btn">Home Decor</button>
+            </div>
+        </section>
+
+        <section class="catalog-section">
+            <div id="catalog-grid" class="product-grid">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Soko | Benjamin K. Mazuya. All rights reserved.</p>
+        <p id="visit-counter">Loading visit statistics...</p>
+        <p><a href="references.html">References Page</a></p>
+    </footer>
+
+</body>
+</html>

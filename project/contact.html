@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soko | Contact</title>
+    <meta name="description" content="Get in touch with the Soko team for custom orders, account queries, or support.">
+    <link rel="stylesheet" href="styles/soko.css">
+    <script src="scripts/soko.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="social-links-top">
+                <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+                <a href="https://wa.me/123456789" target="_blank" rel="noopener">WhatsApp</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+            <div class="logo-container">
+                <a href="index.html" class="logo-text">SOKO</a>
+            </div>
+        </div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalog.html">Shop</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <h1>Contact Us</h1>
+            <p>Have questions about a product or order? Fill out the secure form below and our team will follow up within 24 hours.</p>
+            
+            <form action="#" method="get" class="soko-form">
+                <div class="form-group">
+                    <label for="username">Full Name:</label>
+                    <input type="text" id="username" name="username" required placeholder="e.g., Benjamin Mazuya">
+                </div>
+
+                <div class="form-group">
+                    <label for="useremail">Email Address:</label>
+                    <input type="email" id="useremail" name="useremail" required placeholder="e.g., name@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Inquiry Subject:</label>
+                    <select id="subject" name="subject" required>
+                        <option value="" disabled selected>Select an option...</option>
+                        <option value="order">Place a Custom Order</option>
+                        <option value="support">Technical Support</option>
+                        <option value="partnership">Business Partnership</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message Details:</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Type your message details here..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Inquiry</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Soko | Benjamin K. Mazuya. All rights reserved.</p>
+        <p id="visit-counter">Loading visit statistics...</p>
+        <p><a href="references.html">References Page</a></p>
+    </footer>
+
+</body>
+</html>
