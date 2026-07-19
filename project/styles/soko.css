@@ -183,7 +183,7 @@ header {
 .filter-btn:hover, .filter-btn.active {
     background-color: var(--primary-dark);
     color: var(--white);
-    border-color: var(--primary-dark);
+    /* Removed the redundant border-color line since it matches the background color */
 }
 
 .cart-reset-panel {
