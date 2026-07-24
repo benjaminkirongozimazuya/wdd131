@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazuya | Profil</title>
+    
+    <meta name="description" content="Profil utilisateur Mazuya et vos vidéos publiées.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
+    <meta name="theme-color" content="#ff0050">
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Fichier CSS principal -->
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <!-- En-tête Fixe -->
+    <header class="header">
+        <h1>Mazuya</h1>
+        <p>Profil Utilisateur</p>
+    </header>
+
+    <main class="profile-page">
+        <!-- Informations du Profil -->
+        <section class="profile-header">
+            <img src="assets/images/logo.png" alt="Photo de profil" class="profile-image">
+            <h2 class="profile-name">@Mazuya</h2>
+            <p class="profile-bio">Créateur de contenu & Développeur Web</p>
+        </section>
+
+        <!-- Statistiques -->
+        <section class="profile-stats">
+            <div class="stat">
+                <strong>12</strong>
+                <span>Vidéos</span>
+            </div>
+            <div class="stat">
+                <strong>1.5K</strong>
+                <span>Abonnés</span>
+            </div>
+            <div class="stat">
+                <strong>4.8K</strong>
+                <span>J'aime</span>
+            </div>
+        </section>
+
+        <!-- Grille des vidéos du profil -->
+        <section class="profile-videos" id="userVideos">
+            <!-- Emplacements de vidéos dynamiques ou statiques -->
+            <div class="profile-video">
+                <video src="assets/videos/sample1.mp4" muted loop></video>
+            </div>
+            <div class="profile-video">
+                <video src="assets/videos/sample2.mp4" muted loop></video>
+            </div>
+            <div class="profile-video">
+                <video src="assets/videos/sample3.mp4" muted loop></video>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navigation Inférieure -->
+    <nav class="bottom-nav">
+        <button type="button" onclick="location.href='index.html'" aria-label="Accueil">🏠</button>
+        <button type="button" onclick="location.href='upload.html'" aria-label="Publier">➕</button>
+        <button type="button" class="active" onclick="location.href='profile.html'" aria-label="Profil">👤</button>
+    </nav>
+
+    <!-- Modules JavaScript -->
+    <script type="module" src="js/firebase.js"></script>
+</body>
+</html>

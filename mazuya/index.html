@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazuya | Accueil</title>
+    
+    <meta name="description" content="Mazuya - Découvrez et partagez des vidéos courtes en ligne.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
+    <meta name="theme-color" content="#ff0050">
+
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Fichier CSS principal -->
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <!-- En-tête Fixe -->
+    <header class="header">
+        <h1>Mazuya</h1>
+        <p>Fil d'actualité</p>
+    </header>
+
+    <!-- Conteneur du Feed Vidéo (Géré dynamiquement par JS) -->
+    <main id="feed">
+        <div class="loading">
+            <h2>Chargement des vidéos...</h2>
+        </div>
+    </main>
+
+    <!-- Navigation Inférieure -->
+    <nav class="bottom-nav">
+        <button type="button" class="active" onclick="location.href='index.html'" aria-label="Accueil">🏠</button>
+        <button type="button" onclick="location.href='upload.html'" aria-label="Publier">➕</button>
+        <button type="button" onclick="location.href='profile.html'" aria-label="Profil">👤</button>
+    </nav>
+
+    <!-- Modules JavaScript -->
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>
