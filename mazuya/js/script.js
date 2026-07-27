@@ -3,13 +3,13 @@ import { db, collection, getDocs, orderBy, query, doc, updateDoc, increment, add
 let currentVideoId = null;
 
 // =====================================
-// 1. CHARGEMENT DU FEED & EVENEMENTS
+// 1. CHARGEMENT DU FEED & ÉVÉNEMENTS
 // =====================================
 document.addEventListener("DOMContentLoaded", async () => {
     const feedContainer = document.getElementById("feed");
     if (!feedContainer) return;
 
-    // Charger les vidéos depuis Firebase (si vous en avez dans Firestore)
+    // Charger les vidéos depuis Firebase (si disponible)
     await loadVideos(feedContainer);
 });
 
@@ -19,24 +19,27 @@ async function loadVideos(feedContainer) {
         const q = query(collection(db, "videos"), orderBy("timestamp", "desc"));
         const querySnapshot = await getDocs(q);
 
-        // Si des vidéos existent dans Firestore, remplacer le contenu du feed
+        // Si Firebase contient des vidéos, on remplace la vidéo de test par défaut
         if (!querySnapshot.empty) {
-            feedContainer.innerHTML = ""; // Vider le contenu HTML de test
+            feedContainer.innerHTML = ""; // Vider le conteneur uniquement si des données existent
 
-            querySnapshot.forEach((doc) => {
-                const videoData = doc.data();
-                const videoId = doc.id;
+            querySnapshot.forEach((documentSnap) => {
+                const videoData = documentSnap.data();
+                const videoId = documentSnap.id;
 
                 const videoElement = createVideoElement(videoId, videoData);
                 feedContainer.appendChild(videoElement);
             });
+        } else {
+            console.log("Aucune vidéo trouvée dans Firestore. Affichage de la vidéo de démonstration.");
         }
     } catch (error) {
-        console.error("Erreur lors du chargement des vidéos :", error);
+        console.error("Erreur lors du chargement des vidéos Firestore :", error);
+        // En cas d'erreur réseau ou de droits, la vidéo du fichier index.html reste affichée
     }
 }
 
-// Générer le HTML d'une vidéo
+// Générer dynamiquement la structure HTML d'une vidéo
 function createVideoElement(id, data) {
     const div = document.createElement("div");
     div.className = "video-container";
@@ -78,8 +81,8 @@ async function toggleLike(videoId) {
             likes: increment(1)
         });
     } catch (error) {
-        console.error("Erreur Like Firestore :", error);
-        likeCountElem.innerText = currentLikes; // Revenir en arrière en cas d'erreur
+        console.error("Erreur mise à jour Like dans Firestore :", error);
+        // Si la vidéo n'existe pas encore dans Firestore, on conserve l'affichage local
     }
 }
 
@@ -93,62 +96,71 @@ function openComments(videoId) {
 
     modal.classList.add("active");
     const commentsList = document.getElementById("comments-list");
-    commentsList.innerHTML = "<p>Chargement des commentaires...</p>";
+    commentsList.innerHTML = "<p style='color:#888; text-align:center;'>Chargement des commentaires...</p>";
 
-    // Écoute en temps réel des commentaires dans la sous-collection
-    const q = query(collection(db, "videos", videoId, "comments"), orderBy("timestamp", "desc"));
-    
-    onSnapshot(q, (snapshot) => {
-        commentsList.innerHTML = "";
-        if (snapshot.empty) {
-            commentsList.innerHTML = "<p>Aucun commentaire pour l'instant.</p>";
-            return;
-        }
+    try {
+        // Écoute en temps réel des commentaires dans Firestore
+        const q = query(collection(db, "videos", videoId, "comments"), orderBy("timestamp", "desc"));
+        
+        onSnapshot(q, (snapshot) => {
+            commentsList.innerHTML = "";
+            if (snapshot.empty) {
+                commentsList.innerHTML = "<p style='color:#888; text-align:center;'>Soyez le premier à commenter !</p>";
+                return;
+            }
 
-        snapshot.forEach((doc) => {
-            const data = doc.data();
-            const commentItem = document.createElement("div");
-            commentItem.className = "comment-item";
-            commentItem.innerHTML = `<strong>${data.username || "Utilisateur"}</strong>: ${data.text}`;
-            commentsList.appendChild(commentItem);
+            snapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                const commentItem = document.createElement("div");
+                commentItem.className = "comment-item";
+                commentItem.innerHTML = `<strong>${data.username || "Utilisateur"}</strong>: ${data.text}`;
+                commentsList.appendChild(commentItem);
+            });
+        }, (error) => {
+            console.error("Erreur de lecture des commentaires :", error);
+            commentsList.innerHTML = "<p style='color:#888; text-align:center;'>Impossible de charger les commentaires.</p>";
         });
-    });
+    } catch (error) {
+        console.error("Erreur lors de l'ouverture des commentaires :", error);
+    }
 }
 
 function closeComments() {
     const modal = document.getElementById("comment-modal");
-    if (modal) modal.classList.remove("active");
+    if (modal) {
+        modal.classList.remove("active");
+    }
 }
 
 async function addComment(e) {
     e.preventDefault();
     const input = document.getElementById("comment-input");
-    const text = input.value.trim();
+    const text = input ? input.value.trim() : "";
 
     if (!text || !currentVideoId) return;
 
     try {
-        // Ajouter le commentaire
+        // 1. Ajouter le commentaire dans la sous-collection Firestore
         await addDoc(collection(db, "videos", currentVideoId, "comments"), {
             text: text,
             username: "MazuyaUser",
             timestamp: new Date()
         });
 
-        // Mettre à jour le compteur global de commentaires
+        // 2. Mettre à jour le nombre total de commentaires
         const videoRef = doc(db, "videos", currentVideoId);
         await updateDoc(videoRef, {
             commentsCount: increment(1)
         });
 
-        input.value = "";
+        if (input) input.value = "";
     } catch (error) {
         console.error("Erreur lors de l'envoi du commentaire :", error);
     }
 }
 
 // =====================================
-// 4. EXPORTATION VERS WINDOW (Obligatoire pour type="module")
+// 4. ACCÈS GLOBAL POUR LE HTML (type="module")
 // =====================================
 window.toggleLike = toggleLike;
 window.openComments = openComments;
