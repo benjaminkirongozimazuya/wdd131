@@ -88,3 +88,9 @@ async function addComment(e) {
         console.error("Erreur d'envoi du commentaire :", error);
     }
 }
+
+// Exposer les fonctions au fichier HTML
+window.toggleLike = toggleLike;
+window.openComments = openComments;
+window.closeComments = closeComments;
+window.addComment = addComment;
