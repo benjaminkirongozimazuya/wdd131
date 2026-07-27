@@ -112,3 +112,10 @@ function initVideoControls() {
         });
     });
 }
+
+// À ajouter à la fin de votre fichier js/script.js
+
+window.toggleLike = toggleLike;
+window.openComments = openComments;
+window.closeComments = closeComments;
+window.addComment = addComment;
