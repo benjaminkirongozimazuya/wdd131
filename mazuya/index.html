@@ -5,75 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mazuya | Accueil</title>
     
-    <meta name="description" content="Mazuya - Découvrez et partagez des vidéos courtes en ligne.">
+    <meta name="description" content="Mazuya - Plateforme de partage de vidéos courtes">
     <meta name="author" content="Benjamin Kirongozi Mazuya">
     <meta name="theme-color" content="#ff0050">
 
-    <!-- Manifest PWA -->
     <link rel="manifest" href="manifest.json">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
     <!-- Fichier CSS principal -->
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- En-tête Fixe -->
+    <!-- En-tête -->
     <header class="header">
         <h1>Mazuya</h1>
         <p>Fil d'actualité</p>
     </header>
 
-    <!-- Conteneur du Feed Vidéo (Géré dynamiquement par JS) -->
+    <!-- Conteneur principal du fil de vidéos -->
     <main id="feed">
-    <section class="video-container">
-        <video src="assets/videos/sample.mp4" loop playsinline autoplay muted></video>
-        <div class="video-info">
-            <h3>@Mazuya</h3>
-            <p>Bienvenue sur Mazuya ! Ma première vidéo de démonstration 🚀</p>
-        </div>
-        <div class="actions">
-            <button class="like-btn" aria-label="J'aime">❤️</button>
-            <button aria-label="Commenter">💬</button>
-            <button aria-label="Partager">🔗</button>
-        </div>
-    </section>
-</main>
+        <!-- Les vidéos seront chargées dynamiquement par JS -->
+    </main>
 
-    <!-- Navigation Inférieure -->
+    <!-- Barre de navigation inférieure -->
     <nav class="bottom-nav">
         <button type="button" class="active" onclick="location.href='index.html'" aria-label="Accueil">🏠</button>
         <button type="button" onclick="location.href='upload.html'" aria-label="Publier">➕</button>
         <button type="button" onclick="location.href='profile.html'" aria-label="Profil">👤</button>
     </nav>
 
-    <!-- Modules JavaScript -->
+    <!-- Scripts JavaScript -->
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/script.js"></script>
+
+    <!-- Enregistrement du Service Worker PWA -->
     <script>
-  if (querySnapshot.empty) {
-    // La vidéo locale est insérée ici :
-    feedContainer.innerHTML = `
-        <section class="video-container">
-            <video src="assets/videos/sample.mp4" loop playsinline autoplay muted></video>
-            <div class="video-info">
-                <h3>@Mazuya</h3>
-                <p>Bienvenue sur Mazuya ! Ma première vidéo de démonstration 🚀</p>
-            </div>
-            <div class="actions">
-                <button class="like-btn" aria-label="J'aime">❤️</button>
-                <button aria-label="Commenter">💬</button>
-                <button aria-label="Partager">🔗</button>
-            </div>
-        </section>
-    `;
-    initVideoClick();
-    return;
-}
-</script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js")
+          .then(() => console.log("Service Worker Mazuya Enregistré !"))
+          .catch((err) => console.log("Erreur Service Worker :", err));
+      }
+    </script>
 </body>
 </html>
