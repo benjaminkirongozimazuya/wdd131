@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lushoi Music Promotion - Katanga</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #111;
+      color: #fff;
+      font-family: system-ui, -apple-system, sans-serif;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    h1 {
+      color: #ff3b5c;
+      margin-bottom: 5px;
+    }
+
+    p.subtitle {
+      color: #aaa;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Barre de filtres */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+      position: sticky;
+      top: 0;
+      background: #111;
+      padding: 10px 0;
+      z-index: 100;
+    }
+
+    .filter-btn {
+      background: #222;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #ff3b5c;
+      border-color: #ff3b5c;
+    }
+
+    /* Conteneur des vidéos */
+    .feed {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      min-height: 400px;
+    }
+
+    .tiktok-card {
+      width: 100%;
+      max-width: 325px;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔥 Lushoi Vibe Promotion</h1>
+  <p class="subtitle">Le meilleur de la musique du Katanga (Lubumbashi / Kolwezi)</p>
+
+  <!-- Boutons de filtrage -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="renderFeed('all', this)">Tous</button>
+    <button class="filter-btn" onclick="renderFeed('rj-kanierra', this)">RJ Kanierra</button>
+    <button class="filter-btn" onclick="renderFeed('pson', this)">Pson Zubaboy</button>
+    <button class="filter-btn" onclick="renderFeed('afrohouse', this)">Afro House Katanga</button>
+  </div>
+
+  <!-- Emplacement où JS va injecter les vidéos -->
+  <div class="feed" id="videoFeed"></div>
+
+  <!-- Script officiel TikTok -->
+  <script async src="https://www.tiktok.com/embed.js"></script>
+
+  <script>
+    // 1. Liste de tes vidéos (Modifie ou ajoute des objets ici !)
+    const playlist = [
+      {
+        id: "7311140938507881733",
+        author: "@rjkanierraoff",
+        category: "rj-kanierra"
+      },
+      {
+        id: "7279183424182930693",
+        author: "@pson_zubaboy",
+        category: "pson"
+      },
+      {
+        id: "7258380309997423877",
+        author: "@djspilulu",
+        category: "afrohouse"
+      }
+    ];
+
+    // 2. Fonction pour afficher et filtrer les vidéos
+    function renderFeed(category, btnElement) {
+      // Met à jour la couleur du bouton actif
+      if (btnElement) {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
+
+      const feedContainer = document.getElementById('videoFeed');
+      feedContainer.innerHTML = ''; // Vide la zone d'affichage
+
+      // Filtre la liste selon la catégorie choisie
+      const filteredVideos = category === 'all' 
+        ? playlist 
+        : playlist.filter(item => item.category === category);
+
+      // Génère le HTML pour chaque vidéo sélectionnée
+      filteredVideos.forEach(video => {
+        const card = document.createElement('div');
+        card.className = 'tiktok-card';
+        card.innerHTML = `
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/${video.author}/video/${video.id}" data-video-id="${video.id}" style="max-width: 605px;min-width: 325px;">
+            <section>
+              <a target="_blank" href="https://www.tiktok.com/${video.author}">${video.author}</a>
+            </section>
+          </blockquote>
+        `;
+        feedContainer.appendChild(card);
+      });
+
+      // 3. Forcer TikTok à recharger les iframes intégrées
+      if (window.tiktokEmbed && typeof window.tiktokEmbed.load === 'function') {
+        window.tiktokEmbed.load();
+      }
+    }
+
+    // Chargement initial au lancement de la page
+    window.addEventListener('DOMContentLoaded', () => {
+      renderFeed('all');
+    });
+  </script>
+
+</body>
+</html>
