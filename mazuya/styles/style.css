@@ -1,16 +1,11 @@
 /* =====================================
-   MAZUYA - STYLE CSS
-   VERSION COMPLETE
-   PARTIE 1/3
+   MAZUYA - STYLE CSS COMPLET
 ===================================== */
-
 
 /* =====================================
    ROOT VARIABLES
 ===================================== */
-
 :root {
-
     --primary: #ff0050;
     --secondary: #00f2ea;
 
@@ -25,1527 +20,597 @@
     --danger: #ff3333;
     --success: #00ff88;
 
-
-    --shadow: 0 8px 25px rgba(0,0,0,.35);
-
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
 
     --gradient: linear-gradient(
         180deg,
-        rgba(0,0,0,.8),
+        rgba(0, 0, 0, 0.8),
         transparent
     );
 
+    --header-height: 70px;
+    --nav-height: 70px;
 
-    --header-height:70px;
-    --nav-height:70px;
+    --radius-small: 10px;
+    --radius-medium: 16px;
+    --radius-large: 25px;
 
-
-    --radius-small:10px;
-    --radius-medium:16px;
-    --radius-large:25px;
-
-
-    --font:"Roboto", Arial, sans-serif;
-
+    --font: "Roboto", Arial, sans-serif;
 }
 
-
-
 /* =====================================
-   RESET
+   RESET & GLOBAL STYLES
 ===================================== */
-
-
 *,
 *::before,
 *::after {
-
-    margin:0;
-    padding:0;
-
-    box-sizing:border-box;
-
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-
 
 html {
-
-    font-size:16px;
-
-    scroll-behavior:smooth;
-
+    font-size: 16px;
+    scroll-behavior: smooth;
 }
-
-
 
 body {
-
-    width:100%;
-
-    min-height:100vh;
-
-    background:var(--background);
-
-    color:var(--white);
-
-    font-family:var(--font);
-
-    overflow:hidden;
-
+    width: 100%;
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--white);
+    font-family: var(--font);
+    overflow: hidden;
 }
-
-
 
 img,
 video {
-
-    width:100%;
-
-    display:block;
-
+    width: 100%;
+    display: block;
+    background: #000;
+    object-position: center;
 }
-
-
 
 button {
-
-    border:none;
-
-    background:none;
-
-    color:inherit;
-
-    cursor:pointer;
-
-    font-family:var(--font);
-
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    font-family: var(--font);
 }
-
-
 
 a {
-
-    color:inherit;
-
-    text-decoration:none;
-
+    color: inherit;
+    text-decoration: none;
 }
 
-
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
 
 /* =====================================
    HEADER
 ===================================== */
-
-
 .header {
-
-    position:fixed;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-
-    height:var(--header-height);
-
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-
-    padding:10px;
-
-
-    background:linear-gradient(
-        black,
-        transparent
-    );
-
-
-    z-index:100;
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(black, transparent);
+    z-index: 100;
 }
-
-
 
 .header h1 {
-
-    color:var(--primary);
-
-    font-size:clamp(
-        1.5rem,
-        5vw,
-        2rem
-    );
-
-    font-weight:700;
-
+    color: var(--primary);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 700;
 }
-
-
 
 .header p {
-
-    margin-top:4px;
-
-    color:var(--gray);
-
-    font-size:.85rem;
-
+    margin-top: 4px;
+    color: var(--gray);
+    font-size: 0.85rem;
 }
-
-
 
 /* =====================================
    VIDEO FEED
 ===================================== */
-
-
 #feed {
-
-    width:100%;
-
-    height:100vh;
-
-    overflow-y:auto;
-
-
-    scroll-snap-type:y mandatory;
-
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
 }
-
-
-
-#feed::-webkit-scrollbar {
-
-    display:none;
-
-}
-
-
 
 .video-container {
-
-    position:relative;
-
-
-    width:100%;
-
-    height:100vh;
-
-
-    scroll-snap-align:start;
-
-
-    background:#000;
-
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
-
-
 
 .video-container video {
-
-    width:100%;
-
-    height:100%;
-
-
-    object-fit:cover;
-
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
-
-
 
 .video-container::after {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    inset:0;
-
-
-    background:linear-gradient(
-        transparent 40%,
-        rgba(0,0,0,.7)
-    );
-
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 40%, rgba(0, 0, 0, 0.7));
+    pointer-events: none;
 }
-
-
 
 /* =====================================
    VIDEO INFORMATION
 ===================================== */
-
-
 .video-info {
-
-    position:absolute;
-
-
-    left:15px;
-
-
-    bottom:100px;
-
-
-    z-index:5;
-
-
-    max-width:75%;
-
+    position: absolute;
+    left: 15px;
+    bottom: 100px;
+    z-index: 5;
+    max-width: 75%;
 }
-
-
 
 .video-info h3 {
-
-    font-size:1.1rem;
-
-    margin-bottom:8px;
-
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--white);
 }
-
-
 
 .video-info p {
-
-    color:#eeeeee;
-
-    line-height:1.5;
-
-    font-size:.95rem;
-
+    color: #eeeeee;
+    line-height: 1.5;
+    font-size: 0.95rem;
 }
-
-
 
 /* =====================================
    ACTION BUTTONS
 ===================================== */
-
-
 .actions {
-
-    position:absolute;
-
-
-    right:15px;
-
-
-    bottom:100px;
-
-
-    z-index:5;
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    gap:18px;
-
+    position: absolute;
+    right: 15px;
+    bottom: 100px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
-
-
 
 .actions button {
-
-
-    width:55px;
-
-
-    height:55px;
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    border-radius:50%;
-
-
-    background:rgba(
-        255,
-        255,
-        255,
-        .15
-    );
-
-
-    font-size:1.3rem;
-
-
-    transition:.3s;
-
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    font-size: 1.3rem;
+    transition: 0.3s;
 }
 
-
-
-.actions button:hover {
-
-
-    background:var(--primary);
-
-
-    transform:scale(1.1);
-
+.actions button:hover,
+.actions button.liked {
+    background: var(--primary);
+    transform: scale(1.1);
 }
-
-/* =====================================
-   MAZUYA - STYLE CSS
-   PARTIE 2/3
-===================================== */
-
 
 /* =====================================
    BOTTOM NAVIGATION
 ===================================== */
-
-
 .bottom-nav {
-
-    position:fixed;
-
-    bottom:0;
-
-    left:0;
-
-
-    width:100%;
-
-
-    height:var(--nav-height);
-
-
-    display:flex;
-
-
-    justify-content:space-around;
-
-
-    align-items:center;
-
-
-    background:rgba(
-        0,
-        0,
-        0,
-        .95
-    );
-
-
-    border-top:1px solid #222;
-
-
-    z-index:100;
-
-
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.95);
+    border-top: 1px solid #222;
+    padding-bottom: env(safe-area-inset-bottom);
+    z-index: 100;
 }
-
-
 
 .bottom-nav button {
-
-    font-size:1.8rem;
-
-    transition:.3s;
-
+    font-size: 1.8rem;
+    transition: 0.3s;
+    opacity: 0.7;
 }
 
-
-
-.bottom-nav button:hover {
-
-    color:var(--primary);
-
-    transform:translateY(-5px);
-
+.bottom-nav button:hover,
+.bottom-nav button.active {
+    color: var(--primary);
+    opacity: 1;
+    transform: translateY(-3px);
 }
-
-
 
 /* =====================================
    UPLOAD PAGE
 ===================================== */
-
-
 .upload-page {
-
-
-    min-height:100vh;
-
-
-    padding:
-
-    calc(var(--header-height) + 20px)
-    20px
-    calc(var(--nav-height) + 20px);
-
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
+    min-height: 100vh;
+    padding: calc(var(--header-height) + 20px) 20px calc(var(--nav-height) + 20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-
 
 .upload-form {
-
-
-    width:100%;
-
-
-    max-width:450px;
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    gap:18px;
-
-
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
-
-
-
-/* VIDEO PREVIEW */
-
 
 .preview {
-
-
-    width:100%;
-
-
-    aspect-ratio:9 / 16;
-
-
-    background:var(--surface);
-
-
-    border-radius:var(--radius-medium);
-
-
-    overflow:hidden;
-
-
-    box-shadow:var(--shadow);
-
-
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: var(--surface);
+    border-radius: var(--radius-medium);
+    overflow: hidden;
+    box-shadow: var(--shadow);
 }
-
-
 
 .preview video {
-
-
-    width:100%;
-
-
-    height:100%;
-
-
-    object-fit:cover;
-
-
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
-
-
-/* FILE UPLOAD BUTTON */
-
 
 .upload-label {
-
-
-    width:100%;
-
-
-    padding:15px;
-
-
-    background:var(--primary);
-
-
-    color:var(--white);
-
-
-    border-radius:var(--radius-small);
-
-
-    text-align:center;
-
-
-    font-weight:500;
-
-
-    transition:.3s;
-
-
+    width: 100%;
+    padding: 15px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: var(--radius-small);
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
 }
-
-
 
 .upload-label:hover {
-
-
-    transform:scale(1.03);
-
-
+    transform: scale(1.03);
 }
-
-
 
 .upload-label input {
-
-
-    display:none;
-
-
+    display: none;
 }
-
-
-
-/* FORM ELEMENTS */
-
 
 .upload-form input[type="text"],
-
 .upload-form textarea {
-
-
-    width:100%;
-
-
-    padding:15px;
-
-
-    background:var(--surface-light);
-
-
-    color:var(--white);
-
-
-    border:1px solid #333;
-
-
-    border-radius:var(--radius-small);
-
-
-    font-size:1rem;
-
-
-    outline:none;
-
-
+    width: 100%;
+    padding: 15px;
+    background: var(--surface-light);
+    color: var(--white);
+    border: 1px solid #333;
+    border-radius: var(--radius-small);
+    font-size: 1rem;
+    outline: none;
 }
 
-
-
 .upload-form textarea {
-
-
-    resize:none;
-
-
-    min-height:120px;
-
-
+    resize: none;
+    min-height: 120px;
 }
-
-
 
 .upload-form input:focus,
-
 .upload-form textarea:focus {
-
-
-    border-color:var(--primary);
-
-
+    border-color: var(--primary);
 }
-
-
-
-/* PUBLISH BUTTON */
-
 
 .publish-btn {
-
-
-    width:100%;
-
-
-    padding:16px;
-
-
-    background:var(--primary);
-
-
-    color:white;
-
-
-    border-radius:var(--radius-small);
-
-
-    font-weight:700;
-
-
-    font-size:1rem;
-
-
-    transition:.3s;
-
-
+    width: 100%;
+    padding: 16px;
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius-small);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: 0.3s;
 }
-
-
 
 .publish-btn:hover {
-
-
-    transform:translateY(-3px);
-
-
-    box-shadow:var(--shadow);
-
-
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
 }
-
-
-
-/* STATUS */
-
 
 #status {
-
-
-    text-align:center;
-
-
-    color:var(--secondary);
-
-
-    font-size:.9rem;
-
-
+    text-align: center;
+    color: var(--secondary);
+    font-size: 0.9rem;
 }
-
-
 
 /* =====================================
    PROFILE PAGE
 ===================================== */
-
-
 .profile-page {
-
-
-    min-height:100vh;
-
-
-    padding:
-
-    calc(var(--header-height)+20px)
-    20px
-    calc(var(--nav-height)+20px);
-
-
-
-    overflow-y:auto;
-
-
+    min-height: 100vh;
+    padding: calc(var(--header-height) + 20px) 20px calc(var(--nav-height) + 20px);
+    overflow-y: auto;
 }
-
-
-
-/* PROFILE HEADER */
-
 
 .profile-header {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    align-items:center;
-
-
-    text-align:center;
-
-
-    gap:15px;
-
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
 }
-
-
 
 .profile-image {
-
-
-    width:100px;
-
-
-    height:100px;
-
-
-    border-radius:50%;
-
-
-    object-fit:cover;
-
-
-    border:3px solid var(--primary);
-
-
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary);
 }
-
-
 
 .profile-name {
-
-
-    font-size:1.4rem;
-
-
-    font-weight:700;
-
-
+    font-size: 1.4rem;
+    font-weight: 700;
 }
-
-
 
 .profile-bio {
-
-
-    color:var(--gray);
-
-
+    color: var(--gray);
 }
-
-
-
-/* PROFILE STATS */
-
 
 .profile-stats {
-
-
-    width:100%;
-
-
-    display:flex;
-
-
-    justify-content:space-around;
-
-
-    margin:25px 0;
-
-
-    padding:15px;
-
-
-    background:var(--surface);
-
-
-    border-radius:var(--radius-medium);
-
-
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0;
+    padding: 15px;
+    background: var(--surface);
+    border-radius: var(--radius-medium);
 }
-
-
 
 .stat {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    align-items:center;
-
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-
 
 .stat strong {
-
-
-    font-size:1.2rem;
-
-
+    font-size: 1.2rem;
 }
-
-
 
 .stat span {
-
-
-    color:var(--gray);
-
-
-    font-size:.85rem;
-
-
+    color: var(--gray);
+    font-size: 0.85rem;
 }
-
-
-
-/* =====================================
-   PROFILE VIDEO GRID
-===================================== */
-
 
 .profile-videos {
-
-
-    display:grid;
-
-
-    grid-template-columns:repeat(
-        3,
-        1fr
-    );
-
-
-    gap:5px;
-
-
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
 }
-
-
 
 .profile-video {
-
-
-    aspect-ratio:9/16;
-
-
-    background:var(--surface);
-
-
-    overflow:hidden;
-
-
+    aspect-ratio: 9 / 16;
+    background: var(--surface);
+    overflow: hidden;
 }
-
-
 
 .profile-video video {
-
-
-    width:100%;
-
-
-    height:100%;
-
-
-    object-fit:cover;
-
-
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
-
 
 /* =====================================
-   CARDS & ANIMATIONS
+   CARDS, ANIMATIONS & UTILS
 ===================================== */
-
-
 .card {
-
-
-    background:var(--surface);
-
-
-    border-radius:var(--radius-medium);
-
-
-    box-shadow:var(--shadow);
-
-
+    background: var(--surface);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow);
 }
-
-
 
 .fade-in {
-
-
-    animation:fadeIn .5s ease;
-
-
+    animation: fadeIn 0.5s ease;
 }
-
-
 
 @keyframes fadeIn {
-
-
     from {
-
-        opacity:0;
-
-        transform:translateY(20px);
-
+        opacity: 0;
+        transform: translateY(20px);
     }
-
-
     to {
-
-        opacity:1;
-
-        transform:translateY(0);
-
+        opacity: 1;
+        transform: translateY(0);
     }
-
 }
-
-/* =====================================
-   MAZUYA - STYLE CSS
-   PARTIE 3/3
-===================================== */
-
-
-/* =====================================
-   RESPONSIVE MOBILE
-===================================== */
-
-
-@media (max-width:600px) {
-
-
-    html {
-
-        font-size:14px;
-
-    }
-
-
-
-    .header h1 {
-
-        font-size:1.6rem;
-
-    }
-
-
-
-    .header p {
-
-        font-size:.75rem;
-
-    }
-
-
-
-    .video-info {
-
-        left:12px;
-
-        bottom:90px;
-
-        max-width:70%;
-
-    }
-
-
-
-    .video-info h3 {
-
-        font-size:1rem;
-
-    }
-
-
-
-    .video-info p {
-
-        font-size:.85rem;
-
-    }
-
-
-
-    .actions {
-
-        right:10px;
-
-        bottom:90px;
-
-        gap:12px;
-
-    }
-
-
-
-    .actions button {
-
-        width:48px;
-
-        height:48px;
-
-        font-size:1.1rem;
-
-    }
-
-
-
-    .bottom-nav {
-
-        height:60px;
-
-    }
-
-
-
-    .bottom-nav button {
-
-        font-size:1.5rem;
-
-    }
-
-
-
-    .upload-page {
-
-        padding-left:15px;
-
-        padding-right:15px;
-
-    }
-
-
-
-    .profile-videos {
-
-        grid-template-columns:
-
-        repeat(3,1fr);
-
-    }
-
-}
-
-
-
-/* =====================================
-   PETITS TELEPHONES ANDROID
-===================================== */
-
-
-@media (max-width:380px) {
-
-
-    html {
-
-        font-size:13px;
-
-    }
-
-
-
-    .actions button {
-
-        width:42px;
-
-        height:42px;
-
-    }
-
-
-
-    .video-info {
-
-        bottom:80px;
-
-    }
-
-
-
-    .profile-image {
-
-        width:80px;
-
-        height:80px;
-
-    }
-
-
-
-}
-
-
-
-/* =====================================
-   TABLETTES
-===================================== */
-
-
-@media (min-width:601px) and (max-width:992px) {
-
-
-    html {
-
-        font-size:15px;
-
-    }
-
-
-
-    .video-container {
-
-        max-width:600px;
-
-        margin:auto;
-
-    }
-
-
-
-    .upload-form {
-
-        max-width:550px;
-
-    }
-
-
-
-    .profile-page {
-
-        max-width:700px;
-
-        margin:auto;
-
-    }
-
-}
-
-
-
-/* =====================================
-   DESKTOP
-===================================== */
-
-
-@media (min-width:993px) {
-
-
-    body {
-
-        background:#080808;
-
-    }
-
-
-
-    #feed {
-
-        background:#080808;
-
-    }
-
-
-
-    .video-container {
-
-
-        max-width:430px;
-
-
-        margin:auto;
-
-
-        border-left:1px solid #222;
-
-
-        border-right:1px solid #222;
-
-
-    }
-
-
-
-    .header {
-
-
-        max-width:430px;
-
-
-        left:50%;
-
-
-        transform:translateX(-50%);
-
-
-    }
-
-
-
-    .bottom-nav {
-
-
-        max-width:430px;
-
-
-        left:50%;
-
-
-        transform:translateX(-50%);
-
-
-    }
-
-
-
-    .upload-form {
-
-
-        max-width:500px;
-
-    }
-
-}
-
-
-
-/* =====================================
-   MODE PAYSAGE MOBILE
-===================================== */
-
-
-@media (max-height:500px) and (orientation:landscape) {
-
-
-    .header {
-
-        display:none;
-
-    }
-
-
-
-    .bottom-nav {
-
-        display:none;
-
-    }
-
-
-
-    .video-info {
-
-        bottom:20px;
-
-    }
-
-
-
-    .actions {
-
-        bottom:20px;
-
-    }
-
-}
-
-
-
-/* =====================================
-   ACCESSIBILITE
-===================================== */
-
-
-button:focus,
-
-input:focus,
-
-textarea:focus {
-
-
-    outline:2px solid var(--secondary);
-
-
-}
-
-
-
-/* =====================================
-   VIDEO OPTIMISATION
-===================================== */
-
-
-video {
-
-
-    background:#000;
-
-
-    object-position:center;
-
-
-}
-
-
-
-::-webkit-scrollbar {
-
-
-    width:0;
-
-
-    height:0;
-
-
-}
-
-
-
-/* =====================================
-   LOADING SCREEN
-===================================== */
-
 
 .loading {
-
-
-    height:100vh;
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    color:var(--gray);
-
-
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--gray);
 }
-
-
 
 .loading h2 {
-
-
-    animation:pulse 1.5s infinite;
-
-
+    animation: pulse 1.5s infinite;
 }
-
-
 
 @keyframes pulse {
-
-
-    0% {
-
-        opacity:.3;
-
-    }
-
-
-
-    50% {
-
-        opacity:1;
-
-    }
-
-
-
-    100% {
-
-        opacity:.3;
-
-    }
-
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
 }
-
-
-
-/* =====================================
-   PWA SAFE AREA
-===================================== */
-
-
-.bottom-nav {
-
-
-    padding-bottom:
-
-    env(safe-area-inset-bottom);
-
-
-}
-
-
-
-/* =====================================
-   ERROR / SUCCESS MESSAGE
-===================================== */
-
 
 .error-message {
-
-
-    color:var(--danger);
-
-    text-align:center;
-
+    color: var(--danger);
+    text-align: center;
 }
-
-
 
 .success-message {
+    color: var(--success);
+    text-align: center;
+}
+/* =====================================
+   RESPONSIVE MEDIA QUERIES
+===================================== */
 
+/* Mobile */
+@media (max-width: 600px) {
+    html {
+        font-size: 14px;
+    }
 
-    color:var(--success);
+    .header h1 {
+        font-size: 1.6rem;
+    }
 
-    text-align:center;
+    .header p {
+        font-size: 0.75rem;
+    }
 
+    .video-info {
+        left: 12px;
+        bottom: 90px;
+        max-width: 70%;
+    }
+
+    .video-info h3 {
+        font-size: 1rem;
+    }
+
+    .video-info p {
+        font-size: 0.85rem;
+    }
+
+    .actions {
+        right: 10px;
+        bottom: 90px;
+        gap: 12px;
+    }
+
+    .actions button {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+    }
+
+    .bottom-nav {
+        height: 60px;
+    }
+
+    .bottom-nav button {
+        font-size: 1.5rem;
+    }
+
+    .upload-page {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
 
+/* Petits écrans Mobile */
+@media (max-width: 380px) {
+    html {
+        font-size: 13px;
+    }
 
+    .actions button {
+        width: 42px;
+        height: 42px;
+    }
 
+    .video-info {
+        bottom: 80px;
+    }
+
+    .profile-image {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Tablettes */
+@media (min-width: 601px) and (max-width: 992px) {
+    html {
+        font-size: 15px;
+    }
+
+    .video-container {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .upload-form {
+        max-width: 550px;
+    }
+
+    .profile-page {
+        max-width: 700px;
+        margin: auto;
+    }
+}
+
+/* Desktop */
+@media (min-width: 993px) {
+    body,
+    #feed {
+        background: #080808;
+    }
+
+    .video-container {
+        max-width: 430px;
+        height: 100vh;
+        margin: auto;
+        border-left: 1px solid #222;
+        border-right: 1px solid #222;
+    }
+
+    .header,
+    .bottom-nav {
+        max-width: 430px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .upload-form {
+        max-width: 500px;
+    }
+}
+
+/* Paysage Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header,
+    .bottom-nav {
+        display: none;
+    }
+
+    .video-info,
+    .actions {
+        bottom: 20px;
+    }
+}
+
+/* Accessibilité */
+button:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--secondary);
+}
