@@ -1,120 +1,155 @@
-import { db, collection, getDocs, orderBy, query } from "./firebase.js";
+import { db, collection, getDocs, orderBy, query, doc, updateDoc, increment, addDoc, onSnapshot } from "./firebase.js";
 
+let currentVideoId = null;
+
+// =====================================
+// 1. CHARGEMENT DU FEED & EVENEMENTS
+// =====================================
 document.addEventListener("DOMContentLoaded", async () => {
     const feedContainer = document.getElementById("feed");
     if (!feedContainer) return;
 
-    try {
-        // Tentative de récupération des vidéos depuis Cloud Firestore
-        const videosQuery = query(collection(db, "videos"), orderBy("createdAt", "desc"));
-        const querySnapshot = await getDocs(videosQuery);
+    // Charger les vidéos depuis Firebase (si vous en avez dans Firestore)
+    await loadVideos(feedContainer);
+});
 
-        // Si la base de données est vide, charger la vidéo locale de démonstration
-        if (querySnapshot.empty) {
-            renderFallbackVideo(feedContainer);
-            initVideoControls();
+// Fonction pour charger les vidéos depuis Firestore
+async function loadVideos(feedContainer) {
+    try {
+        const q = query(collection(db, "videos"), orderBy("timestamp", "desc"));
+        const querySnapshot = await getDocs(q);
+
+        // Si des vidéos existent dans Firestore, remplacer le contenu du feed
+        if (!querySnapshot.empty) {
+            feedContainer.innerHTML = ""; // Vider le contenu HTML de test
+
+            querySnapshot.forEach((doc) => {
+                const videoData = doc.data();
+                const videoId = doc.id;
+
+                const videoElement = createVideoElement(videoId, videoData);
+                feedContainer.appendChild(videoElement);
+            });
+        }
+    } catch (error) {
+        console.error("Erreur lors du chargement des vidéos :", error);
+    }
+}
+
+// Générer le HTML d'une vidéo
+function createVideoElement(id, data) {
+    const div = document.createElement("div");
+    div.className = "video-container";
+    div.setAttribute("data-video-id", id);
+
+    div.innerHTML = `
+        <video src="${data.url}" loop playsinline onclick="this.paused ? this.play() : this.pause()"></video>
+        <div class="video-info">
+            <h3>@${data.username || 'Mazuya'}</h3>
+            <p>${data.description || ''}</p>
+        </div>
+        <div class="actions">
+            <button class="like-btn" onclick="toggleLike('${id}')">
+                <span class="like-icon">❤️</span>
+                <span class="like-count" id="like-count-${id}">${data.likes || 0}</span>
+            </button>
+            <button class="comment-btn" onclick="openComments('${id}')">
+                <span class="comment-icon">💬</span>
+                <span class="comment-count" id="comment-count-${id}">${data.commentsCount || 0}</span>
+            </button>
+        </div>
+    `;
+    return div;
+}
+
+// =====================================
+// 2. GESTION DES LIKES
+// =====================================
+async function toggleLike(videoId) {
+    const likeCountElem = document.getElementById(`like-count-${videoId}`);
+    if (!likeCountElem) return;
+
+    let currentLikes = parseInt(likeCountElem.innerText) || 0;
+    likeCountElem.innerText = currentLikes + 1;
+
+    try {
+        const videoRef = doc(db, "videos", videoId);
+        await updateDoc(videoRef, {
+            likes: increment(1)
+        });
+    } catch (error) {
+        console.error("Erreur Like Firestore :", error);
+        likeCountElem.innerText = currentLikes; // Revenir en arrière en cas d'erreur
+    }
+}
+
+// =====================================
+// 3. GESTION DES COMMENTAIRES
+// =====================================
+function openComments(videoId) {
+    currentVideoId = videoId;
+    const modal = document.getElementById("comment-modal");
+    if (!modal) return;
+
+    modal.classList.add("active");
+    const commentsList = document.getElementById("comments-list");
+    commentsList.innerHTML = "<p>Chargement des commentaires...</p>";
+
+    // Écoute en temps réel des commentaires dans la sous-collection
+    const q = query(collection(db, "videos", videoId, "comments"), orderBy("timestamp", "desc"));
+    
+    onSnapshot(q, (snapshot) => {
+        commentsList.innerHTML = "";
+        if (snapshot.empty) {
+            commentsList.innerHTML = "<p>Aucun commentaire pour l'instant.</p>";
             return;
         }
 
-        // Vider le conteneur avant injection
-        feedContainer.innerHTML = "";
-
-        // Génération dynamique de chaque vidéo récupérée depuis Firebase
-        querySnapshot.forEach((doc) => {
+        snapshot.forEach((doc) => {
             const data = doc.data();
-            const videoElement = createVideoContainer(
-                data.videoUrl, 
-                data.username || "Anonyme", 
-                data.description || ""
-            );
-            feedContainer.appendChild(videoElement);
+            const commentItem = document.createElement("div");
+            commentItem.className = "comment-item";
+            commentItem.innerHTML = `<strong>${data.username || "Utilisateur"}</strong>: ${data.text}`;
+            commentsList.appendChild(commentItem);
+        });
+    });
+}
+
+function closeComments() {
+    const modal = document.getElementById("comment-modal");
+    if (modal) modal.classList.remove("active");
+}
+
+async function addComment(e) {
+    e.preventDefault();
+    const input = document.getElementById("comment-input");
+    const text = input.value.trim();
+
+    if (!text || !currentVideoId) return;
+
+    try {
+        // Ajouter le commentaire
+        await addDoc(collection(db, "videos", currentVideoId, "comments"), {
+            text: text,
+            username: "MazuyaUser",
+            timestamp: new Date()
         });
 
-        initVideoControls();
+        // Mettre à jour le compteur global de commentaires
+        const videoRef = doc(db, "videos", currentVideoId);
+        await updateDoc(videoRef, {
+            commentsCount: increment(1)
+        });
 
+        input.value = "";
     } catch (error) {
-        console.error("Erreur de connexion Firebase, affichage du mode local :", error);
-        renderFallbackVideo(feedContainer);
-        initVideoControls();
+        console.error("Erreur lors de l'envoi du commentaire :", error);
     }
-});
-
-/**
- * Crée le bloc HTML pour une vidéo
- */
-function createVideoContainer(videoSrc, username, description) {
-    const section = document.createElement("section");
-    section.className = "video-container";
-
-    section.innerHTML = `
-        <video src="${videoSrc}" loop playsinline autoplay muted></video>
-        <div class="video-info">
-            <h3>@${username}</h3>
-            <p>${description}</p>
-        </div>
-        <div class="actions">
-            <button type="button" class="like-btn" aria-label="J'aime">❤️</button>
-            <button type="button" aria-label="Commenter">💬</button>
-            <button type="button" aria-label="Partager">🔗</button>
-        </div>
-    `;
-
-    return section;
 }
 
-/**
- * Affiche la vidéo locale par défaut si aucune vidéo n'est trouvée dans Firebase
- */
-function renderFallbackVideo(container) {
-    container.innerHTML = "";
-    const fallbackVideo = createVideoContainer(
-        "assets/videos/sample.mp4",
-        "Mazuya",
-        "Bienvenue sur Mazuya ! Ma première vidéo de démonstration 🚀 (Cliquez sur la vidéo pour activer le son)"
-    );
-    container.appendChild(fallbackVideo);
-}
-
-/**
- * Gestion du clic, de la lecture, de la pause et de l'activation du son
- */
-function initVideoControls() {
-    const videos = document.querySelectorAll("video");
-
-    videos.forEach((video) => {
-        video.addEventListener("click", () => {
-            // Si la vidéo est muette, on débloque le son au premier clic
-            if (video.muted) {
-                video.muted = false;
-                video.volume = 1.0;
-                video.play().catch(e => console.log("Erreur de lecture audio :", e));
-            } else {
-                // Si le son est déjà actif, alterner entre play et pause
-                if (video.paused) {
-                    video.play();
-                } else {
-                    video.pause();
-                }
-            }
-        });
-    });
-
-    // Gestion du bouton J'aime
-    const likeButtons = document.querySelectorAll(".like-btn");
-    likeButtons.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            e.stopPropagation(); // Évite de faire pause sur la vidéo au clic du bouton
-            btn.classList.toggle("liked");
-            btn.style.transform = "scale(1.3)";
-            setTimeout(() => {
-                btn.style.transform = "scale(1)";
-            }, 200);
-        });
-    });
-}
-
-// À ajouter à la fin de votre fichier js/script.js
-
+// =====================================
+// 4. EXPORTATION VERS WINDOW (Obligatoire pour type="module")
+// =====================================
 window.toggleLike = toggleLike;
 window.openComments = openComments;
 window.closeComments = closeComments;
