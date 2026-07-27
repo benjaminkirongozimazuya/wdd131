@@ -30,10 +30,19 @@
 
     <!-- Conteneur du Feed Vidéo (Géré dynamiquement par JS) -->
     <main id="feed">
-        <div class="loading">
-            <h2>Chargement des vidéos...</h2>
+    <section class="video-container">
+        <video src="assets/videos/sample.mp4" loop playsinline autoplay muted></video>
+        <div class="video-info">
+            <h3>@Mazuya</h3>
+            <p>Bienvenue sur Mazuya ! Ma première vidéo de démonstration 🚀</p>
         </div>
-    </main>
+        <div class="actions">
+            <button class="like-btn" aria-label="J'aime">❤️</button>
+            <button aria-label="Commenter">💬</button>
+            <button aria-label="Partager">🔗</button>
+        </div>
+    </section>
+</main>
 
     <!-- Navigation Inférieure -->
     <nav class="bottom-nav">
@@ -45,5 +54,26 @@
     <!-- Modules JavaScript -->
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/script.js"></script>
+    <script>
+  if (querySnapshot.empty) {
+    // La vidéo locale est insérée ici :
+    feedContainer.innerHTML = `
+        <section class="video-container">
+            <video src="assets/videos/sample.mp4" loop playsinline autoplay muted></video>
+            <div class="video-info">
+                <h3>@Mazuya</h3>
+                <p>Bienvenue sur Mazuya ! Ma première vidéo de démonstration 🚀</p>
+            </div>
+            <div class="actions">
+                <button class="like-btn" aria-label="J'aime">❤️</button>
+                <button aria-label="Commenter">💬</button>
+                <button aria-label="Partager">🔗</button>
+            </div>
+        </section>
+    `;
+    initVideoClick();
+    return;
+}
+</script>
 </body>
 </html>
