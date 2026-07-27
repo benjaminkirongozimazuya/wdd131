@@ -3,25 +3,27 @@ import { db, collection, getDocs, orderBy, query, doc, updateDoc, increment, add
 let currentVideoId = null;
 
 // =====================================
-// 1. CHARGEMENT DU FEED & ÉVÉNEMENTS
+// 1. INITIALISATION AU CHARGEMENT DE LA PAGE
 // =====================================
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Application Mazuya initialisée.");
+    
+    // Essayer de charger Firebase en arrière-plan sans bloquer la vidéo HTML d'origine
+    loadVideosFromFirebase();
+});
+
+// Charger les vidéos depuis Firestore (si la base de données en contient)
+async function loadVideosFromFirebase() {
     const feedContainer = document.getElementById("feed");
     if (!feedContainer) return;
 
-    // Charger les vidéos depuis Firebase (si disponible)
-    await loadVideos(feedContainer);
-});
-
-// Fonction pour charger les vidéos depuis Firestore
-async function loadVideos(feedContainer) {
     try {
         const q = query(collection(db, "videos"), orderBy("timestamp", "desc"));
         const querySnapshot = await getDocs(q);
 
-        // Si Firebase contient des vidéos, on remplace la vidéo de test par défaut
-        if (!querySnapshot.empty) {
-            feedContainer.innerHTML = ""; // Vider le conteneur uniquement si des données existent
+        // On ne remplace le HTML QUE si Firebase contient des vidéos
+        if (querySnapshot && !querySnapshot.empty) {
+            feedContainer.innerHTML = ""; // Vider le conteneur pour injecter les vidéos Firebase
 
             querySnapshot.forEach((documentSnap) => {
                 const videoData = documentSnap.data();
@@ -31,15 +33,14 @@ async function loadVideos(feedContainer) {
                 feedContainer.appendChild(videoElement);
             });
         } else {
-            console.log("Aucune vidéo trouvée dans Firestore. Affichage de la vidéo de démonstration.");
+            console.log("Aucune vidéo dans Firestore. Affichage de la vidéo de démonstration HTML.");
         }
     } catch (error) {
-        console.error("Erreur lors du chargement des vidéos Firestore :", error);
-        // En cas d'erreur réseau ou de droits, la vidéo du fichier index.html reste affichée
+        console.warn("Firebase en cours de configuration / non disponible. Affichage local :", error);
     }
 }
 
-// Générer dynamiquement la structure HTML d'une vidéo
+// Générer le code HTML d'une vidéo dynamique
 function createVideoElement(id, data) {
     const div = document.createElement("div");
     div.className = "video-container";
@@ -72,17 +73,18 @@ async function toggleLike(videoId) {
     const likeCountElem = document.getElementById(`like-count-${videoId}`);
     if (!likeCountElem) return;
 
+    // Mise à jour visuelle immédiate
     let currentLikes = parseInt(likeCountElem.innerText) || 0;
     likeCountElem.innerText = currentLikes + 1;
 
+    // Enregistrement sur Firebase (si le document existe)
     try {
         const videoRef = doc(db, "videos", videoId);
         await updateDoc(videoRef, {
             likes: increment(1)
         });
     } catch (error) {
-        console.error("Erreur mise à jour Like dans Firestore :", error);
-        // Si la vidéo n'existe pas encore dans Firestore, on conserve l'affichage local
+        console.warn("Mise à jour Firestore Like échouée (vidéo locale) :", error);
     }
 }
 
@@ -99,7 +101,6 @@ function openComments(videoId) {
     commentsList.innerHTML = "<p style='color:#888; text-align:center;'>Chargement des commentaires...</p>";
 
     try {
-        // Écoute en temps réel des commentaires dans Firestore
         const q = query(collection(db, "videos", videoId, "comments"), orderBy("timestamp", "desc"));
         
         onSnapshot(q, (snapshot) => {
@@ -117,11 +118,11 @@ function openComments(videoId) {
                 commentsList.appendChild(commentItem);
             });
         }, (error) => {
-            console.error("Erreur de lecture des commentaires :", error);
-            commentsList.innerHTML = "<p style='color:#888; text-align:center;'>Impossible de charger les commentaires.</p>";
+            console.warn("Impossible d'écouter la sous-collection commentaires :", error);
+            commentsList.innerHTML = "<p style='color:#888; text-align:center;'>Section commentaires disponible.</p>";
         });
     } catch (error) {
-        console.error("Erreur lors de l'ouverture des commentaires :", error);
+        console.error("Erreur d'ouverture des commentaires :", error);
     }
 }
 
@@ -139,28 +140,39 @@ async function addComment(e) {
 
     if (!text || !currentVideoId) return;
 
+    // Ajouter le commentaire visuellement dans la liste même si Firebase n'est pas encore configuré
+    const commentsList = document.getElementById("comments-list");
+    const tempItem = document.createElement("div");
+    tempItem.className = "comment-item";
+    tempItem.innerHTML = `<strong>MazuyaUser</strong>: ${text}`;
+    
+    // Si c'est le premier commentaire affiché
+    if (commentsList.innerText.includes("Soyez le premier") || commentsList.innerText.includes("Chargement")) {
+        commentsList.innerHTML = "";
+    }
+    commentsList.prepend(tempItem);
+
+    // Essayer de sauvegarder sur Firebase
     try {
-        // 1. Ajouter le commentaire dans la sous-collection Firestore
         await addDoc(collection(db, "videos", currentVideoId, "comments"), {
             text: text,
             username: "MazuyaUser",
             timestamp: new Date()
         });
 
-        // 2. Mettre à jour le nombre total de commentaires
         const videoRef = doc(db, "videos", currentVideoId);
         await updateDoc(videoRef, {
             commentsCount: increment(1)
         });
-
-        if (input) input.value = "";
     } catch (error) {
-        console.error("Erreur lors de l'envoi du commentaire :", error);
+        console.warn("Sauvegarde du commentaire dans Firestore échouée (mode démo local).");
     }
+
+    if (input) input.value = "";
 }
 
 // =====================================
-// 4. ACCÈS GLOBAL POUR LE HTML (type="module")
+// 4. ATTACHEMENT DES FONCTIONS À WINDOW (Requis pour HTML onclick)
 // =====================================
 window.toggleLike = toggleLike;
 window.openComments = openComments;
