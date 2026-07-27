@@ -30,6 +30,43 @@
     <!-- Conteneur principal du fil de vidéos -->
     <main id="feed">
         <!-- Les vidéos seront chargées dynamiquement par JS -->
+         <div class="video-container" data-video-id="video1">
+    <video src="votre-video.mp4" loop playsinline></video>
+
+    <!-- Boutons d'actions -->
+    <div class="actions">
+        <!-- Bouton Like -->
+        <button class="like-btn" onclick="toggleLike('video1')">
+            <span class="like-icon">❤️</span>
+            <span class="like-count" id="like-count-video1">0</span>
+        </button>
+
+        <!-- Bouton Commentaire -->
+        <button class="comment-btn" onclick="openComments('video1')">
+            <span class="comment-icon">💬</span>
+            <span class="comment-count" id="comment-count-video1">0</span>
+        </button>
+    </div>
+</div>
+
+<!-- Modale de Commentaires (masquée par défaut) -->
+<div id="comment-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Commentaires</h3>
+            <button onclick="closeComments()">&times;</button>
+        </div>
+        
+        <!-- Liste des commentaires -->
+        <div id="comments-list" class="comments-list"></div>
+
+        <!-- Formulaire d'envoi -->
+        <form id="comment-form" onsubmit="addComment(event)">
+            <input type="text" id="comment-input" placeholder="Ajouter un commentaire..." required>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+</div>
     </main>
 
     <!-- Barre de navigation inférieure -->
