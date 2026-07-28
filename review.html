@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Confirmation</title>
+    <meta name="description" content="Confirmation page displaying total reviews completed.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/form.css">
+    <script src="scripts/review.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Product Review Confirmation</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="confirmation-card">
+            <h2>Thank You for Your Feedback!</h2>
+            <p>Your product review has been submitted successfully.</p>
+            <p class="review-counter">
+                Total Reviews Completed: <span id="reviewCount">0</span>
+            </p>
+            <a href="form.html" class="submit-btn back-btn">Submit Another Review</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> 🌸 Benjamin Kirongozi Mazuya 🌸</p>
+            <p>Democratic Republic of the Congo</p>
+            <p class="modification">Last Modification: <span id="lastModified"></span></p>
+        </div>
+    </footer>
+</body>
+</html>
