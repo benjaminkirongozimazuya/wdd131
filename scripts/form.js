@@ -11,22 +11,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const yearSpan = document.getElementById("year");
     const lastModSpan = document.getElementById("lastModified");
 
-    // 1. Injection dynamique des options de produits
+    // 1. Injection dynamique des options dans le <select>
     if (productSelect) {
         products.forEach(product => {
             const option = document.createElement("option");
-            option.value = product.id; 
-            option.textContent = capitalizeWords(product.name); 
+            option.value = product.id; // La valeur est l'ID du produit
+            option.textContent = capitalizeWords(product.name); // Affichage du nom avec majuscules
             productSelect.appendChild(option);
         });
     }
 
-    // 2. Remplissage de l'année en cours pour le copyright
+    // 2. Année dynamique pour le copyright
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // 3. Date de dernière modification (Format : MM/DD/YYYY HH:MM:SS)
+    // 3. Date de dernière modification
     if (lastModSpan) {
         const modificationDate = new Date(document.lastModified);
         const pad = (num) => String(num).padStart(2, '0');

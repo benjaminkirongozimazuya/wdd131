@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/form.css">
-    <!-- Validé : Le script est dans le <head> avec defer -->
     <script src="scripts/form.js" defer></script>
 </head>
 <body>
@@ -23,7 +22,7 @@
     <main>
         <form method="get" action="review.html">
             
-            <!-- PRODUCT NAME (Validé : avec l'option placeholder exacte) -->
+            <!-- PRODUCT NAME -->
             <div class="form-group">
                 <label for="product-name">Product Name</label>
                 <select id="product-name" name="productName" required>
@@ -102,7 +101,7 @@
             </div>
 
             <!-- SUBMIT BUTTON -->
-            <button type="submit" class="submit-btn">Post Review</button>
+            <input type="submit" class="submit-btn" value="Post Review">
         </form>
     </main>
 
