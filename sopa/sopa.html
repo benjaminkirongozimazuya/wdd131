@@ -32,25 +32,63 @@
       <div id="user-status" class="status-box"></div>
     </section>
 
-    <!-- Section Vidéos à la Une -->
+    <!-- Section Vidéos à la Une (Grille d'Artistes) -->
     <section class="card showcase-card">
-      <h2>Vidéos à la Une</h2>
-      <p class="section-desc">Découvrez les derniers extraits tendance des artistes Katangais.</p>
+      <h2>🎵 Artistes Katangais à la Une</h2>
+      <p class="section-desc">Découvrez les derniers clips et créations de nos talents locaux.</p>
       
-      <div class="video-grid">
-        <div class="video-wrapper">
-          <!-- Remplacez le cite et le data-video-id par l'URL et l'ID TikTok d'un vrai artiste -->
-          <blockquote class="tiktok-embed" 
-                      cite="https://www.tiktok.com/@tiktok/video/7106594312291126574" 
-                      data-video-id="7106594312291126574">
-            <section></section>
-          </blockquote>
+      <div class="artist-grid">
+        
+        <!-- Carte Artiste 1 -->
+        <div class="artist-card">
+          <div class="artist-info">
+            <h3>Artiste Katangais #1</h3>
+            <span class="song-title">Clip Officiel / Tendance</span>
+          </div>
+          <div class="video-container">
+            <blockquote class="tiktok-embed" 
+                        cite="https://www.tiktok.com/@tiktok/video/7106594312291126574" 
+                        data-video-id="7106594312291126574">
+              <section></section>
+            </blockquote>
+          </div>
         </div>
+
+        <!-- Carte Artiste 2 -->
+        <div class="artist-card">
+          <div class="artist-info">
+            <h3>Artiste Katangais #2</h3>
+            <span class="song-title">Extrait Studio / Nouveau Single</span>
+          </div>
+          <div class="video-container">
+            <blockquote class="tiktok-embed" 
+                        cite="https://www.tiktok.com/@tiktok/video/7106594312291126574" 
+                        data-video-id="7106594312291126574">
+              <section></section>
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- Carte Artiste 3 -->
+        <div class="artist-card">
+          <div class="artist-info">
+            <h3>Artiste Katangais #3</h3>
+            <span class="song-title">Performance Live / Freestyle</span>
+          </div>
+          <div class="video-container">
+            <blockquote class="tiktok-embed" 
+                        cite="https://www.tiktok.com/@tiktok/video/7106594312291126574" 
+                        data-video-id="7106594312291126574">
+              <section></section>
+            </blockquote>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
 
-  <!-- Script d'intégration TikTok -->
+  <!-- Scripts TikTok & Logique d'Authentification -->
   <script async src="https://www.tiktok.com/embed.js"></script>
   <script src="sopa.js"></script>
 </body>
