@@ -1,164 +1,319 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lushoi Music Promotion - Katanga</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lushoi Vibe Promotion - Musique du Katanga</title>
+    <meta name="description" content="Découvrez le meilleur de la musique du Katanga (Lubumbashi, Kolwezi) avec Lushoi Vibe Promotion.">
+    <meta name="author" content="Benjamin Kirongozi Mazuya">
 
-    body {
-      background: #111;
-      color: #fff;
-      font-family: system-ui, -apple-system, sans-serif;
-      text-align: center;
-      padding: 20px 10px;
-    }
+    <!-- Preconnect pour optimiser le chargement externe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    h1 {
-      color: #ff3b5c;
-      margin-bottom: 5px;
-    }
+    <style>
+        :root {
+            --primary-color: #ff3b5c;
+            --primary-hover: #e02d4c;
+            --bg-color: #0f0f11;
+            --card-bg: #1a1a1e;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --border-color: #27272a;
+            --max-width: 1200px;
+        }
 
-    p.subtitle {
-      color: #aaa;
-      margin-bottom: 20px;
-      font-size: 0.9rem;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* Barre de filtres */
-    .filter-bar {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 25px;
-      position: sticky;
-      top: 0;
-      background: #111;
-      padding: 10px 0;
-      z-index: 100;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
 
-    .filter-btn {
-      background: #222;
-      color: #fff;
-      border: 1px solid #444;
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
+        /* HEADER */
+        header {
+            padding: 2.5rem 1rem 1.5rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(255,59,92,0.1) 0%, rgba(15,15,17,0) 100%);
+        }
 
-    .filter-btn:hover, .filter-btn.active {
-      background: #ff3b5c;
-      border-color: #ff3b5c;
-    }
+        header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
 
-    /* Conteneur des vidéos */
-    .feed {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      min-height: 400px;
-    }
+        header h1 span {
+            color: var(--primary-color);
+        }
 
-    .tiktok-card {
-      width: 100%;
-      max-width: 325px;
-      background: #000;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    }
-  </style>
+        header .subtitle {
+            color: var(--text-muted);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* FILTRES */
+        nav.filter-container {
+            position: sticky;
+            top: 0;
+            background-color: rgba(15, 15, 17, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.55rem 1.25rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--text-main);
+            box-shadow: 0 4px 14px rgba(255, 59, 92, 0.35);
+        }
+
+        /* MAIN / FEED */
+        main {
+            flex: 1;
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+            align-items: start;
+        }
+
+        .tiktok-card {
+            width: 100%;
+            max-width: 325px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .tiktok-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 59, 92, 0.4);
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #08080a;
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0.25rem 0;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 600px) {
+            .filter-bar {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-btn {
+                flex-shrink: 0;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <h1>🔥 Lushoi Vibe Promotion</h1>
-  <p class="subtitle">Le meilleur de la musique du Katanga (Lubumbashi / Kolwezi)</p>
+    <!-- EN-TÊTE -->
+    <header>
+        <h1>🔥 <span>Lushoi Vibe</span> Promotion</h1>
+        <p class="subtitle">La vitrine officielle du meilleur de la musique du Katanga (Lubumbashi, Kolwezi)</p>
+    </header>
 
-  <!-- Boutons de filtrage -->
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="renderFeed('all', this)">Tous</button>
-    <button class="filter-btn" onclick="renderFeed('rj-kanierra', this)">RJ Kanierra</button>
-    <button class="filter-btn" onclick="renderFeed('pson', this)">Pson Zubaboy</button>
-    <button class="filter-btn" onclick="renderFeed('afrohouse', this)">Afro House Katanga</button>
-  </div>
+    <!-- BARRE DE FILTRES -->
+    <nav class="filter-container" aria-label="Catégories de vidéos">
+        <div class="filter-bar" role="tablist">
+            <button class="filter-btn active" role="tab" aria-selected="true" onclick="renderFeed('all', this)">Tous</button>
+            <button class="filter-btn" role="tab" aria-selected="false" onclick="renderFeed('rj-kanierra', this)">RJ Kanierra</button>
+            <button class="filter-btn" role="tab" aria-selected="false" onclick="renderFeed('pson', this)">Pson Zubaboy</button>
+            <button class="filter-btn" role="tab" aria-selected="false" onclick="renderFeed('afrohouse', this)">Afro House Katanga</button>
+        </div>
+    </nav>
 
-  <!-- Emplacement où JS va injecter les vidéos -->
-  <div class="feed" id="videoFeed"></div>
+    <!-- CONTENU PRINCIPAL -->
+    <main>
+        <section class="feed" id="videoFeed" aria-live="polite">
+            <!-- Injecté dynamiquement par JavaScript -->
+        </section>
+    </main>
 
-  <!-- Script officiel TikTok -->
-  <script async src="https://www.tiktok.com/embed.js"></script>
+    <!-- PIED DE PAGE -->
+    <footer>
+        <p>&copy; <span id="currentYear"></span> 🌸 Lushoi Vibe Promotion 🌸</p>
+        <p>République Démocratique du Congo — Katanga</p>
+    </footer>
 
-  <script>
-    // 1. Liste de tes vidéos (Modifie ou ajoute des objets ici !)
-    const playlist = [
-      {
-        id: "7311140938507881733",
-        author: "@rjkanierraoff",
-        category: "rj-kanierra"
-      },
-      {
-        id: "7279183424182930693",
-        author: "@pson_zubaboy",
-        category: "pson"
-      },
-      {
-        id: "7258380309997423877",
-        author: "@djspilulu",
-        category: "afrohouse"
-      }
-    ];
+    <!-- SCRIPT TIKTOK -->
+    <script async src="https://www.tiktok.com/embed.js"></script>
 
-    // 2. Fonction pour afficher et filtrer les vidéos
-    function renderFeed(category, btnElement) {
-      // Met à jour la couleur du bouton actif
-      if (btnElement) {
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        btnElement.classList.add('active');
-      }
+    <!-- SCRIPT APPLICATION -->
+    <script>
+        // Playlist des vidéos
+        const playlist = [
+            {
+                id: "7311140938507881733",
+                author: "@rjkanierraoff",
+                category: "rj-kanierra"
+            },
+            {
+                id: "7279183424182930693",
+                author: "@pson_zubaboy",
+                category: "pson"
+            },
+            {
+                id: "7258380309997423877",
+                author: "@djspilulu",
+                category: "afrohouse"
+            }
+        ];
 
-      const feedContainer = document.getElementById('videoFeed');
-      feedContainer.innerHTML = ''; // Vide la zone d'affichage
+        // Rendu du fil de vidéos
+        function renderFeed(category, btnElement) {
+            // Gestion des états actifs des boutons
+            if (btnElement) {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+                btnElement.classList.add('active');
+                btnElement.setAttribute('aria-selected', 'true');
+            }
 
-      // Filtre la liste selon la catégorie choisie
-      const filteredVideos = category === 'all' 
-        ? playlist 
-        : playlist.filter(item => item.category === category);
+            const feedContainer = document.getElementById('videoFeed');
+            feedContainer.innerHTML = ''; 
 
-      // Génère le HTML pour chaque vidéo sélectionnée
-      filteredVideos.forEach(video => {
-        const card = document.createElement('div');
-        card.className = 'tiktok-card';
-        card.innerHTML = `
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/${video.author}/video/${video.id}" data-video-id="${video.id}" style="max-width: 605px;min-width: 325px;">
-            <section>
-              <a target="_blank" href="https://www.tiktok.com/${video.author}">${video.author}</a>
-            </section>
-          </blockquote>
-        `;
-        feedContainer.appendChild(card);
-      });
+            // Filtrage des données
+            const filteredVideos = category === 'all' 
+                ? playlist 
+                : playlist.filter(item => item.category === category);
 
-      // 3. Forcer TikTok à recharger les iframes intégrées
-      if (window.tiktokEmbed && typeof window.tiktokEmbed.load === 'function') {
-        window.tiktokEmbed.load();
-      }
-    }
+            // Gestion de l'état vide
+            if (filteredVideos.length === 0) {
+                feedContainer.innerHTML = `
+                    <div class="no-results">
+                        <p>Aucune vidéo disponible pour cette catégorie pour le moment.</p>
+                    </div>
+                `;
+                return;
+            }
 
-    // Chargement initial au lancement de la page
-    window.addEventListener('DOMContentLoaded', () => {
-      renderFeed('all');
-    });
-  </script>
+            // Génération des cartes
+            filteredVideos.forEach(video => {
+                const card = document.createElement('article');
+                card.className = 'tiktok-card';
+                card.innerHTML = `
+                    <blockquote class="tiktok-embed" 
+                                cite="https://www.tiktok.com/${video.author}/video/${video.id}" 
+                                data-video-id="${video.id}" 
+                                style="max-width: 605px; min-width: 325px;">
+                        <section>
+                            <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/${video.author}">${video.author}</a>
+                        </section>
+                    </blockquote>
+                `;
+                feedContainer.appendChild(card);
+            });
 
+            // Rechargement du script d'intégration TikTok
+            reloadTikTokEmbeds();
+        }
+
+        // Fonction sécurisée pour recharger l'intégration TikTok
+        function reloadTikTokEmbeds() {
+            if (window.tiktokEmbed && typeof window.tiktokEmbed.load === 'function') {
+                window.tiktokEmbed.load();
+            } else {
+                // Si l'API n'est pas encore prête, ré-injecter le script
+                const oldScript = document.querySelector('script[src="https://www.tiktok.com/embed.js"]');
+                if (oldScript) oldScript.remove();
+
+                const newScript = document.createElement('script');
+                newScript.src = "https://www.tiktok.com/embed.js";
+                newScript.async = true;
+                document.body.appendChild(newScript);
+            }
+        }
+
+        // Initialisation de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFeed('all');
+            
+            // Mise à jour automatique de l'année dans le footer
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
 </body>
 </html>
