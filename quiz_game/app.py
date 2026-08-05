@@ -5,7 +5,6 @@ from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
-# Banque de questions enrichie et variée
 QUIZ_DATA = {
     "enfants": [
         {"id": 1, "question": "Quel animal fait 'Meow' ?", "options": ["Chien", "Chat", "Vache", "Oiseau"], "answer": "Chat"},
@@ -56,9 +55,10 @@ def get_questions(category):
         q_copy["options"] = options
         questions_to_send.append(q_copy)
 
-    return jsonify(questions_to_send)
+    response = jsonify(questions_to_send)
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    return response
 
-# Route pour enregistrer automatiquement la réponse de l'utilisateur
 @app.route("/api/save-response", methods=["POST"])
 def save_response():
     data = request.get_json()
@@ -71,13 +71,9 @@ def save_response():
     correct_answer = data.get("correct_answer", "")
     is_correct = "Correct" if user_answer == correct_answer else "Incorrect"
 
-    # Création du dossier 'reponses' s'il n'existe pas
     os.makedirs("reponses", exist_ok=True)
-    
-    # Horodatage précis
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # Écriture dans le fichier texte (mode append 'a' pour ajouter sans effacer)
     file_path = os.path.join("reponses", "reponses.txt")
     with open(file_path, "a", encoding="utf-8") as f:
         f.write(f"[{timestamp}] Catégorie: {category} | Question: {question} | Réponse Utilisateur: {user_answer} | Résultat: {is_correct}\n")
