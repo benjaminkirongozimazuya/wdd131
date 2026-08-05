@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Intergénérationnel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 BrainQuiz Tous Âges</h1>
+        
+        <!-- Sélecteur de catégorie -->
+        <div id="category-selection" class="screen active">
+            <h2>Choisissez votre niveau :</h2>
+            <div class="btn-group">
+                <button onclick="startQuiz('enfants')" class="btn-child">🧒 Enfants</button>
+                <button onclick="startQuiz('adultes')" class="btn-adult">🧑 Adultes</button>
+                <button onclick="startQuiz('seniors')" class="btn-senior">👵 Seniors</button>
+            </div>
+        </div>
+
+        <!-- Zone du Quiz -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <span id="question-number">Question 1</span>
+                <span id="score">Score: 0</span>
+            </div>
+            <h2 id="question-text">Intitulé de la question</h2>
+            <div id="options-container" class="options-grid"></div>
+        </div>
+
+        <!-- Écran de Fin -->
+        <div id="result-screen" class="screen">
+            <h2>Partie terminée ! 🎉</h2>
+            <p id="final-score">Votre score final : 0</p>
+            <button onclick="resetQuiz()" class="btn-primary">Rejouer</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
