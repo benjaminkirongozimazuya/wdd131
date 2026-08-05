@@ -3,36 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Game</title>
+  <title>Quiz Game - Benjamin K. Mazuya</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome pour les icônes des réseaux sociaux -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="quiz-container">
-    <h1>Jeu de Quiz</h1>
-    
-    <!-- Choix de la catégorie -->
-    <div id="category-selection">
-      <h2>Choisissez une catégorie :</h2>
-      <button class="btn-category" onclick="startQuiz('histoire')">Histoire</button>
-      <button class="btn-category" onclick="startQuiz('sciences')">Sciences</button>
-      <button class="btn-category" onclick="startQuiz('technologie')">Technologie</button>
-    </div>
 
-    <!-- Zone du Quiz -->
-    <div id="quiz-box" style="display: none;">
-      <h2 id="question-text"></h2>
-      <div id="options-container" class="options-grid"></div>
-      <p id="score-display"></p>
-    </div>
+  <div class="main-wrapper">
+    <div class="quiz-container">
+      <header class="game-header">
+        <h1>🧠 Quiz Master</h1>
+        <p class="subtitle">Testez vos connaissances générales !</p>
+      </header>
 
-    <!-- Écran de Fin -->
-    <div id="result-box" style="display: none;">
-      <h2>Quiz Terminé !</h2>
-      <p id="final-score"></p>
-      <p id="high-score"></p>
-      <button onclick="resetQuiz()">Rejouer</button>
+      <!-- Écran de sélection des catégories -->
+      <div id="category-selection" class="card">
+        <h2>Choisissez une catégorie :</h2>
+        <div class="category-grid">
+          <button class="btn-category" onclick="startQuiz('histoire')">📜 Histoire</button>
+          <button class="btn-category" onclick="startQuiz('sciences')">🔬 Sciences</button>
+          <button class="btn-category" onclick="startQuiz('technologie')">💻 Technologie</button>
+          <button class="btn-category" onclick="startQuiz('geographie')">🌍 Géographie</button>
+          <button class="btn-category" onclick="startQuiz('culture')">🎨 Culture Générale</button>
+          <button class="btn-category" onclick="startQuiz('sport')">⚽ Sport</button>
+        </div>
+      </div>
+
+      <!-- Zone de jeu -->
+      <div id="quiz-box" class="card" style="display: none;">
+        <div class="quiz-info">
+          <span id="question-number">Question 1/5</span>
+          <span id="score-display">Score : 0</span>
+        </div>
+        <h2 id="question-text"></h2>
+        <div id="options-container" class="options-grid"></div>
+      </div>
+
+      <!-- Écran de fin -->
+      <div id="result-box" class="card" style="display: none;">
+        <h2>🎉 Quiz Terminé !</h2>
+        <p id="final-score" class="score-text"></p>
+        <p id="high-score" class="record-text"></p>
+        <button class="btn-restart" onclick="resetQuiz()">🎮 Rejouer une partie</button>
+      </div>
     </div>
   </div>
+
+  <!-- Footer élégant avec votre nom et réseaux sociaux -->
+  <footer class="app-footer">
+    <p>Conçu & Développé avec ❤️ par <strong>Benjamin K. Mazuya</strong></p>
+    <div class="social-links">
+      <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://twitter.com" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+      <a href="mailto:contact@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p class="copyright">&copy; 2026 Tous droits réservés.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
