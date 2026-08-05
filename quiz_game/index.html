@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Jeu de Quiz</h1>
+    
+    <!-- Choix de la catégorie -->
+    <div id="category-selection">
+      <h2>Choisissez une catégorie :</h2>
+      <button class="btn-category" onclick="startQuiz('histoire')">Histoire</button>
+      <button class="btn-category" onclick="startQuiz('sciences')">Sciences</button>
+      <button class="btn-category" onclick="startQuiz('technologie')">Technologie</button>
+    </div>
+
+    <!-- Zone du Quiz -->
+    <div id="quiz-box" style="display: none;">
+      <h2 id="question-text"></h2>
+      <div id="options-container" class="options-grid"></div>
+      <p id="score-display"></p>
+    </div>
+
+    <!-- Écran de Fin -->
+    <div id="result-box" style="display: none;">
+      <h2>Quiz Terminé !</h2>
+      <p id="final-score"></p>
+      <p id="high-score"></p>
+      <button onclick="resetQuiz()">Rejouer</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
