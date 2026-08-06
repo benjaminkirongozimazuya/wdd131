@@ -214,12 +214,12 @@ function showQuestion() {
   document.getElementById("mode-indicator").innerText = currentModeTitle;
   document.getElementById("question-number").innerText = `Question ${currentQuestionIndex + 1} / ${currentQuestions.length}`;
   
-  // Mise à jour du score avec l'image coin.png si disponible, ou fallback texte
+  // Chemin d'accès mis à jour vers images/coin.png
   const coinCountElem = document.getElementById("coin-count");
   if (coinCountElem) {
     coinCountElem.innerText = score;
   } else {
-    document.getElementById("score-display").innerHTML = `<img src="coin.png" class="coin-img" alt="🪙"> ${score} Pièces`;
+    document.getElementById("score-display").innerHTML = `<img src="images/coin.png" class="coin-img" alt="🪙"> ${score} Pièces`;
   }
 
   document.getElementById("question-text").innerText = q.question;
@@ -251,7 +251,7 @@ function showQuestion() {
 
 function checkAnswer(selected, correct) {
   if (selected === correct) {
-    score += 10; // 10 Pièces d'Or par réponse correcte
+    score += 10;
   }
 
   currentQuestionIndex++;
@@ -274,7 +274,8 @@ function endQuiz() {
   const finalScoreElem = document.getElementById("final-score");
   const encouragementMsgElem = document.getElementById("encouragement-msg");
 
-  finalScoreElem.innerHTML = `${currentModeTitle} terminé ! Vous avez gagné : <img src="coin.png" class="coin-img" alt="🪙"> <strong>${score} / ${maxCoins}</strong> Pièces d'Or`;
+  // Chemin d'accès mis à jour vers images/coin.png
+  finalScoreElem.innerHTML = `${currentModeTitle} terminé ! Vous avez gagné : <img src="images/coin.png" class="coin-img" alt="🪙"> <strong>${score} / ${maxCoins}</strong> Pièces d'Or`;
 
   if (score < successThreshold) {
     playDefeatSound();
@@ -292,9 +293,9 @@ function endQuiz() {
 
   if (score > bestScore) {
     localStorage.setItem(currentStorageKey, score);
-    document.getElementById("high-score").innerHTML = `🏆 Nouveau record personnel : <img src="coin.png" class="coin-img" alt="🪙"> <strong>${score}</strong> Pièces d'Or !`;
+    document.getElementById("high-score").innerHTML = `🏆 Nouveau record personnel : <img src="images/coin.png" class="coin-img" alt="🪙"> <strong>${score}</strong> Pièces d'Or !`;
   } else {
-    document.getElementById("high-score").innerHTML = `Meilleur trésor enregistré : <img src="coin.png" class="coin-img" alt="🪙"> ${bestScore} Pièces d'Or`;
+    document.getElementById("high-score").innerHTML = `Meilleur trésor enregistré : <img src="images/coin.png" class="coin-img" alt="🪙"> ${bestScore} Pièces d'Or`;
   }
 }
 
