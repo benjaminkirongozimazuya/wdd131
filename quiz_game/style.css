@@ -3,6 +3,8 @@
   --primary-hover: #2980b9;
   --secondary-color: #2ecc71;
   --danger-color: #e74c3c;
+  --gold-color: #f39c12;
+  --gold-bg: #fef9e7;
   --text-dark: #2c3e50;
   --text-muted: #7f8c8d;
   --text-light: #ffffff;
@@ -153,12 +155,26 @@ button {
 .quiz-info {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-weight: bold;
   font-size: 0.9rem;
   color: var(--text-muted);
   margin-bottom: 15px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border-color);
+}
+
+.gold-badge {
+  background-color: var(--gold-bg);
+  color: var(--gold-color);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--gold-color);
+}
+
+.gold-text {
+  color: var(--gold-color);
+  font-weight: bold;
 }
 
 #question-text {
@@ -201,7 +217,7 @@ button {
 }
 
 .score-text {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin: 10px 0;
 }
@@ -214,7 +230,6 @@ button {
 }
 
 .record-text {
-  color: #d35400;
   font-weight: bold;
   margin-bottom: 15px;
 }
@@ -262,4 +277,11 @@ button {
 
 .copyright {
   font-size: 0.75rem;
+}
+
+.coin-img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 4px;
 }

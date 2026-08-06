@@ -57,7 +57,7 @@
         <div class="quiz-info">
           <span id="mode-indicator">Niveau 1</span>
           <span id="question-number">Question 1/4</span>
-          <span id="score-display">Score : 0</span>
+          <span id="score-display" class="gold-badge"><img src="images/coin.png" alt="Pièce d'or" class="coin-img"> <span id="coin-count">0</span> Pièces</span>
         </div>
         <h2 id="question-text"></h2>
         <div id="options-container" class="options-grid"></div>
@@ -72,9 +72,9 @@
       <!-- Écran de fin -->
       <div id="result-box" class="card" style="display: none;">
         <h2 id="result-title"></h2>
-        <p id="final-score" class="score-text"></p>
+        <p id="final-score" class="score-text gold-text"></p>
         <p id="encouragement-msg" class="encouragement-text"></p>
-        <p id="high-score" class="record-text"></p>
+        <p id="high-score" class="record-text gold-text"></p>
         <div class="result-actions">
           <button class="btn-restart" onclick="restartSameGame()">🔄 Recommencer</button>
           <button class="btn-home" onclick="resetQuiz()">🏠 Accueil / Niveaux</button>
@@ -84,7 +84,7 @@
   </div>
 
   <footer class="app-footer">
-    <p>Conçu & Développé avec ❤️ par <strong>Benjamin K. Mazuya</strong></p>
+    <p>Conçu & Développé avec ❤️ par <strong>Benjamin K. Mazuya</strong>[cite: 1]</p>
     <div class="social-links">
       <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
       <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
