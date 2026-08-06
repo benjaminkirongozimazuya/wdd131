@@ -1,4 +1,4 @@
-// 1. BASE DE DONNÉES DES NIVEAUX
+// 1. BASE DE DONNÉES DES NIVEAUX (Maths, Physique, Géométrie, Psycho-technique)
 const levelsData = {
   1: [
     { question: "Maths : Combien font 7 x 8 ?", options: ["54", "56", "64", "49"], answer: "56" },
@@ -187,7 +187,19 @@ function showQuestion() {
     const btn = document.createElement("button");
     btn.className = "btn-option";
     btn.innerText = option;
-    btn.onclick = () => checkAnswer(option, q.answer);
+    
+    // Support hybride Clic & Tactile Mobile
+    let isClicked = false;
+    const handleSelect = (e) => {
+      if (isClicked) return;
+      isClicked = true;
+      e.preventDefault();
+      checkAnswer(option, q.answer);
+    };
+
+    btn.addEventListener("touchend", handleSelect, { passive: false });
+    btn.addEventListener("click", handleSelect);
+
     optionsContainer.appendChild(btn);
   });
 }
@@ -210,7 +222,7 @@ function endQuiz() {
   document.getElementById("result-box").style.display = "block";
 
   const totalQuestions = currentQuestions.length;
-  const successThreshold = Math.ceil(totalQuestions / 2); // Ex: 2 sur 4 ou 3 sur 5 minimum
+  const successThreshold = Math.ceil(totalQuestions / 2);
 
   const resultTitleElem = document.getElementById("result-title");
   const finalScoreElem = document.getElementById("final-score");
@@ -218,15 +230,14 @@ function endQuiz() {
 
   finalScoreElem.innerText = `${currentModeTitle} terminé ! Votre score : ${score} / ${totalQuestions}`;
 
-  // Logique échec / succès avec encouragement
   if (score < successThreshold) {
     resultTitleElem.innerText = "❌ Tu as échoué !";
     resultTitleElem.style.color = "#e74c3c";
-    encouragementMsgElem.innerText = "Ne te décourage pas ! C'est en faisant des erreurs qu'on apprend. Relève le défi, réessaie pour t'améliorer ou choisis un niveau plus facile ! 💪";
+    encouragementMsgElem.innerText = "Ne te décourage pas ! C'est en faisant des erreurs qu'on apprend. Relève le défi, réessaie pour t'améliorer ou choisis un autre niveau ! 💪";
   } else {
     resultTitleElem.innerText = "🎉 Félicitations, c'est gagné !";
     resultTitleElem.style.color = "#27ae60";
-    encouragementMsgElem.innerText = "Super travail ! Tu maîtrises bien le sujet. Continue sur cette lancée ! 🚀";
+    encouragementMsgElem.innerText = "Super travail ! Tu maîtrises bien ce niveau. Continue sur cette lancée ! 🚀";
   }
 
   const bestScore = localStorage.getItem(currentStorageKey) || 0;
@@ -239,7 +250,6 @@ function endQuiz() {
   }
 }
 
-// Permet de recommencer exactement la même partie
 function restartSameGame() {
   if (lastGameType && lastTarget) {
     startQuiz(lastGameType, lastTarget);

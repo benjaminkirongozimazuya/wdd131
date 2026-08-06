@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Quiz Master - Benjamin K. Mazuya</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -62,9 +62,8 @@
         <h2 id="question-text"></h2>
         <div id="options-container" class="options-grid"></div>
 
-        <!-- Bouton de retour en arrière pendant le jeu -->
-        <div class="game-footer-actions" style="margin-top: 20px; text-align: center;">
-          <button class="btn-back" onclick="resetQuiz()" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
+        <div class="game-footer-actions">
+          <button class="btn-back" onclick="resetQuiz()">
             <i class="fas fa-arrow-left"></i> Quitter / Changer de niveau
           </button>
         </div>
@@ -74,9 +73,9 @@
       <div id="result-box" class="card" style="display: none;">
         <h2 id="result-title"></h2>
         <p id="final-score" class="score-text"></p>
-        <p id="encouragement-msg" class="encouragement-text" style="font-style: italic; margin: 10px 0; color: #555;"></p>
+        <p id="encouragement-msg" class="encouragement-text"></p>
         <p id="high-score" class="record-text"></p>
-        <div class="result-actions" style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+        <div class="result-actions">
           <button class="btn-restart" onclick="restartSameGame()">🔄 Recommencer</button>
           <button class="btn-home" onclick="resetQuiz()">🏠 Accueil / Niveaux</button>
         </div>
