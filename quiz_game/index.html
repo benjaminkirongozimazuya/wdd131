@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Game - Benjamin K. Mazuya</title>
+  <title>Quiz Master - Benjamin K. Mazuya</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Font Awesome pour les icônes des réseaux sociaux -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -14,43 +13,77 @@
     <div class="quiz-container">
       <header class="game-header">
         <h1>🧠 Quiz Master</h1>
-        <p class="subtitle">Testez vos connaissances générales !</p>
+        <p class="subtitle">10 Niveaux & Catégories Générales</p>
       </header>
 
-      <!-- Écran de sélection des catégories -->
-      <div id="category-selection" class="card">
-        <h2>Choisissez une catégorie :</h2>
-        <div class="category-grid">
-          <button class="btn-category" onclick="startQuiz('histoire')">📜 Histoire</button>
-          <button class="btn-category" onclick="startQuiz('sciences')">🔬 Sciences</button>
-          <button class="btn-category" onclick="startQuiz('technologie')">💻 Technologie</button>
-          <button class="btn-category" onclick="startQuiz('geographie')">🌍 Géographie</button>
-          <button class="btn-category" onclick="startQuiz('culture')">🎨 Culture Générale</button>
-          <button class="btn-category" onclick="startQuiz('sport')">⚽ Sport</button>
+      <!-- Écran de sélection principal -->
+      <div id="selection-screen" class="card">
+        <div class="tab-buttons">
+          <button id="tab-levels-btn" class="tab-btn active" onclick="switchTab('levels')">Niveaux (1 à 10)</button>
+          <button id="tab-categories-btn" class="tab-btn" onclick="switchTab('categories')">Catégories</button>
+        </div>
+
+        <div id="levels-tab" class="tab-content">
+          <h2>Choisissez votre Niveau :</h2>
+          <div class="level-grid">
+            <button class="btn-level" onclick="startQuiz('level', 1)">Niveau 1</button>
+            <button class="btn-level" onclick="startQuiz('level', 2)">Niveau 2</button>
+            <button class="btn-level" onclick="startQuiz('level', 3)">Niveau 3</button>
+            <button class="btn-level" onclick="startQuiz('level', 4)">Niveau 4</button>
+            <button class="btn-level" onclick="startQuiz('level', 5)">Niveau 5</button>
+            <button class="btn-level" onclick="startQuiz('level', 6)">Niveau 6</button>
+            <button class="btn-level" onclick="startQuiz('level', 7)">Niveau 7</button>
+            <button class="btn-level" onclick="startQuiz('level', 8)">Niveau 8</button>
+            <button class="btn-level" onclick="startQuiz('level', 9)">Niveau 9</button>
+            <button class="btn-level" onclick="startQuiz('level', 10)">Niveau 10</button>
+          </div>
+        </div>
+
+        <div id="categories-tab" class="tab-content" style="display: none;">
+          <h2>Choisissez une Catégorie :</h2>
+          <div class="category-grid">
+            <button class="btn-category" onclick="startQuiz('category', 'histoire')">📜 Histoire</button>
+            <button class="btn-category" onclick="startQuiz('category', 'sciences')">🔬 Sciences</button>
+            <button class="btn-category" onclick="startQuiz('category', 'technologie')">💻 Technologie</button>
+            <button class="btn-category" onclick="startQuiz('category', 'geographie')">🌍 Géographie</button>
+            <button class="btn-category" onclick="startQuiz('category', 'culture')">🎨 Culture</button>
+            <button class="btn-category" onclick="startQuiz('category', 'sport')">⚽ Sport</button>
+          </div>
         </div>
       </div>
 
       <!-- Zone de jeu -->
       <div id="quiz-box" class="card" style="display: none;">
         <div class="quiz-info">
-          <span id="question-number">Question 1/5</span>
+          <span id="mode-indicator">Niveau 1</span>
+          <span id="question-number">Question 1/4</span>
           <span id="score-display">Score : 0</span>
         </div>
         <h2 id="question-text"></h2>
         <div id="options-container" class="options-grid"></div>
+
+        <!-- Bouton de retour en arrière pendant le jeu -->
+        <div class="game-footer-actions" style="margin-top: 20px; text-align: center;">
+          <button class="btn-back" onclick="resetQuiz()" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
+            <i class="fas fa-arrow-left"></i> Quitter / Changer de niveau
+          </button>
+        </div>
       </div>
 
       <!-- Écran de fin -->
       <div id="result-box" class="card" style="display: none;">
-        <h2>🎉 Quiz Terminé !</h2>
+        <h2 id="result-title"></h2>
         <p id="final-score" class="score-text"></p>
+        <p id="encouragement-msg" class="encouragement-text" style="font-style: italic; margin: 10px 0; color: #555;"></p>
         <p id="high-score" class="record-text"></p>
-        <button class="btn-restart" onclick="resetQuiz()">🎮 Rejouer une partie</button>
+        <div class="result-actions" style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+          <button class="btn-restart" onclick="restartSameGame()">🔄 Recommencer</button>
+          <button class="btn-home" onclick="resetQuiz()">🏠 Accueil / Niveaux</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer élégant avec votre nom et réseaux sociaux -->
   <footer class="app-footer">
     <p>Conçu & Développé avec ❤️ par <strong>Benjamin K. Mazuya</strong></p>
     <div class="social-links">

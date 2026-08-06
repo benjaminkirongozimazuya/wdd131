@@ -1,4 +1,68 @@
-// Base de données enrichie de questions par catégorie
+// 1. BASE DE DONNÉES DES NIVEAUX
+const levelsData = {
+  1: [
+    { question: "Maths : Combien font 7 x 8 ?", options: ["54", "56", "64", "49"], answer: "56" },
+    { question: "Géométrie : Combien de côtés possède un hexagone ?", options: ["5", "6", "7", "8"], answer: "6" },
+    { question: "Psycho-technique : Complétez la suite : 2, 4, 6, 8, ...", options: ["9", "10", "11", "12"], answer: "10" },
+    { question: "Physique : Quel est l'état de l'eau pure à 100°C sous pression normale ?", options: ["Solide", "Liquide", "Gazeux", "Plasma"], answer: "Gazeux" }
+  ],
+  2: [
+    { question: "Maths : Si x + 5 = 12, que vaut x ?", options: ["5", "6", "7", "8"], answer: "7" },
+    { question: "Physique : Quelle est l'unité de mesure de la force dans le Système International ?", options: ["Joule", "Watt", "Newton", "Pascal"], answer: "Newton" },
+    { question: "Géométrie : Quelle est la somme des angles internes d'un triangle ?", options: ["90°", "180°", "360°", "270°"], answer: "180°" },
+    { question: "Psycho-technique : Quel est l'intrus parmi ces formes ?", options: ["Carré", "Triangle", "Sphère", "Rectangle"], answer: "Sphère" }
+  ],
+  3: [
+    { question: "Maths : Calculez : 15% de 200.", options: ["20", "25", "30", "35"], answer: "30" },
+    { question: "Géométrie : Quel est le périmètre d'un carré de côté 6 cm ?", options: ["12 cm", "24 cm", "36 cm", "18 cm"], answer: "24 cm" },
+    { question: "Physique : Quelle force attire les objets vers le centre de la Terre ?", options: ["La réfraction", "La gravité", "La magnétostriction", "La tension de surface"], answer: "La gravité" },
+    { question: "Psycho-technique : Complétez : A1, B2, C3, D4, ...", options: ["E5", "E6", "F5", "D5"], answer: "E5" }
+  ],
+  4: [
+    { question: "Maths : Résolvez l'équation : 2x - 4 = 10", options: ["x = 5", "x = 6", "x = 7", "x = 8"], answer: "x = 7" },
+    { question: "Géométrie : Quelle est l'aire d'un rectangle de longueur 8 cm et largeur 5 cm ?", options: ["40 cm²", "26 cm²", "13 cm²", "30 cm²"], answer: "40 cm²" },
+    { question: "Physique : Quelle est la formule de la vitesse moyenne ?", options: ["V = D x T", "V = D / T", "V = T / D", "V = D + T"], answer: "V = D / T" },
+    { question: "Psycho-technique : Si 3 chats attrapent 3 souris en 3 minutes, combien de temps faut-il à 100 chats pour attraper 100 souris ?", options: ["100 minutes", "3 minutes", "30 minutes", "1 minute"], answer: "3 minutes" }
+  ],
+  5: [
+    { question: "Maths : Que vaut 5 au carré (5²) multiplié par 2 ?", options: ["20", "25", "50", "100"], answer: "50" },
+    { question: "Géométrie : Quel théorème s'applique aux triangles rectangles pour calculer l'hypoténuse ?", options: ["Théorème de Thalès", "Théorème de Pythagore", "Loi des sinus", "Théorème d'Al-Kashi"], answer: "Théorème de Pythagore" },
+    { question: "Physique : Quelle est la première loi de Newton ?", options: ["Loi de la gravitation", "Principe d'inertie", "Action-Réaction", "Loi d'Ohm"], answer: "Principe d'inertie" },
+    { question: "Psycho-technique : Complétez la suite logique : 1, 1, 2, 3, 5, 8, ...", options: ["11", "12", "13", "15"], answer: "13" }
+  ],
+  6: [
+    { question: "Maths : Simplifiez la fraction : 24 / 36", options: ["1/2", "2/3", "3/4", "4/5"], answer: "2/3" },
+    { question: "Géométrie : Combien d'intersections parallèles possède un trapèze ?", options: ["Aucune", "1 paire de côtés parallèles", "2 paires de côtés parallèles", "3 côtés parallèles"], answer: "1 paire de côtés parallèles" },
+    { question: "Physique : Quelle est l'unité de mesure de la résistance électrique ?", options: ["Volt", "Ampère", "Ohm", "Watt"], answer: "Ohm" },
+    { question: "Psycho-technique : Anagramme : Quel mot réorganisé forme le mot 'CHIEN' ?", options: ["NICHE", "CHINE", "CHINE/NICHE", "AUCUN"], answer: "CHINE/NICHE" }
+  ],
+  7: [
+    { question: "Maths : Quelle est la racine carrée de 144 ?", options: ["10", "11", "12", "14"], answer: "12" },
+    { question: "Géométrie : Quelle est la formule du volume d'un cube de côté 'a' ?", options: ["a²", "6a", "a³", "4a³"], answer: "a³" },
+    { question: "Physique : Que vaut l'accélération de la pesanteur terrestre (g) approximativement ?", options: ["8.5 m/s²", "9.81 m/s²", "10.5 m/s²", "12.0 m/s²"], answer: "9.81 m/s²" },
+    { question: "Psycho-technique : Complétez : 3, 9, 27, 81, ...", options: ["162", "243", "324", "100"], answer: "243" }
+  ],
+  8: [
+    { question: "Maths : Développez l'expression : (x + 3)²", options: ["x² + 9", "x² + 6x + 9", "x² + 3x + 9", "2x + 6"], answer: "x² + 6x + 9" },
+    { question: "Géométrie : Quelle est la valeur approximative de Pi (π) ?", options: ["3.12", "3.14", "3.16", "3.18"], answer: "3.14" },
+    { question: "Physique : Quelle relation exprime la loi d'Ohm ?", options: ["U = R / I", "U = R x I", "P = U x I", "I = U x R"], answer: "U = R x I" },
+    { question: "Psycho-technique : Si aujourd'hui est mardi, quel jour serons-nous dans 100 jours ?", options: ["Jeudi", "Vendredi", "Samedi", "Dimanche"], answer: "Jeudi" }
+  ],
+  9: [
+    { question: "Maths : Résolvez le système : x + y = 10 et x - y = 2", options: ["x=6, y=4", "x=5, y=5", "x=7, y=3", "x=8, y=2"], answer: "x=6, y=4" },
+    { question: "Géométrie : Quelle est la somme des angles d'un quadrilatère ?", options: ["180°", "270°", "360°", "540°"], answer: "360°" },
+    { question: "Physique : Quelle est la relation équivalence masse-énergie d'Einstein ?", options: ["E = mc", "E = m/c²", "E = mc²", "E = 1/2 mv²"], answer: "E = mc²" },
+    { question: "Psycho-technique : Complétez la suite : 100, 95, 85, 70, 50, ...", options: ["25", "30", "35", "20"], answer: "25" }
+  ],
+  10: [
+    { question: "Maths : Quelle est la dérivée de la fonction f(x) = x³ ?", options: ["3x", "3x²", "x²", "x³/3"], answer: "3x²" },
+    { question: "Géométrie : Comment appelle-t-on un polyèdre régulier à 12 faces ?", options: ["Icosaèdre", "Dodécaèdre", "Octaèdre", "Tétraèdre"], answer: "Dodécaèdre" },
+    { question: "Physique : Quel principe stipule qu'on ne peut pas connaître simultanément la position et la vitesse d'une particule ?", options: ["Principe de Pauli", "Principe d'incertitude d'Heisenberg", "Effet Photoélectrique", "Loi de Kepler"], answer: "Principe d'incertitude d'Heisenberg" },
+    { question: "Psycho-technique : Complétez la suite complexe : 2, 3, 5, 7, 11, 13, 17, ...", options: ["18", "19", "21", "23"], answer: "19" }
+  ]
+};
+
+// 2. BASE DE DONNÉES PAR CATÉGORIES
 const questionsData = {
   histoire: [
     { question: "En quelle année est arrivée l'indépendance de la RDC ?", options: ["1960", "1958", "1965", "1970"], answer: "1960" },
@@ -51,20 +115,55 @@ const questionsData = {
   ]
 };
 
+// VARIABLES D'ÉTAT
 let currentQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
-const QUESTIONS_PER_GAME = 5; // Nombre de questions par partie
+let currentModeTitle = "";
+let currentStorageKey = "";
+let lastGameType = "";
+let lastTarget = "";
 
-function startQuiz(category) {
-  const categoryQuestions = [...questionsData[category]];
-  // Mélange les questions et prend 5 questions au hasard
-  currentQuestions = shuffleArray(categoryQuestions).slice(0, QUESTIONS_PER_GAME);
+// GESTION DES ONGLETS
+function switchTab(tabName) {
+  const levelsTab = document.getElementById("levels-tab");
+  const categoriesTab = document.getElementById("categories-tab");
+  const levelsBtn = document.getElementById("tab-levels-btn");
+  const categoriesBtn = document.getElementById("tab-categories-btn");
+
+  if (tabName === "levels") {
+    levelsTab.style.display = "block";
+    categoriesTab.style.display = "none";
+    levelsBtn.classList.add("active");
+    categoriesBtn.classList.remove("active");
+  } else {
+    levelsTab.style.display = "none";
+    categoriesTab.style.display = "block";
+    categoriesBtn.classList.add("active");
+    levelsBtn.classList.remove("active");
+  }
+}
+
+// DÉMARRAGE DU QUIZ
+function startQuiz(type, target) {
+  lastGameType = type;
+  lastTarget = target;
+
+  if (type === 'level') {
+    currentQuestions = shuffleArray([...levelsData[target]]);
+    currentModeTitle = `Niveau ${target}`;
+    currentStorageKey = `quiz_best_level_${target}`;
+  } else {
+    const rawQuestions = [...questionsData[target]];
+    currentQuestions = shuffleArray(rawQuestions).slice(0, 5);
+    currentModeTitle = target.charAt(0).toUpperCase() + target.slice(1);
+    currentStorageKey = `quiz_best_cat_${target}`;
+  }
 
   currentQuestionIndex = 0;
   score = 0;
 
-  document.getElementById("category-selection").style.display = "none";
+  document.getElementById("selection-screen").style.display = "none";
   document.getElementById("quiz-box").style.display = "block";
   document.getElementById("result-box").style.display = "none";
 
@@ -74,6 +173,7 @@ function startQuiz(category) {
 function showQuestion() {
   const q = currentQuestions[currentQuestionIndex];
 
+  document.getElementById("mode-indicator").innerText = currentModeTitle;
   document.getElementById("question-number").innerText = `Question ${currentQuestionIndex + 1} / ${currentQuestions.length}`;
   document.getElementById("score-display").innerText = `Score : ${score}`;
   document.getElementById("question-text").innerText = q.question;
@@ -81,7 +181,6 @@ function showQuestion() {
   const optionsContainer = document.getElementById("options-container");
   optionsContainer.innerHTML = "";
 
-  // Mélange les propositions de réponses
   const shuffledOptions = shuffleArray([...q.options]);
 
   shuffledOptions.forEach(option => {
@@ -110,20 +209,49 @@ function endQuiz() {
   document.getElementById("quiz-box").style.display = "none";
   document.getElementById("result-box").style.display = "block";
 
-  document.getElementById("final-score").innerText = `Votre score final est de : ${score} / ${currentQuestions.length}`;
+  const totalQuestions = currentQuestions.length;
+  const successThreshold = Math.ceil(totalQuestions / 2); // Ex: 2 sur 4 ou 3 sur 5 minimum
 
-  const bestScore = localStorage.getItem("quizBestScore") || 0;
+  const resultTitleElem = document.getElementById("result-title");
+  const finalScoreElem = document.getElementById("final-score");
+  const encouragementMsgElem = document.getElementById("encouragement-msg");
+
+  finalScoreElem.innerText = `${currentModeTitle} terminé ! Votre score : ${score} / ${totalQuestions}`;
+
+  // Logique échec / succès avec encouragement
+  if (score < successThreshold) {
+    resultTitleElem.innerText = "❌ Tu as échoué !";
+    resultTitleElem.style.color = "#e74c3c";
+    encouragementMsgElem.innerText = "Ne te décourage pas ! C'est en faisant des erreurs qu'on apprend. Relève le défi, réessaie pour t'améliorer ou choisis un niveau plus facile ! 💪";
+  } else {
+    resultTitleElem.innerText = "🎉 Félicitations, c'est gagné !";
+    resultTitleElem.style.color = "#27ae60";
+    encouragementMsgElem.innerText = "Super travail ! Tu maîtrises bien le sujet. Continue sur cette lancée ! 🚀";
+  }
+
+  const bestScore = localStorage.getItem(currentStorageKey) || 0;
+
   if (score > bestScore) {
-    localStorage.setItem("quizBestScore", score);
+    localStorage.setItem(currentStorageKey, score);
     document.getElementById("high-score").innerText = `🏆 Nouveau record personnel : ${score} pts !`;
   } else {
     document.getElementById("high-score").innerText = `Meilleur score enregistré : ${bestScore} pts`;
   }
 }
 
+// Permet de recommencer exactement la même partie
+function restartSameGame() {
+  if (lastGameType && lastTarget) {
+    startQuiz(lastGameType, lastTarget);
+  } else {
+    resetQuiz();
+  }
+}
+
 function resetQuiz() {
+  document.getElementById("quiz-box").style.display = "none";
   document.getElementById("result-box").style.display = "none";
-  document.getElementById("category-selection").style.display = "block";
+  document.getElementById("selection-screen").style.display = "block";
 }
 
 function shuffleArray(array) {

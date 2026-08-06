@@ -1,78 +1,48 @@
-/* ==========================================================================
-   1. VARIABLES GLOBALES (:root)
-   ========================================================================== */
 :root {
-  /* Couleurs principales */
   --primary-color: #2563eb;
   --primary-hover: #1d4ed8;
-  --secondary-color: #3b82f6;
   --accent-color: #38bdf8;
   --success-color: #16a34a;
 
-  /* Couleurs de fond et cartes */
   --bg-gradient-from: #0f172a;
   --bg-gradient-to: #1e3c72;
   --card-bg: #ffffff;
   --footer-bg: #0b1120;
 
-  /* Couleurs de texte */
   --text-main: #0f172a;
   --text-muted: #64748b;
   --text-light: #f8fafc;
   --text-footer: #94a3b8;
 
-  /* Bordures et ombres */
   --border-color: #e2e8f0;
-  --border-hover: #cbd5e1;
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
-
-  /* Rayons de courbure */
-  --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
-
-  /* Transitions */
   --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ==========================================================================
-   2. REINITIALISATION ET CONFIGURATION DE BASE
-   ========================================================================== */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
-  min-height: 100vh;
-  width: 100%;
-}
-
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%);
   background-attachment: fixed;
   color: var(--text-main);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
 }
 
-/* ==========================================================================
-   3. LAYOUT RESPONSIVE & CONTENEUR PRINCIPAL
-   ========================================================================== */
 .main-wrapper {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: clamp(12px, 3vw, 32px);
-  width: 100%;
 }
 
 .quiz-container {
@@ -80,7 +50,6 @@ body {
   max-width: 680px;
 }
 
-/* En-tête du jeu */
 .game-header {
   text-align: center;
   color: var(--text-light);
@@ -90,8 +59,6 @@ body {
 .game-header h1 {
   font-size: clamp(1.8rem, 5vw, 2.6rem);
   font-weight: 800;
-  letter-spacing: -0.025em;
-  margin-bottom: 4px;
 }
 
 .subtitle {
@@ -99,63 +66,47 @@ body {
   color: var(--text-footer);
 }
 
-/* Carte globale */
 .card {
   background: var(--card-bg);
   border-radius: var(--radius-lg);
   padding: clamp(18px, 5vw, 36px);
   box-shadow: var(--shadow-lg);
   text-align: center;
-  width: 100%;
 }
 
-.card h2 {
-  font-size: clamp(1.2rem, 3.5vw, 1.5rem);
-  color: var(--text-main);
-  margin-bottom: 20px;
-}
-
-/* ==========================================================================
-   4. GRILLE DES CATÉGORIES (Totalement fluide)
-   ========================================================================== */
-.category-grid {
+/* Grille des Niveaux */
+.level-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: clamp(10px, 2.5vw, 16px);
-  margin-top: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: clamp(10px, 2vw, 14px);
+  margin-top: 20px;
 }
 
-.btn-category {
+.btn-level {
   background: #f8fafc;
-  border: 2px solid var(--border-color);
-  padding: clamp(12px, 2.5vw, 18px) 12px;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 14px;
   border-radius: var(--radius-md);
-  font-size: clamp(0.9rem, 2.2vw, 1.05rem);
-  font-weight: 600;
-  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
   transition: var(--transition-fast);
-  word-break: break-word;
 }
 
-.btn-category:hover,
-.btn-category:focus-visible {
+.btn-level:hover {
   background: var(--primary-color);
   color: var(--text-light);
-  border-color: var(--primary-color);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
 }
 
-/* ==========================================================================
-   5. INTERFACE DU QUIZ EN COURS
-   ========================================================================== */
+/* En-tête du Quiz */
 .quiz-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 700;
-  font-size: clamp(0.85rem, 2.2vw, 1rem);
+  font-size: clamp(0.85rem, 2vw, 1rem);
   color: var(--text-muted);
   margin-bottom: 20px;
   border-bottom: 2px solid var(--border-color);
@@ -165,9 +116,7 @@ body {
 #question-text {
   font-size: clamp(1.1rem, 3.2vw, 1.35rem);
   font-weight: 700;
-  line-height: 1.4;
   margin-bottom: 24px;
-  color: var(--text-main);
   text-align: left;
 }
 
@@ -180,30 +129,24 @@ body {
 .btn-option {
   background: #ffffff;
   border: 2px solid var(--border-color);
-  padding: clamp(12px, 2.5vw, 16px) clamp(14px, 3vw, 20px);
+  padding: clamp(12px, 2.5vw, 16px) 16px;
   border-radius: var(--radius-md);
   font-size: clamp(0.9rem, 2.4vw, 1.05rem);
-  color: var(--text-main);
   cursor: pointer;
   transition: var(--transition-fast);
   text-align: left;
-  line-height: 1.3;
 }
 
-.btn-option:hover,
-.btn-option:focus-visible {
+.btn-option:hover {
   background: #f1f5f9;
   border-color: var(--primary-color);
 }
 
-/* ==========================================================================
-   6. ÉCRAN DES RÉSULTATS
-   ========================================================================== */
+/* Résultat */
 .score-text {
   font-size: clamp(1.2rem, 4vw, 1.5rem);
   font-weight: 800;
   margin: 16px 0 8px 0;
-  color: var(--text-main);
 }
 
 .record-text {
@@ -217,9 +160,8 @@ body {
   background: var(--primary-color);
   color: var(--text-light);
   border: none;
-  padding: clamp(12px, 2.5vw, 16px) clamp(24px, 4vw, 36px);
+  padding: 14px 28px;
   border-radius: var(--radius-md);
-  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition-fast);
@@ -227,19 +169,15 @@ body {
 
 .btn-restart:hover {
   background: var(--primary-hover);
-  transform: scale(1.02);
 }
 
-/* ==========================================================================
-   7. FOOTER RESPONSIVE
-   ========================================================================== */
+/* Footer */
 .app-footer {
   background: var(--footer-bg);
   color: var(--text-footer);
   text-align: center;
-  padding: clamp(16px, 3vw, 24px) 16px;
-  font-size: clamp(0.85rem, 2vw, 0.95rem);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px 16px;
+  font-size: 0.9rem;
 }
 
 .app-footer strong {
@@ -250,17 +188,13 @@ body {
   margin: 12px 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: clamp(16px, 4vw, 24px);
+  gap: 20px;
 }
 
 .social-links a {
   color: var(--text-footer);
-  font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+  font-size: 1.4rem;
   transition: var(--transition-fast);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .social-links a:hover {
@@ -269,24 +203,43 @@ body {
 }
 
 .copyright {
-  font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+  font-size: 0.8rem;
   opacity: 0.7;
 }
 
-/* ==========================================================================
-   8. MEDIA QUERIES SPÉCIFIQUES (Écrans mobiles très petits)
-   ========================================================================== */
 @media (max-width: 480px) {
-  .category-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes propres sur petits téléphones */
+  .level-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .quiz-info {
-    flex-direction: row;
-    gap: 8px;
-  }
+/* Styles des Onglets (Niveaux vs Catégories) */
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+}
 
-  .btn-option {
-    padding: 12px 14px;
-  }
+.tab-btn {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+}
+
+.tab-btn.active {
+  background: var(--primary-color);
+  color: var(--text-light);
+}
+
+.tab-btn:hover:not(.active) {
+  color: var(--primary-color);
 }
