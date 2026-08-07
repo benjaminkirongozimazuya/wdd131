@@ -4,12 +4,12 @@
   --inner-bg: #0f141c;
   
   /* Palette Joie & Espoir (Orange Solaire & Or) */
-  --accent-gold: #FF8C00;         /* Orange chaleureux et vibrant */
-  --accent-gold-hover: #E07B00;   /* Orange foncé pour l'effet au survol */
-  --accent-hope: #2ECC71;         /* Touche de vert espoir pour les réussites */
+  --accent-gold: #FF8C00;         
+  --accent-gold-hover: #E07B00;   
   
-  --text-main: #f0f6fc;
-  --text-muted: #9aa5b1;
+  /* Couleurs de texte ajustées pour la lisibilité (WCAG AA) */
+  --text-main: #ffffff;
+  --text-muted: #adbac7; 
   --border-color: #2d3748;
   
   --whatsapp-color: #25D366;
@@ -33,7 +33,7 @@ body {
 
 /* Navbar */
 .navbar {
-  background-color: #010409;
+  background-color: #080b10;
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
@@ -70,7 +70,7 @@ body {
 .nav-links a {
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: color 0.3s ease;
 }
 
@@ -88,7 +88,7 @@ body {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #1f1c2c 0%, #0d1117 100%);
+  background: linear-gradient(135deg, #1f1c2c 0%, #0f141c 100%);
   padding: 90px 20px;
   text-align: center;
   border-bottom: 2px solid var(--accent-gold);
@@ -160,7 +160,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 40px;
-  background-color: #010409;
+  background-color: #080b10;
   padding: 25px 20px;
   border-bottom: 1px solid var(--border-color);
   flex-wrap: wrap;
@@ -178,7 +178,7 @@ body {
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
 }
 
@@ -219,6 +219,11 @@ body {
   border-radius: 0 8px 8px 0;
 }
 
+.mission-box h3 {
+  color: var(--accent-gold);
+  margin-bottom: 5px;
+}
+
 /* Formations & Lives Grid */
 .events-grid {
   display: grid;
@@ -231,6 +236,11 @@ body {
   border: 1px solid var(--border-color);
   padding: 20px;
   border-radius: 8px;
+}
+
+.event-item h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
 }
 
 .event-badge {
@@ -266,8 +276,9 @@ body {
   border-radius: 8px;
 }
 
-.book-card h4 {
+.book-card h3 {
   color: var(--accent-gold);
+  font-size: 1.1rem;
   margin-bottom: 8px;
 }
 
@@ -360,8 +371,9 @@ body {
   border: 1px solid var(--border-color);
 }
 
-.faq-item h4 {
+.faq-item h3 {
   color: var(--accent-gold);
+  font-size: 1.05rem;
   margin-bottom: 5px;
 }
 

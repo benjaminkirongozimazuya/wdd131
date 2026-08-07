@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("signup-form");
   const confirmMsg = document.getElementById("confirmation-msg");
 
-  // OPTIONNEL : Remplacez cette URL par votre lien Web App Google Apps Script si vous souhaitez stocker les membres dans Google Sheets
+  // OPTIONNEL : Lien Google Apps Script pour synchronisation Google Sheets
   const GOOGLE_SCRIPT_URL = ""; 
 
   form.addEventListener("submit", (e) => {

@@ -4,12 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DO WHAT YOU WANT AND BE | Esprit Maître</title>
+  
+  <!-- SEO Meta Description -->
+  <meta name="description" content="DO WHAT YOU WANT AND BE — Communauté de penseurs, créateurs et entrepreneurs. Éduquer, motiver et passer à l'action pour une Afrique libre et prospère.">
+  
+  <!-- Optimisation des performances -->
+  <link rel="preconnect" href="https://www.tiktok.com">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Navigation principale">
     <div class="nav-container">
       <a href="#" class="nav-logo">DO WHAT YOU WANT <span>AND BE</span></a>
       <ul class="nav-links">
@@ -36,7 +43,7 @@
   </header>
 
   <!-- Statistiques de la plateforme -->
-  <section class="stats-bar">
+  <section class="stats-bar" aria-label="Statistiques de la communauté">
     <div class="stat-item">
       <span id="view-count" class="stat-number">0</span>
       <span class="stat-label">Visites de la page</span>
@@ -74,19 +81,19 @@
       <p class="section-desc">Participez à nos sessions interactives pour développer vos compétences.</p>
       
       <div class="events-grid">
-        <div class="event-item">
+        <article class="event-item">
           <span class="event-badge live">Live Débat</span>
           <h3>L'Indépendance Économique de la Jeunesse</h3>
           <p class="event-date">dimanche • 20h00 GMT</p>
           <p class="event-desc">Comment transformer une idée locale en une entreprise prospère et indépendante.</p>
-        </div>
+        </article>
 
-        <div class="event-item">
+        <article class="event-item">
           <span class="event-badge formation">Formation</span>
           <h3>Esprit Maître : Leadership & Vision</h3>
           <p class="event-date">Vendredi • 19h00 GMT</p>
           <p class="event-desc">Les piliers mentaux pour surmonter les obstacles et agir en créateur.</p>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -96,18 +103,18 @@
       <p class="section-desc">Des lectures fondamentales pour éduquer et élever la pensée.</p>
       
       <div class="library-grid">
-        <div class="book-card">
-          <h4>Développement Personnel</h4>
+        <article class="book-card">
+          <h3>Développement Personnel</h3>
           <p>Techniques d'organisation, maîtrise de soi et discipline au quotidien.</p>
-        </div>
-        <div class="book-card">
-          <h4>Entrepreneuriat & Finance</h4>
+        </article>
+        <article class="book-card">
+          <h3>Entrepreneuriat & Finance</h3>
           <p>Stratégies pour créer des richesses et gérer ses ressources en Afrique.</p>
-        </div>
-        <div class="book-card">
-          <h4>Pensée & Panafricanisme</h4>
+        </article>
+        <article class="book-card">
+          <h3>Pensée & Panafricanisme</h3>
           <p>Histoire, souveraineté et vision pour le continent africain.</p>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -142,7 +149,7 @@
         <button type="submit" class="btn-submit">Valider mon adhésion</button>
       </form>
 
-      <div id="confirmation-msg" class="hidden-msg">
+      <div id="confirmation-msg" class="hidden-msg" role="status">
         🎉 Félicitations ! Bienvenue dans l'Esprit Maître. Vous êtes maintenant enregistré.
       </div>
     </section>
@@ -152,9 +159,9 @@
       <h2>🌐 Rejoindre nos Canaux Officiels</h2>
       <p class="section-desc">Restez informé des prochains lives et échangez avec les autres membres :</p>
       <div class="social-buttons">
-        <a href="#" class="btn-social whatsapp" target="_blank">Groupe WhatsApp</a>
-        <a href="#" class="btn-social telegram" target="_blank">Canal Telegram</a>
-        <a href="#" class="btn-social youtube" target="_blank">Chaîne YouTube</a>
+        <a href="#" class="btn-social whatsapp" target="_blank" rel="noopener">Groupe WhatsApp</a>
+        <a href="#" class="btn-social telegram" target="_blank" rel="noopener">Canal Telegram</a>
+        <a href="#" class="btn-social youtube" target="_blank" rel="noopener">Chaîne YouTube</a>
       </div>
     </section>
 
@@ -162,14 +169,14 @@
     <section id="faq" class="card faq-card">
       <h2>❓ Foire Aux Questions (FAQ)</h2>
       
-      <div class="faq-item">
-        <h4>Comment participer aux Lives et Débats ?</h4>
+      <article class="faq-item">
+        <h3>Comment participer aux Lives et Débats ?</h3>
         <p>Les liens d'accès aux salons sont partagés en priorité dans nos groupes WhatsApp et Telegram 15 minutes avant le début.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Les formations sont-elles gratuites ?</h4>
+      </article>
+      <article class="faq-item">
+        <h3>Les formations sont-elles gratuites ?</h3>
         <p>Oui, notre mission est de démocratiser l'accès au savoir pour bâtir des leaders conscients et autonomes.</p>
-      </div>
+      </article>
     </section>
 
     <!-- Espace Gestionnaire / Administration -->
@@ -185,6 +192,6 @@
     <p>&copy; DO WHAT YOU WANT AND BE — Bâtir une Afrique forte, libre et indépendante.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
