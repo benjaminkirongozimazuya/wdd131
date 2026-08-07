@@ -7,7 +7,7 @@
   --accent-gold: #FF8C00;         
   --accent-gold-hover: #E07B00;   
   
-  /* Couleurs de texte ajustées pour la lisibilité (WCAG AA) */
+  /* Couleurs de texte pour la lisibilité */
   --text-main: #ffffff;
   --text-muted: #adbac7; 
   --border-color: #2d3748;
@@ -49,22 +49,26 @@ body {
   align-items: center;
 }
 
-/* Style du Logo */
+/* Style et Agrandissement du Logo */
 .nav-logo {
   display: flex;
   align-items: center;
   gap: 12px;
   color: var(--text-main);
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   text-decoration: none;
 }
 
 .logo-img {
-  height: 38px;
+  height: 60px; /* Taille agrandie pour la visibilité */
   width: auto;
   object-fit: contain;
-  border-radius: 4px;
+  transition: transform 0.3s ease; /* Animation au survol */
+}
+
+.logo-img:hover {
+  transform: scale(1.15); /* Effet d'agrandissement dynamique */
 }
 
 .nav-logo span {
@@ -235,7 +239,7 @@ body {
   margin-bottom: 5px;
 }
 
-/* Style Section Fondateurs */
+/* Section Fondateurs */
 .founders-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -253,12 +257,17 @@ body {
 }
 
 .founder-img {
-  width: 90px;
-  height: 90px;
+  width: 95px;
+  height: 95px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--accent-gold);
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.founder-card:hover .founder-img {
+  transform: scale(1.08); /* Légère animation sur la photo */
 }
 
 .founder-info h3 {
@@ -489,9 +498,11 @@ footer {
   border-top: 1px solid var(--border-color);
 }
 
+/* Adaptabilité Mobiles et Tablettes */
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .main-title { font-size: 1.8rem; }
   .card { padding: 20px; }
   .founder-card { flex-direction: column; text-align: center; }
+  .logo-img { height: 48px; }
 }
