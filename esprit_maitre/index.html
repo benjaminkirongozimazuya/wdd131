@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DO WHAT YOU WANT AND BE | Esprit Maître</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">DO WHAT YOU WANT <span>AND BE</span></a>
+      <ul class="nav-links">
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#events">Lives & Formations</a></li>
+        <li><a href="#library">Bibliothèque</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#join" class="btn-nav">Rejoindre</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- En-tête / Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1 class="main-title">DO WHAT YOU WANT AND BE</h1>
+      <p class="sub-title">Fais ce que tu veux et Sois</p>
+      <p class="tagline">"Tout est possible. Rejoins l’Esprit Maître."</p>
+      <div class="hero-buttons">
+        <a href="#join" class="btn-primary">Rejoindre la communauté</a>
+        <a href="#events" class="btn-outline">Voir les prochains Lives</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Statistiques de la plateforme -->
+  <section class="stats-bar">
+    <div class="stat-item">
+      <span id="view-count" class="stat-number">0</span>
+      <span class="stat-label">Visites de la page</span>
+    </div>
+    <div class="stat-item">
+      <span id="member-count" class="stat-number">0</span>
+      <span class="stat-label">Membres Adhérents</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">100%</span>
+      <span class="stat-label">Engagement Afrique Libre</span>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <!-- Présentation & Mission -->
+    <section id="mission" class="card mission-card">
+      <h2>À propos de notre Communauté</h2>
+      <p class="intro-text">
+        Nous sommes une communauté de penseurs, de créateurs et d’entrepreneurs.
+      </p>
+      <div class="mission-box">
+        <h3>Notre Mission</h3>
+        <p>Éduquer, Motiver et Passer à l’action pour une Afrique libre, indépendante et prospère.</p>
+      </div>
+      <p class="details-text">
+        À travers des lives, des débats et des formations, nous bâtissons des leaders avec une vision clairvoyante et panafricaine.
+      </p>
+    </section>
+
+    <!-- Section Prochains Lives & Formations -->
+    <section id="events" class="card events-card">
+      <h2>📅 Prochains Lives & Formations</h2>
+      <p class="section-desc">Participez à nos sessions interactives pour développer vos compétences.</p>
+      
+      <div class="events-grid">
+        <div class="event-item">
+          <span class="event-badge live">Live Débat</span>
+          <h3>L'Indépendance Économique de la Jeunesse</h3>
+          <p class="event-date">dimanche • 20h00 GMT</p>
+          <p class="event-desc">Comment transformer une idée locale en une entreprise prospère et indépendante.</p>
+        </div>
+
+        <div class="event-item">
+          <span class="event-badge formation">Formation</span>
+          <h3>Esprit Maître : Leadership & Vision</h3>
+          <p class="event-date">Vendredi • 19h00 GMT</p>
+          <p class="event-desc">Les piliers mentaux pour surmonter les obstacles et agir en créateur.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bibliothèque de la Communauté -->
+    <section id="library" class="card library-card">
+      <h2>📚 La Bibliothèque de l'Esprit Maître</h2>
+      <p class="section-desc">Des lectures fondamentales pour éduquer et élever la pensée.</p>
+      
+      <div class="library-grid">
+        <div class="book-card">
+          <h4>Développement Personnel</h4>
+          <p>Techniques d'organisation, maîtrise de soi et discipline au quotidien.</p>
+        </div>
+        <div class="book-card">
+          <h4>Entrepreneuriat & Finance</h4>
+          <p>Stratégies pour créer des richesses et gérer ses ressources en Afrique.</p>
+        </div>
+        <div class="book-card">
+          <h4>Pensée & Panafricanisme</h4>
+          <p>Histoire, souveraineté et vision pour le continent africain.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulaire d'adhésion -->
+    <section id="join" class="card form-card">
+      <h2>Formulaire d'Adhésion</h2>
+      <p class="section-desc">Rejoins-nous dès aujourd'hui et intègre nos canaux d'échange privilégiés.</p>
+      
+      <form id="signup-form">
+        <div class="form-group">
+          <label for="fullname">Nom complet</label>
+          <input type="text" id="fullname" placeholder="Ex: Jean Mukendi" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Adresse E-mail</label>
+          <input type="email" id="email" placeholder="Ex: exemple@mail.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Numéro WhatsApp / Téléphone</label>
+          <input type="tel" id="phone" placeholder="Ex: +243 ..." required>
+        </div>
+        <div class="form-group">
+          <label for="role">Domaine d'intérêt principal</label>
+          <select id="role" required>
+            <option value="" disabled selected>Sélectionne ton domaine</option>
+            <option value="Entrepreneuriat">Entrepreneuriat</option>
+            <option value="Création de contenu">Création de contenu</option>
+            <option value="Penseur / Débatteur">Penseur / Débatteur</option>
+            <option value="Formation">Formation & Apprentissage</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">Valider mon adhésion</button>
+      </form>
+
+      <div id="confirmation-msg" class="hidden-msg">
+        🎉 Félicitations ! Bienvenue dans l'Esprit Maître. Vous êtes maintenant enregistré.
+      </div>
+    </section>
+
+    <!-- Canaux de la Communauté -->
+    <section class="card community-links-card">
+      <h2>🌐 Rejoindre nos Canaux Officiels</h2>
+      <p class="section-desc">Restez informé des prochains lives et échangez avec les autres membres :</p>
+      <div class="social-buttons">
+        <a href="#" class="btn-social whatsapp" target="_blank">Groupe WhatsApp</a>
+        <a href="#" class="btn-social telegram" target="_blank">Canal Telegram</a>
+        <a href="#" class="btn-social youtube" target="_blank">Chaîne YouTube</a>
+      </div>
+    </section>
+
+    <!-- Section FAQ -->
+    <section id="faq" class="card faq-card">
+      <h2>❓ Foire Aux Questions (FAQ)</h2>
+      
+      <div class="faq-item">
+        <h4>Comment participer aux Lives et Débats ?</h4>
+        <p>Les liens d'accès aux salons sont partagés en priorité dans nos groupes WhatsApp et Telegram 15 minutes avant le début.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Les formations sont-elles gratuites ?</h4>
+        <p>Oui, notre mission est de démocratiser l'accès au savoir pour bâtir des leaders conscients et autonomes.</p>
+      </div>
+    </section>
+
+    <!-- Espace Gestionnaire / Administration -->
+    <section class="card admin-card">
+      <h2>Espace Gestion des Adhésions</h2>
+      <p class="section-desc">Exporter la liste locale des membres enregistrés pour votre suivi Excel.</p>
+      <button id="export-btn" class="btn-secondary">Télécharger la liste (CSV / Excel)</button>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; DO WHAT YOU WANT AND BE — Bâtir une Afrique forte, libre et indépendante.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
