@@ -38,7 +38,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 15px 20px;
+  padding: 12px 20px;
 }
 
 .nav-container {
@@ -49,11 +49,22 @@ body {
   align-items: center;
 }
 
+/* Style du Logo */
 .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   color: var(--text-main);
   font-weight: 800;
   font-size: 1.1rem;
   text-decoration: none;
+}
+
+.logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 4px;
 }
 
 .nav-logo span {
@@ -222,6 +233,51 @@ body {
 .mission-box h3 {
   color: var(--accent-gold);
   margin-bottom: 5px;
+}
+
+/* Style Section Fondateurs */
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.founder-card {
+  background-color: var(--inner-bg);
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.founder-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.founder-info h3 {
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.founder-role {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--accent-gold);
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.founder-bio {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.4;
 }
 
 /* Formations & Lives Grid */
@@ -437,4 +493,5 @@ footer {
   .nav-links { display: none; }
   .main-title { font-size: 1.8rem; }
   .card { padding: 20px; }
+  .founder-card { flex-direction: column; text-align: center; }
 }
