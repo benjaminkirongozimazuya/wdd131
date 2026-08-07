@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("signup-form");
   const confirmMsg = document.getElementById("confirmation-msg");
 
-  // OPTIONNEL : Lien Google Apps Script pour synchronisation Google Sheets
+  // OPTIONNEL : Lien Google Apps Script pour la synchronisation Google Sheets
   const GOOGLE_SCRIPT_URL = ""; 
 
   form.addEventListener("submit", (e) => {

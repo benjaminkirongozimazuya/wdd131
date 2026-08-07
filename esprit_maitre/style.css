@@ -274,12 +274,60 @@ body {
   border: 1px solid var(--border-color);
   padding: 20px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  background-color: #21262d;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
 .book-card h3 {
-  color: var(--accent-gold);
+  color: #ffffff;
   font-size: 1.1rem;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+.book-author {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.book-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.btn-book {
+  display: block;
+  text-align: center;
+  background-color: var(--inner-bg);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  padding: 9px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.btn-book:hover {
+  background-color: var(--accent-gold);
+  color: #000;
 }
 
 /* Formulaire d'adhésion */
