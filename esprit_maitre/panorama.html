@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panorama & Diversité — DO WHAT YOU WANT AND BE</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .panorama-slider {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 480px;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      margin-top: 20px;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide-caption {
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      padding: 25px 30px;
+      width: 100%;
+      border-top: 2px solid var(--accent-gold, #b45309);
+    }
+
+    .slide-caption h3 {
+      font-size: 1.6rem;
+      color: #fde68a;
+      margin-bottom: 8px;
+    }
+
+    .slide-caption p {
+      font-size: 1.05rem;
+      color: #f1f5f9;
+      max-width: 900px;
+    }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 20px;
+      right: 25px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .dot.active {
+      background: var(--accent-gold, #b45309);
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="Logo Esprit Maître" class="logo-img">
+        <span>DO WHAT YOU WANT AND BE</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Vision</a></li>
+        <li><a href="meetings.html">Meetings</a></li>
+        <li><a href="bibliotheque.html">Bibliothèque</a></li>
+        <li><a href="panorama.html" class="active">Panorama</a></li>
+        <li><a href="rejoindre.html" class="btn-nav">Rejoindre</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contenu Principal -->
+  <main class="container page-padding">
+    <section class="card">
+      <h2>Panorama de la Coopération Mondiale</h2>
+      <p class="section-desc">Une union pluriculturelle de penseurs, scientifiques, dirigeants et visionnaires issus de tous les continents.</p>
+
+      <!-- Diaporama Automatique -->
+      <div class="panorama-slider" id="panorama-slider">
+        
+        <!-- Slide 1 : Afrique / Leadership -->
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🌍 Leadership & Coopération Africaine</h3>
+            <p>Mobiliser la jeunesse et les experts africains pour la souveraineté intellectuelle, l'innovation locale et l'émancipation collective.</p>
+          </div>
+        </div>
+
+        <!-- Slide 2 : Asie / Innovation & Technologie -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>💡 Expertise Technologique Internationale</h3>
+            <p>Intégrer les avancées scientifiques et l'intelligence artificielle au service de la gouvernance éthique et globale.</p>
+          </div>
+        </div>
+
+        <!-- Slide 3 : Diversité des Amériques & Caraïbes / Débat Stratégique -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🤝 Diversité des Compétences & Débats</h3>
+            <p>Unir des professionnels d'horizons variés pour élaborer des chartes, réformes et stratégies géopolitiques équitables.</p>
+          </div>
+        </div>
+
+        <!-- Slide 4 : Europe & Eurasie / Éducation & Savoir -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🎓 Éducation Sans Frontières</h3>
+            <p>Promouvoir le partage universel du savoir, de la rigueur d'analyse et de l'auto-discipline professionnelle.</p>
+          </div>
+        </div>
+
+        <!-- Slide 5 : Océanie & Régions Insulaires / Développement Durable -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🌱 Responsabilité Environnementale Globale</h3>
+            <p>Protéger les écosystèmes et assurer une transition énergétique équitable pour l'ensemble des nations.</p>
+          </div>
+        </div>
+
+        <!-- Slide 6 : Sommet International / Unification des Pensées -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🕊️ Unité & Transformation Sociale</h3>
+            <p>Bâtir une synergie internationale où chaque nation et chaque culture contribue activement à la paix et au progrès.</p>
+          </div>
+        </div>
+
+        <div class="slider-dots" id="slider-dots"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const slides = document.querySelectorAll(".slide");
+      const dotsContainer = document.getElementById("slider-dots");
+      let currentIndex = 0;
+
+      slides.forEach((_, index) => {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        if (index === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = document.querySelectorAll(".dot");
+
+      function goToSlide(index) {
+        slides[currentIndex].classList.remove("active");
+        dots[currentIndex].classList.remove("active");
+        
+        currentIndex = index;
+        
+        slides[currentIndex].classList.add("active");
+        dots[currentIndex].classList.add("active");
+      }
+
+      function nextSlide() {
+        let nextIndex = (currentIndex + 1) % slides.length;
+        goToSlide(nextIndex);
+      }
+
+      setInterval(nextSlide, 4500);
+    });
+  </script>
+</body>
+</html>
