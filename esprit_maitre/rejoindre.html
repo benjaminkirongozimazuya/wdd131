@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rejoindre — DO WHAT YOU WANT AND BE</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.svg" alt="Logo Esprit Maître" class="logo-img">
+        <span>DO WHAT YOU WANT AND BE</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Vision</a></li>
+        <li><a href="meetings.html">Meetings</a></li>
+        <li><a href="bibliotheque.html">Bibliothèque</a></li>
+        <li><a href="rejoindre.html" class="active btn-nav">Rejoindre</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Bandeau Défilant d'Informations Mondiales -->
+  <div class="news-ticker-container">
+    <div class="ticker-label">
+      <i class="fa-solid fa-globe"></i> MONDE
+    </div>
+    <div class="ticker-wrapper">
+      <div class="ticker-content">
+        <span class="ticker-item">🌍 <strong>Économie :</strong> Alignement mondial vers les énergies renouvelables et l'innovation technologique.</span>
+        <span class="ticker-item">💡 <strong>Technologie :</strong> Développement des solutions numériques et de l'intelligence artificielle accessible à tous.</span>
+        <span class="ticker-item">🎓 <strong>Éducation :</strong> Expansion des programmes de formation en ligne et certificats professionnels.</span>
+        <span class="ticker-item">🌱 <strong>Environnement :</strong> Renforcement des initiatives durables pour le climat et la biodiversité.</span>
+        <span class="ticker-item">📈 <strong>Marchés :</strong> Stabilité des échanges commerciaux et croissance du secteur technologique.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="container page-padding">
+    <section class="card form-card">
+      <h2>Rejoindre la Coopération des Penseurs</h2>
+      <p class="section-desc">
+        <strong>Critères d'éligibilité :</strong> Maturité (30 ans et plus ou équivalent), diplôme d'études secondaires minimum et respect du socle éthique de la plateforme.
+      </p>
+
+      <form id="rejoindre-form" class="main-form">
+        
+        <!-- Informations Personnelles -->
+        <div class="form-group">
+          <label for="user-fullname">Nom Complet *</label>
+          <input type="text" id="user-fullname" placeholder="Votre nom et prénom" required>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="user-email">Adresse Email *</label>
+            <input type="email" id="user-email" placeholder="votre.email@exemple.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="user-age">Âge *</label>
+            <input type="number" id="user-age" min="18" placeholder="Ex: 32" required>
+          </div>
+        </div>
+
+        <!-- Profil Professionnel -->
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="user-education">Niveau d'Études Minimum *</label>
+            <select id="user-education" required>
+              <option value="">-- Sélectionnez votre niveau --</option>
+              <option value="secondaire">Diplôme d'Études Secondaires (Bac / A2)</option>
+              <option value="graduat">Bachelor / Licencié / Graduat</option>
+              <option value="master">Master / Maîtrise</option>
+              <option value="doctorat">Doctorat / Ph.D.</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="user-domain">Domaine d'Expertise Principal *</label>
+            <select id="user-domain" required>
+              <option value="sécurité">Sécurité & Géopolitique</option>
+              <option value="économie">Économie & Finance</option>
+              <option value="technologie">Technologie & Innovation</option>
+              <option value="éducation">Éducation & Leadership</option>
+              <option value="autre">Autre domaine stratégique</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Motivation -->
+        <div class="form-group">
+          <label for="user-motivation">Votre Vision & Motivation *</label>
+          <textarea id="user-motivation" rows="4" placeholder="Expliquez brièvement en quoi vos réflexions ou compétences contribueront aux objectifs du mouvement..." required></textarea>
+        </div>
+
+        <!-- Engagement Éthique -->
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="ethical-agree" required>
+          <label for="ethical-agree">Je certifie l'exactitude de ces informations et m'engage à respecter le socle éthique de la plateforme.</label>
+        </div>
+
+        <button type="submit" class="btn-primary btn-block">Soumettre ma Candidature</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <h3>LIENS RAPIDES</h3>
+        <ul>
+          <li><a href="index.html">Accueil & Vision</a></li>
+          <li><a href="meetings.html">Meetings & Services</a></li>
+          <li><a href="bibliotheque.html">Bibliothèque</a></li>
+          <li><a href="rejoindre.html">Adhésion & Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-brand align-right">
+        <h2>DO WHAT YOU WANT AND BE</h2>
+        <p>Plateforme internationale d'unification des pensées et de mise en pratique d'idées novatrices.</p>
+        
+        <div class="social-icons flex-end">
+          <a href="#" class="social-btn facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn twitter" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn linkedin" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="social-btn tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 DO WHAT YOU WANT AND BE — Tous droits réservés.
+    </div>
+  </footer>
+
+</body>
+</html>
