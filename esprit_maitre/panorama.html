@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panorama & Diversité — DO WHAT YOU WANT AND BE</title>
+  <title>Panorama Stratégique — DO WHAT YOU WANT AND BE</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -25,7 +25,7 @@
       width: 100%;
       height: 100%;
       opacity: 0;
-      transition: opacity 1.2s ease-in-out;
+      transition: opacity 1s ease-in-out;
       background-size: cover;
       background-position: center;
       display: flex;
@@ -37,47 +37,67 @@
     }
 
     .slide-caption {
-      background: rgba(15, 23, 42, 0.88);
+      background: rgba(15, 23, 42, 0.90);
       backdrop-filter: blur(8px);
       color: #ffffff;
       padding: 25px 30px;
       width: 100%;
-      border-top: 2px solid var(--accent-gold, #b45309);
+      border-top: 3px solid var(--accent-gold, #b45309);
     }
 
     .slide-caption h3 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: #fde68a;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .slide-caption p {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: #f1f5f9;
       max-width: 900px;
+      line-height: 1.5;
     }
 
-    .slider-dots {
+    /* Compteur et puces */
+    .slider-controls {
       position: absolute;
       bottom: 20px;
       right: 25px;
       display: flex;
-      gap: 10px;
+      align-items: center;
+      gap: 15px;
       z-index: 10;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 6px 15px;
+      border-radius: 20px;
+    }
+
+    .slide-counter {
+      color: #fde68a;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .slider-dots {
+      display: flex;
+      gap: 6px;
+      max-width: 200px;
+      overflow-x: auto;
     }
 
     .dot {
-      width: 13px;
-      height: 13px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.4);
       cursor: pointer;
+      flex-shrink: 0;
       transition: background 0.3s ease, transform 0.2s ease;
     }
 
     .dot.active {
-      background: var(--accent-gold, #b45309);
-      transform: scale(1.2);
+      background: var(--accent-gold, #f59e0b);
+      transform: scale(1.3);
     }
   </style>
 </head>
@@ -103,71 +123,191 @@
   <!-- Contenu Principal -->
   <main class="container page-padding">
     <section class="card">
-      <h2>Panorama de la Coopération Mondiale</h2>
-      <p class="section-desc">Une union pluriculturelle de penseurs, scientifiques, dirigeants et visionnaires issus de tous les continents.</p>
+      <h2>Panorama Stratégique & Mouvement Global</h2>
+      <p class="section-desc">20 axes fondamentaux illustrant notre vision, notre engagement pluriculturel et notre quête d'excellence.</p>
 
-      <!-- Diaporama Automatique -->
+      <!-- Diaporama Carrousel de 20 Photos -->
       <div class="panorama-slider" id="panorama-slider">
         
-        <!-- Slide 1 : Afrique / Leadership -->
+        <!-- Photo 1 -->
         <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1600&auto=format&fit=crop');">
           <div class="slide-caption">
-            <h3>🌍 Leadership & Coopération Africaine</h3>
-            <p>Mobiliser la jeunesse et les experts africains pour la souveraineté intellectuelle, l'innovation locale et l'émancipation collective.</p>
+            <h3>🌍 1. Leadership & Souveraineté Africaine</h3>
+            <p>Mobiliser la jeunesse et l'élite intellectuelle pour bâtir l'autonomie stratégique et économique du continent.</p>
           </div>
         </div>
 
-        <!-- Slide 2 : Asie / Innovation & Technologie -->
+        <!-- Photo 2 -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop');">
           <div class="slide-caption">
-            <h3>💡 Expertise Technologique Internationale</h3>
-            <p>Intégrer les avancées scientifiques et l'intelligence artificielle au service de la gouvernance éthique et globale.</p>
+            <h3>💡 2. Expertise Technologique & IA</h3>
+            <p>Mettre le numérique, la science des données et l'intelligence artificielle au service de la résolution des défis complexes.</p>
           </div>
         </div>
 
-        <!-- Slide 3 : Diversité des Amériques & Caraïbes / Débat Stratégique -->
+        <!-- Photo 3 -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop');">
           <div class="slide-caption">
-            <h3>🤝 Diversité des Compétences & Débats</h3>
-            <p>Unir des professionnels d'horizons variés pour élaborer des chartes, réformes et stratégies géopolitiques équitables.</p>
+            <h3>🤝 3. Synergie Pluriculturelle</h3>
+            <p>Unir les compétences d'Afrique, d'Asie, des Amériques et d'Europe dans un esprit d'égalité et de respect mutuel.</p>
           </div>
         </div>
 
-        <!-- Slide 4 : Europe & Eurasie / Éducation & Savoir -->
+        <!-- Photo 4 -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1600&auto=format&fit=crop');">
           <div class="slide-caption">
-            <h3>🎓 Éducation Sans Frontières</h3>
-            <p>Promouvoir le partage universel du savoir, de la rigueur d'analyse et de l'auto-discipline professionnelle.</p>
+            <h3>🎓 4. Éducation & Auto-Discipline</h3>
+            <p>Promouvoir la rigueur académique et la formation continue pour forgeur des esprits maîtres et éclairés.</p>
           </div>
         </div>
 
-        <!-- Slide 5 : Océanie & Régions Insulaires / Développement Durable -->
+        <!-- Photo 5 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🔬 5. Femmes de Science & Innovation</h3>
+            <p>Valoriser le rôle central des chercheuses et ingénieures dans le développement scientifique mondial.</p>
+          </div>
+        </div>
+
+        <!-- Photo 6 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>📚 6. Transmission & Mentorat</h3>
+            <p>Accompagner les nouvelles générations en leur transmettant les outils de la réussite et de la réflexion critique.</p>
+          </div>
+        </div>
+
+        <!-- Photo 7 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>⚖️ 7. Gouvernance & Audit Rigoureux</h3>
+            <p>Instaurer la culture de la transparence, du suivi de projet et de la responsabilité dans les institutions.</p>
+          </div>
+        </div>
+
+        <!-- Photo 8 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>📖 8. Recherche & Analyse Géopolitique</h3>
+            <p>Étudier les dynamiques internationales pour anticiper les mutations économiques et sociales.</p>
+          </div>
+        </div>
+
+        <!-- Photo 9 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🌱 9. Solidarité & Impact Communautaire</h3>
+            <p>Agir sur le terrain pour améliorer durablement les conditions de vie des populations localement.</p>
+          </div>
+        </div>
+
+        <!-- Photo 10 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🦅 10. Vision & Determination</h3>
+            <p>Cultiver un état d'esprit résilient capable d'surmonter les obstacles et de concrétiser les grands projets.</p>
+          </div>
+        </div>
+
+        <!-- Photo 11 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>💻 11. Développement Logiciel Souverain</h3>
+            <p>Créer nos propres outils numériques pour garantir la confidentialité et l'indépendance informatique.</p>
+          </div>
+        </div>
+
+        <!-- Photo 12 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🏛️ 12. Forums & Débats Stratégiques</h3>
+            <p>Offrir une tribune libre d'échanges constructifs où chaque idée innovante est analysée avec rigueur.</p>
+          </div>
+        </div>
+
+        <!-- Photo 13 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1573497019236-17f8177b81e8?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🧪 13. Progrès Médical & Santé Publique</h3>
+            <p>Soutenir la recherche biomédicale et l'accès universel aux soins de qualité.</p>
+          </div>
+        </div>
+
+        <!-- Photo 14 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🧠 14. Pensée Indépendante & Esprit Critique</h3>
+            <p>Encourager l'autonomie intellectuelle face aux dogmes et à la désinformation.</p>
+          </div>
+        </div>
+
+        <!-- Photo 15 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>💼 15. Partenariats Économiques Équitables</h3>
+            <p>Négocier des alliances fondées sur la valeur réelle et le respect des intérêts réciproques.</p>
+          </div>
+        </div>
+
+        <!-- Photo 16 -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1600&auto=format&fit=crop');">
           <div class="slide-caption">
-            <h3>🌱 Responsabilité Environnementale Globale</h3>
-            <p>Protéger les écosystèmes et assurer une transition énergétique équitable pour l'ensemble des nations.</p>
+            <h3>🌿 16. Protection de l'Environnement</h3>
+            <p>Préserver nos richesses naturelles, forêts et ressources minières dans une optique durable.</p>
           </div>
         </div>
 
-        <!-- Slide 6 : Sommet International / Unification des Pensées -->
+        <!-- Photo 17 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>🚀 17. Entrepreneuriat & Création de Valeur</h3>
+            <p>Soutenir l'initiative privée et la création d'entreprises à fort potentiel de croissance.</p>
+          </div>
+        </div>
+
+        <!-- Photo 18 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>👥 18. Dynamique de Réseau & Communauté</h3>
+            <p>Construire une fraternité intellectuelle solide interconnectée à travers le monde.</p>
+          </div>
+        </div>
+
+        <!-- Photo 19 -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1600&auto=format&fit=crop');">
+          <div class="slide-caption">
+            <h3>📈 19. Organisation & Gestion Méticuleuse</h3>
+            <p>Appliquer des méthodes structurées pour transformer les concepts en résultats mesurables.</p>
+          </div>
+        </div>
+
+        <!-- Photo 20 -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop');">
           <div class="slide-caption">
-            <h3>🕊️ Unité & Transformation Sociale</h3>
-            <p>Bâtir une synergie internationale où chaque nation et chaque culture contribue activement à la paix et au progrès.</p>
+            <h3>🕊️ 20. Paix & Progrès de l'Humanité</h3>
+            <p>Contribuer activement à un monde plus juste, prospère et pacifique pour tous.</p>
           </div>
         </div>
 
-        <div class="slider-dots" id="slider-dots"></div>
+        <!-- Contrôles et Compteur -->
+        <div class="slider-controls">
+          <span class="slide-counter" id="slide-counter">1 / 20</span>
+          <div class="slider-dots" id="slider-dots"></div>
+        </div>
+
       </div>
     </section>
   </main>
 
+  <!-- Script d'animation -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const slides = document.querySelectorAll(".slide");
       const dotsContainer = document.getElementById("slider-dots");
+      const counter = document.getElementById("slide-counter");
       let currentIndex = 0;
 
+      // Génération des 20 puces
       slides.forEach((_, index) => {
         const dot = document.createElement("div");
         dot.classList.add("dot");
@@ -186,6 +326,12 @@
         
         slides[currentIndex].classList.add("active");
         dots[currentIndex].classList.add("active");
+        
+        // Mise à jour du compteur (ex: 5 / 20)
+        counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+
+        // Scroll automatique des puces
+        dots[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
 
       function nextSlide() {
@@ -193,6 +339,7 @@
         goToSlide(nextIndex);
       }
 
+      // Changement automatique toutes les 4.5 secondes
       setInterval(nextSlide, 4500);
     });
   </script>
