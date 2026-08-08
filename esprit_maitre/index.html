@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Correctif SEO -->
   <title>DO WHAT YOU WANT AND BE — Vision & Fondateurs</title>
+  <meta name="description" content="Plateforme internationale d'unification des pensées, de réflexion stratégique et d'actions concrètes pour le développement global.">
+
+  <!-- Optimization LCP : Préchargement de l'image de fond Hero -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop" fetchpriority="high">
+
+  <!-- Style CSS Principal -->
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Chargement Asynchrone des Icônes FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 </head>
 <body>
 
@@ -13,7 +24,8 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
-        <img src="images/logo.png" alt="Logo Esprit Maître" class="logo-img">
+        <!-- Image du Logo avec dimensions explicites pour la vitesse -->
+        <img src="images/logo.svg" alt="Logo DO WHAT YOU WANT AND BE" class="logo-img" width="45" height="45">
         <span>DO WHAT YOU WANT AND BE</span>
       </a>
       <ul class="nav-links">
@@ -25,7 +37,7 @@
     </div>
   </nav>
 
-  <!-- Bandeau Défilant d'Informations Mondiales -->
+  <!-- Bandeau Défilant -->
   <div class="news-ticker-container">
     <div class="ticker-label">
       <i class="fa-solid fa-globe"></i> MONDE
@@ -41,7 +53,7 @@
     </div>
   </div>
 
-  <!-- Hero Section avec Photo de Fond -->
+  <!-- Hero Section -->
   <header class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -77,8 +89,8 @@
 
   <!-- Contenu Principal -->
   <main class="container">
-
-    <!-- Vision & Manifeste -->
+    
+    <!-- Vision Section -->
     <section id="vision" class="card">
       <h2>Vision & Préambule Mondial</h2>
       <p class="section-desc">Une coopération internationale de penseurs engagés pour la libération d'idées novatrices, la souveraineté des nations et l'émancipation collective.</p>
@@ -91,14 +103,15 @@
       </div>
     </section>
 
-    <!-- Section Fondateurs -->
+    <!-- Fondateurs Section avec Photos Réelles -->
     <section class="card">
       <h2>Nos Fondateurs & Penseurs</h2>
       <p class="section-desc">Initiateurs du mouvement pour le rassemblement des compétences et la transformation positive.</p>
 
       <div class="founders-grid">
+        <!-- Card Fondateur Principal -->
         <div class="founder-card">
-          <img src="images/profile.png" alt="Fondateur" class="founder-img">
+          <img src="images/fondateur.jpg" alt="Photo du Fondateur Principal" class="founder-img" width="80" height="80" loading="lazy">
           <div class="founder-info">
             <h3>Fondateur Principal</h3>
             <span class="founder-role">Initiateur du Projet & Visionnaire</span>
@@ -106,8 +119,9 @@
           </div>
         </div>
 
+        <!-- Card Co-Fondateur -->
         <div class="founder-card">
-          <img src="images/profile.png" alt="Co-Fondateur" class="founder-img">
+          <img src="images/co-fondateur.jpg" alt="Photo du Co-Fondateur" class="founder-img" width="80" height="80" loading="lazy">
           <div class="founder-info">
             <h3>Co-Fondateur</h3>
             <span class="founder-role">Coordinateur des Programmes</span>
@@ -137,12 +151,12 @@
         <p>Plateforme internationale d'unification des pensées et de mise en pratique d'idées novatrices.</p>
         
         <div class="social-icons flex-end">
-          <a href="#" class="social-btn facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="social-btn twitter" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" class="social-btn instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="social-btn linkedin" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" class="social-btn whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="#" class="social-btn tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="social-btn facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn twitter" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn linkedin" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn whatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="social-btn tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
         </div>
       </div>
     </div>
