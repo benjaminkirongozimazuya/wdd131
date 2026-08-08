@@ -49,23 +49,23 @@
         <strong>Critères d'éligibilité :</strong> Maturité (30 ans et plus ou équivalent), diplôme d'études secondaires minimum et respect du socle éthique de la plateforme.
       </p>
 
-      <form id="rejoindre-form" class="main-form">
+      <form id="signup-form" class="main-form">
         
         <!-- Informations Personnelles -->
         <div class="form-group">
-          <label for="user-fullname">Nom Complet *</label>
-          <input type="text" id="user-fullname" placeholder="Votre nom et prénom" required>
+          <label for="fullname">Nom Complet *</label>
+          <input type="text" id="fullname" placeholder="Votre nom et prénom" required>
         </div>
 
         <div class="form-grid">
           <div class="form-group">
-            <label for="user-email">Adresse Email *</label>
-            <input type="email" id="user-email" placeholder="votre.email@exemple.com" required>
+            <label for="email">Adresse Email *</label>
+            <input type="email" id="email" placeholder="votre.email@exemple.com" required>
           </div>
 
           <div class="form-group">
-            <label for="user-age">Âge *</label>
-            <input type="number" id="user-age" min="18" placeholder="Ex: 32" required>
+            <label for="phone">Téléphone / WhatsApp *</label>
+            <input type="tel" id="phone" placeholder="+243..." required>
           </div>
         </div>
 
@@ -83,13 +83,14 @@
           </div>
 
           <div class="form-group">
-            <label for="user-domain">Domaine d'Expertise Principal *</label>
-            <select id="user-domain" required>
-              <option value="sécurité">Sécurité & Géopolitique</option>
-              <option value="économie">Économie & Finance</option>
-              <option value="technologie">Technologie & Innovation</option>
-              <option value="éducation">Éducation & Leadership</option>
-              <option value="autre">Autre domaine stratégique</option>
+            <label for="role">Domaine d'Expertise Principal *</label>
+            <select id="role" required>
+              <option value="">-- Sélectionnez votre domaine --</option>
+              <option value="Sécurité & Géopolitique">Sécurité & Géopolitique</option>
+              <option value="Économie & Finance">Économie & Finance</option>
+              <option value="Technologie & Innovation">Technologie & Innovation</option>
+              <option value="Éducation & Leadership">Éducation & Leadership</option>
+              <option value="Autre domaine stratégique">Autre domaine stratégique</option>
             </select>
           </div>
         </div>
@@ -107,7 +108,14 @@
         </div>
 
         <button type="submit" class="btn-primary btn-block">Soumettre ma Candidature</button>
+        <p id="confirmation-msg" style="display:none; color: #16a34a; font-weight: bold; margin-top: 15px; text-align: center;">
+          Votre candidature a été enregistrée avec succès !
+        </p>
       </form>
+
+      <div style="margin-top: 20px; text-align: center;">
+        <button id="export-btn" class="btn-outline" style="color: var(--accent-gold); border-color: var(--accent-gold);">Exporter la liste des inscrits (CSV)</button>
+      </div>
     </section>
   </main>
 
@@ -143,5 +151,6 @@
     </div>
   </footer>
 
+  <script src="script.js" defer></script>
 </body>
 </html>
