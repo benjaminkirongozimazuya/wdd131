@@ -323,3 +323,25 @@ button {
   vertical-align: middle;
   margin-right: 4px;
 }
+
+.btn-music {
+  margin-top: 12px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-music:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.03);
+}
+
+.btn-music:active {
+  transform: scale(0.97);
+}

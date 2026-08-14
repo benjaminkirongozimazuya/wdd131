@@ -9,11 +9,19 @@
 </head>
 <body>
 
+  <!-- Musique de fond -->
+  <!-- Remplacez "votre-musique.mp3" par le nom exact de votre fichier MP3 -->
+  <audio id="bg-music" src="votre-musique.mp3" loop preload="auto"></audio>
+
   <div class="main-wrapper">
     <div class="quiz-container">
       <header class="game-header">
         <h1>🧠 Quiz Master</h1>
         <p class="subtitle">10 Niveaux & Catégories Générales</p>
+        <!-- Bouton pour activer/désactiver la musique -->
+        <button id="music-toggle-btn" class="btn-music" onclick="toggleBackgroundMusic()">
+          🔊 Musique : ON
+        </button>
       </header>
 
       <!-- Écran de sélection principal -->

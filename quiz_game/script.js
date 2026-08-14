@@ -1,5 +1,40 @@
 // ==========================================
-// 1. SYSTÈME AUDIO (Web Audio API native)
+// 1. GESTION DE LA MUSIQUE DE FOND
+// ==========================================
+const bgMusic = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-toggle-btn');
+
+// Régler le volume à 20% pour ne pas masquer les effets sonores
+if (bgMusic) {
+  bgMusic.volume = 0.2;
+}
+
+function toggleBackgroundMusic() {
+  if (!bgMusic) return;
+
+  if (bgMusic.paused) {
+    bgMusic.play().then(() => {
+      if (musicBtn) musicBtn.innerHTML = '🔊 Musique : ON';
+    }).catch(err => console.log("Erreur lecture audio:", err));
+  } else {
+    bgMusic.pause();
+    if (musicBtn) musicBtn.innerHTML = '🔇 Musique : OFF';
+  }
+}
+
+// Lancement automatique au premier clic sur l'application
+document.addEventListener('click', function initMusicOnInteraction() {
+  if (bgMusic && bgMusic.paused) {
+    bgMusic.play().then(() => {
+      if (musicBtn) musicBtn.innerHTML = '🔊 Musique : ON';
+    }).catch(() => {});
+  }
+  document.removeEventListener('click', initMusicOnInteraction);
+}, { once: true });
+
+
+// ==========================================
+// 2. EFFETS SONORES (Web Audio API native)
 // ==========================================
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioCtx;
@@ -44,8 +79,9 @@ function playDefeatSound() {
   });
 }
 
+
 // ==========================================
-// 2. BANQUE DE DONNÉES - NIVEAUX (1 À 10)
+// 3. BANQUE DE DONNÉES - NIVEAUX (1 À 10)
 // ==========================================
 const levelsData = {
   1: [
@@ -110,8 +146,9 @@ const levelsData = {
   ]
 };
 
+
 // ==========================================
-// 3. BANQUE DE DONNÉES - CATÉGORIES
+// 4. BANQUE DE DONNÉES - CATÉGORIES
 // ==========================================
 const questionsData = {
   histoire: [
@@ -151,8 +188,9 @@ const questionsData = {
   ]
 };
 
+
 // ==========================================
-// 4. ÉTATS ET ÉLÉMENTS DU JEU
+// 5. ÉTATS ET LOGIQUE DU JEU
 // ==========================================
 let currentQuestions = [];
 let currentQuestionIndex = 0;
@@ -162,7 +200,6 @@ let currentStorageKey = "";
 let lastGameType = "";
 let lastTarget = "";
 
-// TIMER VARIABLES
 let timerInterval;
 const QUESTION_TIME_LIMIT = 15; // 15 secondes par question
 
@@ -231,9 +268,7 @@ function showQuestion() {
     btn.className = "btn-option";
     btn.innerText = option;
 
-    // Utilisation d'un listener 'click' standard
     btn.addEventListener("click", () => handleSelectOption(btn, option, q.answer));
-
     optionsContainer.appendChild(btn);
   });
 
@@ -260,7 +295,6 @@ function startTimer(correctAnswer) {
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      // Temps écoulé -> réponse manquée
       handleSelectOption(null, null, correctAnswer);
     }
   }, 100);
@@ -277,7 +311,6 @@ function handleSelectOption(selectedBtn, selectedOption, correctOption) {
     score += 10;
   } else {
     if (selectedBtn) selectedBtn.classList.add("wrong");
-    // Afficher la bonne réponse
     allBtns.forEach(btn => {
       if (btn.innerText === correctOption) {
         btn.classList.add("correct");
@@ -287,7 +320,6 @@ function handleSelectOption(selectedBtn, selectedOption, correctOption) {
 
   document.getElementById("coin-count").innerText = score;
 
-  // Pause d'une seconde pour observer la réponse avant la question suivante
   setTimeout(() => {
     currentQuestionIndex++;
     if (currentQuestionIndex < currentQuestions.length) {
