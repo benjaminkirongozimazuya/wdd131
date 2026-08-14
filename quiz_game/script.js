@@ -12,7 +12,7 @@ function initAudio() {
 
 function playVictorySound() {
   initAudio();
-  const notes = [261.63, 329.63, 392.00, 523.25]; // Accord Do Major (Ascendant)
+  const notes = [261.63, 329.63, 392.00, 523.25]; // Accord Do Majeur
   notes.forEach((freq, index) => {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
@@ -162,6 +162,10 @@ let currentStorageKey = "";
 let lastGameType = "";
 let lastTarget = "";
 
+// TIMER VARIABLES
+let timerInterval;
+const QUESTION_TIME_LIMIT = 15; // 15 secondes par question
+
 // GESTION DES ONGLETS
 function switchTab(tabName) {
   const levelsTab = document.getElementById("levels-tab");
@@ -209,19 +213,12 @@ function startQuiz(type, target) {
 }
 
 function showQuestion() {
+  clearInterval(timerInterval);
   const q = currentQuestions[currentQuestionIndex];
 
   document.getElementById("mode-indicator").innerText = currentModeTitle;
   document.getElementById("question-number").innerText = `Question ${currentQuestionIndex + 1} / ${currentQuestions.length}`;
-  
-  // Chemin d'accès mis à jour vers images/coin.png
-  const coinCountElem = document.getElementById("coin-count");
-  if (coinCountElem) {
-    coinCountElem.innerText = score;
-  } else {
-    document.getElementById("score-display").innerHTML = `<img src="images/coin.png" class="coin-img" alt="🪙"> ${score} Pièces`;
-  }
-
+  document.getElementById("coin-count").innerText = score;
   document.getElementById("question-text").innerText = q.question;
 
   const optionsContainer = document.getElementById("options-container");
@@ -233,36 +230,76 @@ function showQuestion() {
     const btn = document.createElement("button");
     btn.className = "btn-option";
     btn.innerText = option;
-    
-    let isClicked = false;
-    const handleSelect = (e) => {
-      if (isClicked) return;
-      isClicked = true;
-      e.preventDefault();
-      checkAnswer(option, q.answer);
-    };
 
-    btn.addEventListener("touchend", handleSelect, { passive: false });
-    btn.addEventListener("click", handleSelect);
+    // Utilisation d'un listener 'click' standard
+    btn.addEventListener("click", () => handleSelectOption(btn, option, q.answer));
 
     optionsContainer.appendChild(btn);
   });
+
+  startTimer(q.answer);
 }
 
-function checkAnswer(selected, correct) {
-  if (selected === correct) {
+function startTimer(correctAnswer) {
+  let timeLeft = QUESTION_TIME_LIMIT;
+  const timerBar = document.getElementById("timer-bar");
+  
+  timerBar.style.width = "100%";
+  timerBar.style.backgroundColor = "var(--secondary-color)";
+
+  timerInterval = setInterval(() => {
+    timeLeft -= 0.1;
+    const percentage = (timeLeft / QUESTION_TIME_LIMIT) * 100;
+    timerBar.style.width = `${Math.max(0, percentage)}%`;
+
+    if (percentage < 30) {
+      timerBar.style.backgroundColor = "var(--danger-color)";
+    } else if (percentage < 60) {
+      timerBar.style.backgroundColor = "var(--gold-color)";
+    }
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      // Temps écoulé -> réponse manquée
+      handleSelectOption(null, null, correctAnswer);
+    }
+  }, 100);
+}
+
+function handleSelectOption(selectedBtn, selectedOption, correctOption) {
+  clearInterval(timerInterval);
+
+  const allBtns = document.querySelectorAll(".btn-option");
+  allBtns.forEach(btn => btn.disabled = true);
+
+  if (selectedOption === correctOption) {
+    if (selectedBtn) selectedBtn.classList.add("correct");
     score += 10;
+  } else {
+    if (selectedBtn) selectedBtn.classList.add("wrong");
+    // Afficher la bonne réponse
+    allBtns.forEach(btn => {
+      if (btn.innerText === correctOption) {
+        btn.classList.add("correct");
+      }
+    });
   }
 
-  currentQuestionIndex++;
-  if (currentQuestionIndex < currentQuestions.length) {
-    showQuestion();
-  } else {
-    endQuiz();
-  }
+  document.getElementById("coin-count").innerText = score;
+
+  // Pause d'une seconde pour observer la réponse avant la question suivante
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < currentQuestions.length) {
+      showQuestion();
+    } else {
+      endQuiz();
+    }
+  }, 1000);
 }
 
 function endQuiz() {
+  clearInterval(timerInterval);
   document.getElementById("quiz-box").style.display = "none";
   document.getElementById("result-box").style.display = "block";
 
@@ -274,7 +311,6 @@ function endQuiz() {
   const finalScoreElem = document.getElementById("final-score");
   const encouragementMsgElem = document.getElementById("encouragement-msg");
 
-  // Chemin d'accès mis à jour vers images/coin.png
   finalScoreElem.innerHTML = `${currentModeTitle} terminé ! Vous avez gagné : <img src="images/coin.png" class="coin-img" alt="🪙"> <strong>${score} / ${maxCoins}</strong> Pièces d'Or`;
 
   if (score < successThreshold) {
@@ -308,6 +344,7 @@ function restartSameGame() {
 }
 
 function resetQuiz() {
+  clearInterval(timerInterval);
   document.getElementById("quiz-box").style.display = "none";
   document.getElementById("result-box").style.display = "none";
   document.getElementById("selection-screen").style.display = "block";

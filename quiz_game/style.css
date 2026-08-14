@@ -164,6 +164,23 @@ button {
   border-bottom: 1px solid var(--border-color);
 }
 
+/* Barre de chronomètre */
+.timer-container {
+  width: 100%;
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.timer-bar {
+  height: 100%;
+  width: 100%;
+  background-color: var(--secondary-color);
+  transition: width 0.1s linear, background-color 0.3s ease;
+}
+
 .gold-badge {
   background-color: var(--gold-bg);
   color: var(--gold-color);
@@ -189,10 +206,31 @@ button {
   color: var(--text-dark);
 }
 
-.btn-option:hover, .btn-option:active {
+.btn-option:hover:not(:disabled) {
   background: var(--primary-color);
   border-color: var(--primary-color);
   color: var(--text-light);
+}
+
+/* Feedback visuel Réponses */
+.btn-option.correct {
+  background-color: #2ecc71 !important;
+  border-color: #27ae60 !important;
+  color: #ffffff !important;
+  transform: scale(1.02);
+}
+
+.btn-option.wrong {
+  background-color: #e74c3c !important;
+  border-color: #c0392b !important;
+  color: #ffffff !important;
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
 }
 
 .game-footer-actions {
