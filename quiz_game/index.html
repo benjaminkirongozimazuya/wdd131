@@ -10,15 +10,13 @@
 <body>
 
   <!-- Musique de fond -->
-  <!-- Remplacez "votre-musique.mp3" par le nom exact de votre fichier MP3 -->
   <audio id="bg-music" src="votre-musique.mp3" loop preload="auto"></audio>
 
   <div class="main-wrapper">
     <div class="quiz-container">
       <header class="game-header">
         <h1>🧠 Quiz Master</h1>
-        <p class="subtitle">10 Niveaux & Catégories Générales</p>
-        <!-- Bouton pour activer/désactiver la musique -->
+        <p class="subtitle">10 Niveaux & Catégories Générales (+200 Questions)</p>
         <button id="music-toggle-btn" class="btn-music" onclick="toggleBackgroundMusic()">
           🔊 Musique : ON
         </button>
@@ -64,7 +62,7 @@
       <div id="quiz-box" class="card" style="display: none;">
         <div class="quiz-info">
           <span id="mode-indicator">Niveau 1</span>
-          <span id="question-number">Question 1/4</span>
+          <span id="question-number">Question 1/10</span>
           <span id="score-display" class="gold-badge">
             <img src="images/coin.png" alt="Pièce d'or" class="coin-img"> 
             <span id="coin-count">0</span> Pièces
@@ -81,7 +79,7 @@
 
         <div class="game-footer-actions">
           <button class="btn-back" onclick="resetQuiz()">
-            <i class="fas fa-arrow-left"></i> Quitter / Changer de niveau
+            <i class="fas fa-arrow-left"></i> Quitter / Changer de mode
           </button>
         </div>
       </div>
