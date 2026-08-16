@@ -530,7 +530,7 @@ function endQuiz() {
   }
 
   document.getElementById('final-score').innerText = `Score : ${score} / ${maxScore}`;
-  document.getElementById('high-score').innerText = `Pièces gagnées : +${coins} 🪙`;
+  document.getElementById('high-score').innerHTML = `Pièces gagnées : +${coins} <img src="assets/coin.png" alt="Pièce" style="width: 20px; vertical-align: middle;">`;
 
   // Gestion dynamique de l'automatisation du niveau suivant
   setupResultActions();
