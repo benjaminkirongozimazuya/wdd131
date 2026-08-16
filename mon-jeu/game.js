@@ -52,9 +52,7 @@ function playSound(type) {
 // --- CONSTANTES ---
 const TILE_SIZE = 50; // Grille 16x10
 
-// 1: Mur solide | 0: Chemin libre | 2: Piège/Zone rouge | 3: Mur destructible
-
-// --- 30 CARTES RÉÉQUILIBRÉES ET SOLVABLES ---
+// --- CARTES DES NIVEAUX ---
 const levelMaps = [
   // Niveau 1
   [
@@ -185,270 +183,10 @@ const levelMaps = [
     [1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 11
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1],
-    [1,0,1,0,1,0,1,1,1,1,0,1,0,1,0,1],
-    [1,0,1,0,0,0,1,0,0,1,0,0,0,1,0,1],
-    [1,0,1,1,1,0,1,0,0,1,0,1,1,1,0,1],
-    [1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1],
-    [1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,0,0,1,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 12 (Refonte complète & fluide)
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,0,1,1,1,0,1,1,1,0,0,1],
-    [1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1],
-    [1,0,1,0,1,1,1,1,1,1,1,0,1,0,0,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,1,1,0,1,0,1,1,1,0,1,0,1,1,1,1],
-    [1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 13
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,0,1,0,1,1,1,1,1,1,0,1],
-    [1,0,1,0,0,0,0,0,1,0,0,0,0,1,0,1],
-    [1,0,1,0,1,1,1,1,1,0,1,0,0,1,0,1],
-    [1,0,0,0,1,0,0,0,0,0,1,1,0,0,0,1],
-    [1,1,1,1,1,0,1,1,1,0,1,0,0,1,0,1],
-    [1,0,0,0,0,0,1,0,0,0,1,0,1,1,0,1],
-    [1,0,1,1,1,1,1,0,1,1,1,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 14
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,0,1,0,1,0,1,1,1,0,1,0,1,1,0,1],
-    [1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1],
-    [1,0,1,1,1,1,0,1,0,1,1,1,1,0,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,0,1,1,1,0,1,1,1,0,1,1,0,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,0,1,1,1,0,1,1,1,0,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 15
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-    [1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1],
-    [1,0,1,0,1,1,1,0,1,1,1,1,0,1,0,1],
-    [1,0,1,0,1,0,0,0,0,0,0,1,0,1,0,1],
-    [1,0,1,0,1,0,1,1,1,1,0,1,0,1,0,1],
-    [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 16
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
-    [1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 17
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-    [1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1],
-    [1,0,1,0,1,1,1,1,1,1,1,0,0,1,0,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,1,1,0,1],
-    [1,1,1,0,1,0,1,1,1,0,1,0,0,0,0,1],
-    [1,0,0,0,0,0,1,0,1,0,0,0,1,1,1,1],
-    [1,0,1,1,1,1,1,0,1,1,1,1,1,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 18
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,0,1,0,1,0,1,1,1,0,1,0,1,1,0,1],
-    [1,0,1,0,0,0,0,0,1,0,0,0,0,1,0,1],
-    [1,0,1,1,1,1,1,0,1,1,1,1,0,1,0,1],
-    [1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,1],
-    [1,1,1,0,1,0,1,1,1,1,1,0,1,1,0,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,0,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 19
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1],
-    [1,1,1,1,0,0,1,0,1,1,1,1,1,1,0,1],
-    [1,0,0,0,1,0,1,0,1,0,0,0,0,1,0,1],
-    [1,0,1,0,1,0,0,0,1,0,1,1,0,0,0,1],
-    [1,0,1,0,1,1,1,1,1,0,1,1,0,1,0,1],
-    [1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 20
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1],
-    [1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1],
-    [1,0,1,1,1,0,1,0,1,0,1,1,1,1,0,1],
-    [1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1],
-    [1,0,1,0,1,1,1,1,1,1,1,0,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 21
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,0,1,1,1,0,1,1,1,0,0,1],
-    [1,0,1,0,0,0,1,0,0,0,1,0,1,0,0,1],
-    [1,0,1,0,1,1,1,0,1,1,1,0,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,0,1,1,1,0,1,1,1,0,0,1],
-    [1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 22
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1],
-    [1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,0,1,1,1,0,1,1,1,0,1,1,0,1],
-    [1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1],
-    [1,0,1,1,1,0,1,0,1,0,1,1,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 23
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,0,1,0,1,1,1,1,0,1],
-    [1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1],
-    [1,0,1,0,1,1,1,1,1,1,1,1,0,1,0,1],
-    [1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1],
-    [1,0,1,1,1,0,1,1,1,1,0,1,1,1,0,1],
-    [1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,0,0,1,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 24
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1],
-    [1,0,1,1,0,0,1,0,1,1,0,1,0,1,0,1],
-    [1,0,1,0,0,0,0,0,0,1,0,0,0,1,0,1],
-    [1,0,1,0,1,1,1,1,0,1,0,1,0,1,0,1],
-    [1,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1],
-    [1,1,1,0,1,0,0,1,1,1,0,1,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 25
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,1,0,0,0,0,1,1,1,0,0,0,1,1,0,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,0,1,1,1,1,0,1,1,1,1,1,0,1,0,1],
-    [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
-    [1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 26
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1],
-    [1,0,1,0,1,0,1,0,1,0,1,0,1,1,0,1],
-    [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1],
-    [1,1,0,0,1,1,1,0,1,1,0,0,1,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,0,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 27
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1],
-    [1,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1],
-    [1,0,1,0,1,0,0,0,0,0,1,1,0,1,0,1],
-    [1,0,1,0,1,1,1,0,1,0,1,1,0,1,0,1],
-    [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 28
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1],
-    [1,0,1,0,1,0,1,1,1,1,0,1,0,1,0,1],
-    [1,0,1,0,0,0,1,0,0,1,0,0,0,1,0,1],
-    [1,0,1,1,1,0,1,0,0,1,0,1,1,1,0,1],
-    [1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1],
-    [1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,0,0,1,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 29
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,0,1,0,1,0,1,1,1,0,1,0,1,1,0,1],
-    [1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1],
-    [1,0,1,1,1,1,0,1,0,1,1,1,1,0,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,0,1,1,1,0,1,1,1,0,1,1,0,1],
-    [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1],
-    [1,0,1,1,1,0,1,1,1,0,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-  ],
-  // Niveau 30 : L'Ultime Labyrinthe du Maître
-  [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-    [1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1],
-    [1,0,1,0,1,1,1,0,1,1,1,1,0,1,0,1],
-    [1,0,1,0,1,0,0,0,0,0,0,1,0,1,0,1],
-    [1,0,1,0,1,0,1,1,1,1,0,1,0,1,0,1],
-    [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
   ]
 ];
 
-// --- CONFIGURATION DES 30 NIVEAUX ---
+// --- CONFIGURATION DES NIVEAUX ---
 const levelsConfig = [
   { level: 1, ammo: 8,  breakables: [[1,13],[2,14]], traps: [], enemies: [] },
   { level: 2, ammo: 10, breakables: [[2,13],[3,4]], traps: [[1,6]], enemies: [{x:375, y:75, vx:1.8, vy:0}] },
@@ -459,381 +197,394 @@ const levelsConfig = [
   { level: 7, ammo: 14, breakables: [[2,13],[6,13]], traps: [[1,6]], enemies: [{x:375, y:75, vx:2.5, vy:0},{x:175, y:225, vx:0, vy:2}] },
   { level: 8, ammo: 14, breakables: [[2,13],[6,13]], traps: [[1,6],[7,1]], enemies: [{x:375, y:75, vx:3, vy:0},{x:425, y:375, vx:-3, vy:0}] },
   { level: 9, ammo: 15, breakables: [[2,13],[6,11]], traps: [[1,6],[7,1]], enemies: [{x:375, y:75, vx:3, vy:0},{x:425, y:375, vx:-3, vy:0},{x:175, y:225, vx:0, vy:2.2}] },
-  { level: 10, ammo: 18, breakables: [[2,13],[6,13]], traps: [[1,6],[7,7]], enemies: [{x:375, y:75, vx:3.5, vy:0},{x:425, y:375, vx:-3.5, vy:0},{x:175, y:225, vx:0, vy:3}] },
-  { level: 11, ammo: 16, breakables: [[1,11],[5,11]], traps: [[3,7]], enemies: [{x:375, y:75, vx:3, vy:0},{x:225, y:225, vx:0, vy:2.5}] },
-  { level: 12, ammo: 18, breakables: [[3,3],[6,5]], traps: [[4,11]], enemies: [{x:325, y:175, vx:2.5, vy:0},{x:375, y:325, vx:0, vy:2}] },
-  { level: 13, ammo: 18, breakables: [[3,13],[6,11]], traps: [[1,1],[7,7]], enemies: [{x:325, y:75, vx:3.5, vy:0},{x:425, y:275, vx:-3.5, vy:0},{x:175, y:225, vx:0, vy:2.8}] },
-  { level: 14, ammo: 20, breakables: [[2,14],[6,13]], traps: [[1,6],[5,10]], enemies: [{x:375, y:75, vx:3.8, vy:0},{x:425, y:375, vx:-3.8, vy:0},{x:225, y:175, vx:0, vy:3.2}] },
-  { level: 15, ammo: 22, breakables: [[3,13],[6,13]], traps: [[1,6],[7,7],[5,2]], enemies: [{x:375, y:75, vx:4, vy:0},{x:425, y:375, vx:-4, vy:0},{x:175, y:225, vx:0, vy:3.5},{x:525, y:225, vx:0, vy:-3.5}] },
-  { level: 16, ammo: 16, breakables: [[1,10],[6,3]], traps: [[2,4]], enemies: [{x:300, y:150, vx:2.5, vy:0}] },
-  { level: 17, ammo: 18, breakables: [[3,13],[7,6]], traps: [[4,2],[6,10]], enemies: [{x:350, y:100, vx:0, vy:2.5},{x:500, y:300, vx:-2.5, vy:0}] },
-  { level: 18, ammo: 18, breakables: [[2,13],[6,13]], traps: [[1,6]], enemies: [{x:375, y:75, vx:3, vy:0},{x:200, y:200, vx:0, vy:2.5}] },
-  { level: 19, ammo: 20, breakables: [[2,13],[7,10]], traps: [[3,4],[5,8]], enemies: [{x:400, y:150, vx:-3, vy:0},{x:150, y:300, vx:2, vy:0}] },
-  { level: 20, ammo: 20, breakables: [[4,13],[8,7]], traps: [[2,6]], enemies: [{x:300, y:200, vx:3, vy:0},{x:450, y:100, vx:0, vy:3}] },
-  { level: 21, ammo: 22, breakables: [[2,13],[6,11]], traps: [[1,6],[6,3]], enemies: [{x:375, y:75, vx:3.2, vy:0},{x:425, y:375, vx:-3.2, vy:0},{x:200, y:200, vx:0, vy:2.5}] },
-  { level: 22, ammo: 22, breakables: [[1,11],[4,11]], traps: [[2,2],[5,6]], enemies: [{x:350, y:150, vx:3.5, vy:0},{x:250, y:300, vx:0, vy:-3}] },
-  { level: 23, ammo: 24, breakables: [[2,14],[6,14]], traps: [[1,6],[7,1]], enemies: [{x:375, y:100, vx:3.5, vy:0},{x:400, y:300, vx:-3.5, vy:0},{x:150, y:200, vx:0, vy:3}] },
-  { level: 24, ammo: 24, breakables: [[2,13],[6,13]], traps: [[1,6],[4,8]], enemies: [{x:375, y:75, vx:3.8, vy:0},{x:425, y:375, vx:-3.8, vy:0},{x:225, y:225, vx:0, vy:3.2}] },
-  { level: 25, ammo: 25, breakables: [[2,13],[5,10]], traps: [[2,4],[6,6]], enemies: [{x:300, y:150, vx:4, vy:0},{x:500, y:300, vx:-4, vy:0},{x:200, y:250, vx:0, vy:3.5}] },
-  { level: 26, ammo: 25, breakables: [[3,11],[6,11]], traps: [[1,6],[7,7]], enemies: [{x:375, y:75, vx:4, vy:0},{x:425, y:375, vx:-4, vy:0},{x:175, y:225, vx:0, vy:3.5}] },
-  { level: 27, ammo: 26, breakables: [[2,13],[6,13]], traps: [[1,6],[4,7]], enemies: [{x:350, y:100, vx:4.2, vy:0},{x:450, y:350, vx:-4.2, vy:0},{x:200, y:200, vx:0, vy:3.8}] },
-  { level: 28, ammo: 26, breakables: [[1,11],[6,11]], traps: [[2,3],[6,7]], enemies: [{x:375, y:75, vx:4.5, vy:0},{x:425, y:375, vx:-4.5, vy:0},{x:175, y:225, vx:0, vy:4}] },
-  { level: 29, ammo: 28, breakables: [[2,13],[6,13]], traps: [[1,6],[5,10]], enemies: [{x:375, y:75, vx:4.5, vy:0},{x:425, y:375, vx:-4.5, vy:0},{x:225, y:175, vx:0, vy:4},{x:300, y:250, vx:-4, vy:0}] },
-  { level: 30, ammo: 30, breakables: [[3,13],[6,13]], traps: [[1,6],[7,7],[5,2]], enemies: [{x:375, y:75, vx:5, vy:0},{x:425, y:375, vx:-5, vy:0},{x:175, y:225, vx:0, vy:4.5},{x:525, y:225, vx:0, vy:-4.5}] }
+  { level: 10, ammo: 18, breakables: [[2,13],[6,13]], traps: [[1,6],[7,7]], enemies: [{x:375, y:75, vx:3.5, vy:0},{x:425, y:375, vx:-3.5, vy:0},{x:175, y:225, vx:0, vy:3}] }
 ];
 
-// --- ÉTATS DU JEU ---
+// --- ÉTAT DU JEU ---
 let currentLevelIndex = 0;
 let score = 0;
 let ammo = 5;
 let lives = 3;
-let gameState = "RUNNING";
+let gameOver = false;
 
-let currentMap = [];
-let breakableWallsHP = {};
+// Position du joueur
+let player = {
+  x: 75,
+  y: 75,
+  size: 20,
+  speed: 3.5,
+  dx: 0,
+  dy: 0,
+  isDashing: false,
+  dashCooldown: 0
+};
+
+// Trésor (Position dynamique)
+let treasure = { x: 0, y: 0, size: 24 };
+
+// Tableaux dynamiques
 let bullets = [];
 let enemies = [];
+let breakableWalls = [];
+let traps = [];
 
-const levelElem = document.getElementById("level-val");
-const scoreElem = document.getElementById("score-val");
-const ammoElem = document.getElementById("ammo-val");
-const livesElem = document.getElementById("lives-val");
-const gameOverScreen = document.getElementById("game-over-screen");
-const helpModal = document.getElementById("help-modal");
+// Commandes clavier
+const keys = {};
 
-// --- JOUEUR & TRÉSOR ---
-const player = {
-  x: 75, y: 75, radius: 14,
-  vx: 0, vy: 0, speed: 0.8, friction: 0.85,
-  color: "#00f3ff", isDashing: false, dashCooldown: 0, invulnerable: 0,
-  dirX: 1, dirY: 0
-};
+window.addEventListener('keydown', (e) => {
+  keys[e.key] = true;
+  if (e.key === ' ' || e.key === 'Spacebar') {
+    triggerDash();
+  }
+  if (e.key === 'f' || e.key === 'F') {
+    shootBullet();
+  }
+});
 
-const treasure = { x: 725, y: 75, radius: 15 };
+window.addEventListener('keyup', (e) => {
+  keys[e.key] = false;
+});
 
-// --- CHARGEMENT DU NIVEAU ---
+// --- INITIALISATION DU NIVEAU ---
 function loadLevel(index) {
-  const config = levelsConfig[index];
+  if (index >= levelsConfig.length) {
+    index = 0; // Boucle ou écran de victoire finale
+  }
   currentLevelIndex = index;
-  ammo = config.ammo;
+  const config = levelsConfig[index];
   
-  levelElem.innerText = `${config.level}/30`;
-  ammoElem.innerText = String(ammo).padStart(2, '0');
-
-  currentMap = JSON.parse(JSON.stringify(levelMaps[index]));
-  breakableWallsHP = {};
-
-  config.breakables.forEach(([r, c]) => {
-    currentMap[r][c] = 3;
-    breakableWallsHP[`${r}_${c}`] = 2;
-  });
-
-  config.traps.forEach(([r, c]) => {
-    currentMap[r][c] = 2;
-  });
-
-  enemies = config.enemies.map(e => ({ x: e.x, y: e.y, vx: e.vx, vy: e.vy, radius: 12 }));
-
-  player.x = 75; player.y = 75; player.vx = 0; player.vy = 0;
+  ammo = config.ammo;
+  player.x = 75;
+  player.y = 75;
   bullets = [];
+  
+  // Charger les murs destructibles
+  breakableWalls = config.breakables.map(pos => ({ r: pos[0], c: pos[1] }));
+  traps = config.traps.map(pos => ({ r: pos[0], c: pos[1] }));
+  
+  // Charger les ennemis
+  enemies = config.enemies.map(en => ({
+    x: en.x,
+    y: en.y,
+    vx: en.vx,
+    vy: en.vy,
+    size: 20
+  }));
+
+  // Placer le trésor aléatoirement sur une case vide
+  placeRandomTreasure();
+  updateHUD();
 }
 
-// --- CONTRÔLES ---
-const keys = { ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, Space: false, KeyF: false };
-
-window.addEventListener("keydown", (e) => {
-  if (keys.hasOwnProperty(e.key)) keys[e.key] = true;
-  if (e.code === "Space") keys.Space = true;
-  if (e.code === "KeyF") {
-    if (!keys.KeyF && gameState === "RUNNING") shootBullet();
-    keys.KeyF = true;
-  }
-});
-
-window.addEventListener("keyup", (e) => {
-  if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
-  if (e.code === "Space") keys.Space = false;
-  if (e.code === "KeyF") keys.KeyF = false;
-});
-
-// Modal Aide
-document.getElementById("btn-help").addEventListener("click", () => {
-  gameState = "PAUSED";
-  helpModal.classList.remove("hidden");
-});
-
-document.getElementById("btn-close-help").addEventListener("click", () => {
-  helpModal.classList.add("hidden");
-  gameState = "RUNNING";
-});
-
-// Mobile Controls
-const bindBtn = (id, action) => {
-  const btn = document.getElementById(id);
-  if (!btn) return;
-  btn.addEventListener("touchstart", (e) => { e.preventDefault(); action(true); });
-  btn.addEventListener("touchend", (e) => { e.preventDefault(); action(false); });
-};
-
-bindBtn("btn-up", (s) => keys.ArrowUp = s);
-bindBtn("btn-down", (s) => keys.ArrowDown = s);
-bindBtn("btn-left", (s) => keys.ArrowLeft = s);
-bindBtn("btn-right", (s) => keys.ArrowRight = s);
-bindBtn("btn-dash", (s) => keys.Space = s);
-bindBtn("btn-shoot", (s) => { if (s && gameState === "RUNNING") shootBullet(); });
-
-function shootBullet() {
-  if (ammo <= 0) return;
-  ammo--;
-  ammoElem.innerText = String(ammo).padStart(2, '0');
-  playSound('shoot');
-
-  bullets.push({
-    x: player.x, y: player.y,
-    vx: player.dirX * 8, vy: player.dirY * 8, radius: 4
-  });
-}
-
-function isSolid(x, y) {
-  let col = Math.floor(x / TILE_SIZE);
-  let row = Math.floor(y / TILE_SIZE);
-  if (row < 0 || row >= 10 || col < 0 || col >= 16) return true;
-  return currentMap[row][col] === 1 || currentMap[row][col] === 3;
-}
-
-function canMove(newX, newY, radius) {
-  const r = radius * 0.8;
-  return !(isSolid(newX - r, newY - r) || isSolid(newX + r, newY - r) ||
-           isSolid(newX - r, newY + r) || isSolid(newX + r, newY + r));
-}
-
-// --- MISE À JOUR (LOGIQUE) ---
-function update() {
-  if (gameState !== "RUNNING") return;
-
-  if (keys.ArrowUp) { player.dirX = 0; player.dirY = -1; }
-  if (keys.ArrowDown) { player.dirX = 0; player.dirY = 1; }
-  if (keys.ArrowLeft) { player.dirX = -1; player.dirY = 0; }
-  if (keys.ArrowRight) { player.dirX = 1; player.dirY = 0; }
-
-  let currentSpeed = player.speed;
-  if (keys.Space && player.dashCooldown <= 0) {
-    player.isDashing = true;
-    player.dashCooldown = 60;
-  }
-  if (player.isDashing) {
-    currentSpeed = player.speed * 4;
-    if (player.dashCooldown < 50) player.isDashing = false;
-  }
-  if (player.dashCooldown > 0) player.dashCooldown--;
-
-  if (keys.ArrowUp) player.vy -= currentSpeed;
-  if (keys.ArrowDown) player.vy += currentSpeed;
-  if (keys.ArrowLeft) player.vx -= currentSpeed;
-  if (keys.ArrowRight) player.vx += currentSpeed;
-
-  player.vx *= player.friction;
-  player.vy *= player.friction;
-
-  if (canMove(player.x + player.vx, player.y, player.radius)) player.x += player.vx;
-  if (canMove(player.x, player.y + player.vy, player.radius)) player.y += player.vy;
-
-  if (player.invulnerable > 0) player.invulnerable--;
-
-  // Degats piege (zones rouges)
-  let pCol = Math.floor(player.x / TILE_SIZE);
-  let pRow = Math.floor(player.y / TILE_SIZE);
-  if (pRow >= 0 && pRow < 10 && pCol >= 0 && pCol < 16) {
-    if (currentMap[pRow][pCol] === 2 && player.invulnerable === 0) {
-      takeDamage();
-    }
-  }
-
-  // Balles
-  for (let i = bullets.length - 1; i >= 0; i--) {
-    let b = bullets[i];
-    b.x += b.vx;
-    b.y += b.vy;
-    let col = Math.floor(b.x / TILE_SIZE);
-    let row = Math.floor(b.y / TILE_SIZE);
-
-    if (row >= 0 && row < 10 && col >= 0 && col < 16) {
-      if (currentMap[row][col] === 1) {
-        bullets.splice(i, 1);
-      } else if (currentMap[row][col] === 3) {
-        bullets.splice(i, 1);
-        let key = `${row}_${col}`;
-        breakableWallsHP[key]--;
-        if (breakableWallsHP[key] <= 0) {
-          currentMap[row][col] = 0;
-          playSound('break');
-          score += 20;
-          scoreElem.innerText = String(score).padStart(4, '0');
-        } else {
-          playSound('break');
+function placeRandomTreasure() {
+  const map = levelMaps[currentLevelIndex];
+  let emptyTiles = [];
+  
+  for (let r = 0; r < map.length; r++) {
+    for (let c = 0; c < map[r].length; c++) {
+      if (map[r][c] === 0) {
+        // Éviter de placer sur le joueur au départ
+        if (!(r === 1 && c === 1)) {
+          emptyTiles.push({ r, c });
         }
       }
     }
   }
+  
+  if (emptyTiles.length > 0) {
+    const randomTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+    treasure.x = randomTile.c * TILE_SIZE + TILE_SIZE / 2;
+    treasure.y = randomTile.r * TILE_SIZE + TILE_SIZE / 2;
+  }
+}
 
-  // Ennemis
-  enemies.forEach(enemy => {
-    if (canMove(enemy.x + enemy.vx, enemy.y + enemy.vy, enemy.radius)) {
-      enemy.x += enemy.vx;
-      enemy.y += enemy.vy;
-    } else {
-      enemy.vx *= -1;
-      enemy.vy *= -1;
+// --- MÉCANISMES DU JOUEUR ---
+function triggerDash() {
+  if (player.dashCooldown <= 0 && !gameOver) {
+    player.isDashing = true;
+    player.dashCooldown = 60;
+    setTimeout(() => { player.isDashing = false; }, 200);
+  }
+}
+
+function shootBullet() {
+  if (ammo > 0 && !gameOver) {
+    ammo--;
+    playSound('shoot');
+    bullets.push({
+      x: player.x,
+      y: player.y,
+      vx: player.lastVx * 8 || 8,
+      vy: player.lastVy * 8 || 0,
+      size: 6
+    });
+    updateHUD();
+  }
+}
+
+// --- MISE À JOUR DE LA PHYSIQUE ET LOGIQUE ---
+function update() {
+  if (gameOver) return;
+
+  // Gestion des mouvements
+  player.dx = 0;
+  player.dy = 0;
+  let currentSpeed = player.isDashing ? player.speed * 2.2 : player.speed;
+
+  if (keys['ArrowUp'] || keys['w'] || keys['W']) player.dy = -currentSpeed;
+  if (keys['ArrowDown'] || keys['s'] || keys['S']) player.dy = currentSpeed;
+  if (keys['ArrowLeft'] || keys['a'] || keys['A']) player.dx = -currentSpeed;
+  if (keys['ArrowRight'] || keys['d'] || keys['D']) player.dx = currentSpeed;
+
+  if (player.dx !== 0 || player.dy !== 0) {
+    player.lastVx = player.dx !== 0 ? Math.sign(player.dx) : 0;
+    player.lastVy = player.dy !== 0 ? Math.sign(player.dy) : 0;
+  }
+
+  // Déplacement avec collisions fluides
+  movePlayerWithCollisions();
+
+  if (player.dashCooldown > 0) player.dashCooldown--;
+
+  // Mise à jour des balles
+  for (let i = bullets.length - 1; i >= 0; i--) {
+    let b = bullets[i];
+    b.x += b.vx;
+    b.y += b.vy;
+
+    // Collision murs normaux
+    let map = levelMaps[currentLevelIndex];
+    let tileR = Math.floor(b.y / TILE_SIZE);
+    let tileC = Math.floor(b.x / TILE_SIZE);
+
+    if (tileR < 0 || tileR >= map.length || tileC < 0 || tileC >= map[0].length || map[tileR][tileC] === 1) {
+      bullets.splice(i, 1);
+      continue;
     }
 
-    const dx = player.x - enemy.x;
-    const dy = player.y - enemy.y;
-    if (Math.sqrt(dx*dx + dy*dy) < player.radius + enemy.radius && player.invulnerable === 0) {
-      takeDamage();
+    // Collision murs destructibles
+    let wallIndex = breakableWalls.findIndex(w => w.r === tileR && w.c === tileC);
+    if (wallIndex !== -1) {
+      breakableWalls.splice(wallIndex, 1);
+      playSound('break');
+      bullets.splice(i, 1);
+    }
+  }
+
+  // Mise à jour des ennemis
+  enemies.forEach(en => {
+    en.x += en.vx;
+    en.y += en.vy;
+
+    // Rebond sur les bords du canvas
+    if (en.x < 50 || en.x > canvas.width - 50) en.vx *= -1;
+    if (en.y < 50 || en.y > canvas.height - 50) en.vy *= -1;
+
+    // Collision avec le joueur
+    let dist = Math.hypot(player.x - en.x, player.y - en.y);
+    if (dist < player.size / 2 + en.size / 2 && !player.isDashing) {
+      handlePlayerHit();
     }
   });
 
-  // Collision avec le Trésor
-  const dxT = player.x - treasure.x;
-  const dyT = player.y - treasure.y;
-  if (Math.sqrt(dxT*dxT + dyT*dyT) < player.radius + treasure.radius) {
+  // Collision avec le trésor
+  let distTreasure = Math.hypot(player.x - treasure.x, player.y - treasure.y);
+  if (distTreasure < player.size / 2 + treasure.size / 2) {
     playSound('treasure');
-    score += 100 * (currentLevelIndex + 1);
-    scoreElem.innerText = String(score).padStart(4, '0');
-
-    if (currentLevelIndex < 29) {
-      gameState = "LEVEL_WIN";
-      showOverlay("NIVEAU COMPLÉTÉ !", `Nouveau labyrinthe débloqué : Niveau ${currentLevelIndex + 2}`, "NIVEAU SUIVANT");
-    } else {
-      gameState = "GAME_WIN";
-      showOverlay("VICTOIRE FINALE !", "Félicitations ! Vous avez traversé les 30 labyrinthes !", "REJOUER DU DÉBUT");
-    }
+    score += 500;
+    triggerLevelComplete();
   }
 }
 
-function takeDamage() {
+// Collisions fluides par axe
+function movePlayerWithCollisions() {
+  let map = levelMaps[currentLevelIndex];
+
+  // Axe X
+  player.x += player.dx;
+  if (checkCollision(player.x, player.y, map)) {
+    player.x -= player.dx;
+  }
+
+  // Axe Y
+  player.y += player.dy;
+  if (checkCollision(player.x, player.y, map)) {
+    player.y -= player.dy;
+  }
+}
+
+function checkCollision(x, y, map) {
+  let radius = player.size / 2;
+  let points = [
+    {x: x - radius, y: y - radius},
+    {x: x + radius, y: y - radius},
+    {x: x - radius, y: y + radius},
+    {x: x + radius, y: y + radius}
+  ];
+
+  for (let p of points) {
+    let r = Math.floor(p.y / TILE_SIZE);
+    let c = Math.floor(p.x / TILE_SIZE);
+
+    if (r < 0 || r >= map.length || c < 0 || c >= map[0].length) return true;
+    if (map[r][c] === 1) return true;
+
+    // Vérifier les murs destructibles
+    if (breakableWalls.some(w => w.r === r && w.c === c)) return true;
+  }
+  return false;
+}
+
+function handlePlayerHit() {
   playSound('hurt');
   lives--;
-  updateLivesDisplay();
+  updateHUD();
   if (lives <= 0) {
-    gameState = "OVER";
-    showOverlay("GAME OVER", "Le système vous a éliminé.", "RÉESSAYER");
+    triggerGameOver();
   } else {
-    player.x = 75; player.y = 75; player.invulnerable = 90;
+    // Réinitialiser la position sans recommencer le niveau du début
+    player.x = 75;
+    player.y = 75;
   }
 }
 
-function updateLivesDisplay() {
-  let hearts = "";
-  for (let i = 0; i < lives; i++) hearts += "♥";
-  livesElem.innerText = hearts;
+function triggerLevelComplete() {
+  if (currentLevelIndex + 1 < levelsConfig.length) {
+    showOverlay("LEVEL COMPLETE !", "Préparez-vous pour le niveau suivant !", "NIVEAU SUIVANT", () => {
+      loadLevel(currentLevelIndex + 1);
+    });
+  } else {
+    showOverlay("VICTOIRE ULTIME !", "Vous avez vaincu tous les labyrinthes !", "REJOUER", () => {
+      score = 0;
+      lives = 3;
+      loadLevel(0);
+    });
+  }
 }
 
-function showOverlay(title, msg, btnText) {
+function triggerGameOver() {
+  gameOver = true;
+  showOverlay("GAME OVER", "Le réseau vous a eu...", "RÉESSAYER", () => {
+    lives = 3;
+    gameOver = false;
+    loadLevel(currentLevelIndex); // Redémarre au niveau actuel sans repartir de zéro
+  });
+}
+
+function showOverlay(title, msg, btnText, callback) {
+  gameOver = true;
+  const screen = document.getElementById("game-over-screen");
   document.getElementById("over-title").innerText = title;
   document.getElementById("over-msg").innerText = msg;
-  document.getElementById("btn-action-main").innerText = btnText;
-  gameOverScreen.classList.remove("hidden");
+  const btn = document.getElementById("btn-action-main");
+  btn.innerText = btnText;
+  
+  // Remplacer l'action du bouton proprement
+  btn.onclick = () => {
+    screen.classList.add("hidden");
+    callback();
+  };
+  screen.classList.remove("hidden");
 }
 
-function handleScreenAction() {
-  gameOverScreen.classList.add("hidden");
-  if (gameState === "LEVEL_WIN") {
-    loadLevel(currentLevelIndex + 1);
-    gameState = "RUNNING";
-  } else if (gameState === "OVER" || gameState === "GAME_WIN") {
-    score = 0;
-    lives = 3;
-    scoreElem.innerText = "0000";
-    updateLivesDisplay();
-    loadLevel(0);
-    gameState = "RUNNING";
-  }
+function updateHUD() {
+  document.getElementById("level-val").innerText = `${currentLevelIndex + 1}/${levelsConfig.length}`;
+  document.getElementById("score-val").innerText = String(score).padStart(4, '0');
+  document.getElementById("ammo-val").innerText = String(ammo).padStart(2, '0');
+  document.getElementById("lives-val").innerText = '♥'.repeat(Math.max(0, lives));
 }
 
-// --- RENDU GRAPHIQUE ---
+// --- RENDU GRAPHIQUE (60 FPS FLUIDE) ---
 function draw() {
-  ctx.fillStyle = "#05070e";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  for (let row = 0; row < 10; row++) {
-    for (let col = 0; col < 16; col++) {
-      let x = col * TILE_SIZE;
-      let y = row * TILE_SIZE;
-      if (currentMap[row][col] === 1) {
+  let map = levelMaps[currentLevelIndex];
+
+  // Dessiner la grille & les murs
+  for (let r = 0; r < map.length; r++) {
+    for (let c = 0; c < map[r].length; c++) {
+      if (map[r][c] === 1) {
         ctx.fillStyle = "#16192b";
-        ctx.fillRect(x, y, TILE_SIZE, TILE_SIZE);
-        ctx.strokeStyle = "rgba(0, 243, 255, 0.3)";
-        ctx.strokeRect(x, y, TILE_SIZE, TILE_SIZE);
-      } else if (currentMap[row][col] === 3) {
-        ctx.fillStyle = "#d35400";
-        ctx.fillRect(x + 2, y + 2, TILE_SIZE - 4, TILE_SIZE - 4);
-        ctx.strokeStyle = "#e67e22";
-        ctx.strokeRect(x + 2, y + 2, TILE_SIZE - 4, TILE_SIZE - 4);
-      } else if (currentMap[row][col] === 2) {
-        ctx.fillStyle = "rgba(255, 26, 26, 0.25)";
-        ctx.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+        ctx.fillRect(c * TILE_SIZE, r * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        ctx.strokeStyle = "#00f3ff";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(c * TILE_SIZE, r * TILE_SIZE, TILE_SIZE, TILE_SIZE);
       }
     }
   }
 
-  // Trésor
-  ctx.save();
-  ctx.shadowBlur = 20;
-  ctx.shadowColor = "#ffcc00";
+  // Murs destructibles
+  ctx.fillStyle = "#e67e22";
+  breakableWalls.forEach(w => {
+    ctx.fillRect(w.c * TILE_SIZE + 2, w.r * TILE_SIZE + 2, TILE_SIZE - 4, TILE_SIZE - 4);
+  });
+
+  // Trésor (avec effet de brillance)
   ctx.fillStyle = "#ffcc00";
-  ctx.fillRect(treasure.x - 12, treasure.y - 10, 24, 20);
-  ctx.fillStyle = "#ffffff";
-  ctx.fillRect(treasure.x - 3, treasure.y - 3, 6, 6);
-  ctx.restore();
+  ctx.shadowColor = "#ffcc00";
+  ctx.shadowBlur = 12;
+  ctx.beginPath();
+  ctx.arc(treasure.x, treasure.y, treasure.size / 2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0; // Reset shadow
+
+  // Joueur
+  ctx.fillStyle = player.isDashing ? "#ff007f" : "#00f3ff";
+  ctx.shadowColor = ctx.fillStyle;
+  ctx.shadowBlur = 15;
+  ctx.beginPath();
+  ctx.arc(player.x, player.y, player.size / 2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0;
 
   // Balles
+  ctx.fillStyle = "#00ff66";
   bullets.forEach(b => {
-    ctx.save();
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = "#00ff66";
-    ctx.fillStyle = "#00ff66";
     ctx.beginPath();
-    ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+    ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
     ctx.fill();
-    ctx.restore();
   });
 
   // Ennemis
-  enemies.forEach(e => {
-    ctx.save();
-    ctx.shadowBlur = 15;
+  ctx.fillStyle = "#ff1a1a";
+  enemies.forEach(en => {
     ctx.shadowColor = "#ff1a1a";
-    ctx.fillStyle = "#ff1a1a";
-    ctx.beginPath();
-    ctx.arc(e.x, e.y, e.radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
+    ctx.shadowBlur = 10;
+    ctx.fillRect(en.x - en.size / 2, en.y - en.size / 2, en.size, en.size);
+    ctx.shadowBlur = 0;
   });
-
-  // Joueur
-  ctx.save();
-  if (player.invulnerable > 0 && Math.floor(Date.now() / 100) % 2 === 0) ctx.globalAlpha = 0.3;
-  ctx.shadowBlur = 15;
-  ctx.shadowColor = player.color;
-  ctx.fillStyle = player.color;
-  ctx.beginPath();
-  ctx.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.fillStyle = "#ffffff";
-  ctx.beginPath();
-  ctx.arc(player.x + player.dirX * 10, player.y + player.dirY * 10, 4, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.restore();
 }
 
+// Boucle principale du jeu
 function gameLoop() {
   update();
   draw();
   requestAnimationFrame(gameLoop);
 }
 
-// Lancement initial
+// Contrôles tactiles mobiles
+document.getElementById('btn-up').addEventListener('touchstart', () => { keys['ArrowUp'] = true; });
+document.getElementById('btn-up').addEventListener('touchend', () => { keys['ArrowUp'] = false; });
+document.getElementById('btn-down').addEventListener('touchstart', () => { keys['ArrowDown'] = true; });
+document.getElementById('btn-down').addEventListener('touchend', () => { keys['ArrowDown'] = false; });
+document.getElementById('btn-left').addEventListener('touchstart', () => { keys['ArrowLeft'] = true; });
+document.getElementById('btn-left').addEventListener('touchend', () => { keys['ArrowLeft'] = false; });
+document.getElementById('btn-right').addEventListener('touchstart', () => { keys['ArrowRight'] = true; });
+document.getElementById('btn-right').addEventListener('touchend', () => { keys['ArrowRight'] = false; });
+
+document.getElementById('btn-dash').addEventListener('click', triggerDash);
+document.getElementById('btn-shoot').addEventListener('click', shootBullet);
+
+// Gestion de la modale d'aide
+document.getElementById('btn-help').addEventListener('click', () => {
+  document.getElementById('help-modal').classList.remove('hidden');
+  gameOver = true;
+});
+document.getElementById('btn-close-help').addEventListener('click', () => {
+  document.getElementById('help-modal').classList.add('hidden');
+  gameOver = false;
+});
+
+// Démarrage initial du jeu au Niveau 1
 loadLevel(0);
 gameLoop();
