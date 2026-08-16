@@ -206,7 +206,7 @@ let score = 0;
 let ammo = 5;
 let lives = 3;
 let gameOver = false;
-let screenShake = 0; // Effet visuel magique de tremblement
+let screenShake = 0;
 
 // Position du joueur
 let player = {
@@ -230,7 +230,7 @@ let bullets = [];
 let enemies = [];
 let breakableWalls = [];
 let traps = [];
-let magicalParticles = []; // Système de particules étincelantes
+let magicalParticles = [];
 
 // Commandes clavier robustes
 const keys = {};
@@ -365,7 +365,6 @@ function update() {
     player.lastVx = player.dx !== 0 ? Math.sign(player.dx) : 0;
     player.lastVy = player.dy !== 0 ? Math.sign(player.dy) : 0;
     
-    // Particules de traînée magique subtiles en mouvement
     if (Math.random() < 0.3) {
       magicalParticles.push({
         x: player.x,
@@ -383,10 +382,8 @@ function update() {
 
   if (player.dashCooldown > 0) player.dashCooldown--;
 
-  // Trésor pulsation magique
   treasure.pulse += 0.08;
 
-  // Mise à jour des particules
   for (let i = magicalParticles.length - 1; i >= 0; i--) {
     let p = magicalParticles[i];
     p.x += p.vx;
@@ -395,7 +392,6 @@ function update() {
     if (p.life <= 0) magicalParticles.splice(i, 1);
   }
 
-  // Balles
   for (let i = bullets.length - 1; i >= 0; i--) {
     let b = bullets[i];
     b.x += b.vx;
@@ -421,7 +417,6 @@ function update() {
     }
   }
 
-  // Ennemis
   enemies.forEach(en => {
     en.x += en.vx;
     en.y += en.vy;
@@ -435,7 +430,6 @@ function update() {
     }
   });
 
-  // Trésor
   let distTreasure = Math.hypot(player.x - treasure.x, player.y - treasure.y);
   if (distTreasure < player.size / 2 + treasure.size / 2) {
     playSound('treasure');
@@ -510,7 +504,7 @@ function triggerLevelComplete() {
 
 function triggerGameOver() {
   gameOver = true;
-  showOverlay("💫 GAME OVER 💫", "Ne lchez rien, recommencez l'aventure !", "RÉESSAYER", () => {
+  showOverlay("💫 GAME OVER 💫", "Ne lâche rien, recommence l'aventure !", "RÉESSAYER", () => {
     lives = 3;
     gameOver = false;
     loadLevel(currentLevelIndex);
@@ -520,18 +514,26 @@ function triggerGameOver() {
 function showOverlay(title, msg, btnText, callback) {
   gameOver = true;
   const screen = document.getElementById("game-over-screen");
-  document.getElementById("over-titleinnerHTML") = title;
-  document.getElementById("over-title").innerText = title;
-  document.getElementById("over-msg").innerText = msg;
-  const btn = document.getElementById("btn-action-main");
-  btn.innerText = btnText;
   
-  btn.onclick = () => {
-    screen.classList.add("hidden");
-    gameOver = false;
-    callback();
-  };
-  screen.classList.remove("hidden");
+  const titleEl = document.getElementById("over-title");
+  if (titleEl) titleEl.innerText = title;
+  
+  const msgEl = document.getElementById("over-msg");
+  if (msgEl) msgEl.innerText = msg;
+  
+  const btn = document.getElementById("btn-action-main");
+  if (btn) {
+    btn.innerText = btnText;
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+    
+    newBtn.onclick = () => {
+      if (screen) screen.classList.add("hidden");
+      callback();
+    };
+  }
+  
+  if (screen) screen.classList.remove("hidden");
 }
 
 function updateHUD() {
@@ -545,7 +547,6 @@ function updateHUD() {
 function draw() {
   ctx.save();
   
-  // Appliquer le tremblement d'écran magique (screen shake)
   if (screenShake > 0) {
     let shakeX = (Math.random() - 0.5) * screenShake;
     let shakeY = (Math.random() - 0.5) * screenShake;
@@ -556,7 +557,6 @@ function draw() {
 
   let map = levelMaps[currentLevelIndex];
 
-  // Dessin des murs avec lueur néon
   for (let r = 0; r < map.length; r++) {
     let rowY = r * TILE_SIZE;
     for (let c = 0; c < map[r].length; c++) {
@@ -574,7 +574,6 @@ function draw() {
     }
   }
 
-  // Murs destructibles scintillants
   ctx.fillStyle = "#e67e22";
   breakableWalls.forEach(w => {
     ctx.shadowColor = "#e67e22";
@@ -583,7 +582,6 @@ function draw() {
     ctx.shadowBlur = 0;
   });
 
-  // Trésor magique vibrant (effet de battement de cœur lumineux)
   let pulseSize = (treasure.size / 2) + Math.sin(treasure.pulse) * 3;
   ctx.fillStyle = "#ffcc00";
   ctx.shadowColor = "#ffcc00";
@@ -593,7 +591,6 @@ function draw() {
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // Joueur lumineux et charismatique
   ctx.fillStyle = player.isDashing ? "#ff007f" : "#00f3ff";
   ctx.shadowColor = ctx.fillStyle;
   ctx.shadowBlur = 18;
@@ -602,7 +599,6 @@ function draw() {
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // Projectiles brillants
   ctx.fillStyle = "#00ff66";
   ctx.shadowColor = "#00ff66";
   ctx.shadowBlur = 10;
@@ -613,7 +609,6 @@ function draw() {
   });
   ctx.shadowBlur = 0;
 
-  // Ennemis menaçants au néon rouge
   ctx.fillStyle = "#ff1a1a";
   enemies.forEach(en => {
     ctx.shadowColor = "#ff1a1a";
@@ -622,7 +617,6 @@ function draw() {
     ctx.shadowBlur = 0;
   });
 
-  // Particules magiques étincelantes
   magicalParticles.forEach(p => {
     ctx.fillStyle = p.color;
     ctx.shadowColor = p.color;
