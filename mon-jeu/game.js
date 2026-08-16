@@ -50,7 +50,7 @@ function playSound(type) {
 }
 
 // --- CONSTANTES ---
-const TILE_SIZE = 50; // Grille 16x10
+const TILE_SIZE = 50;
 
 // --- CARTES DES NIVEAUX ---
 const levelMaps = [
@@ -206,6 +206,7 @@ let score = 0;
 let ammo = 5;
 let lives = 3;
 let gameOver = false;
+let screenShake = 0; // Effet visuel magique de tremblement
 
 // Position du joueur
 let player = {
@@ -221,16 +222,17 @@ let player = {
   lastVy: 0
 };
 
-// Trésor (Position dynamique)
-let treasure = { x: 0, y: 0, size: 24 };
+// Trésor magique vibrant
+let treasure = { x: 0, y: 0, size: 24, pulse: 0 };
 
 // Tableaux dynamiques
 let bullets = [];
 let enemies = [];
 let breakableWalls = [];
 let traps = [];
+let magicalParticles = []; // Système de particules étincelantes
 
-// Commandes clavier robustes (compatible flèches, WASD, ZQSD)
+// Commandes clavier robustes
 const keys = {};
 
 window.addEventListener('keydown', (e) => {
@@ -262,6 +264,7 @@ function loadLevel(index) {
   player.x = 75;
   player.y = 75;
   bullets = [];
+  magicalParticles = [];
   
   breakableWalls = config.breakables.map(pos => ({ r: pos[0], c: pos[1] }));
   traps = config.traps.map(pos => ({ r: pos[0], c: pos[1] }));
@@ -299,11 +302,30 @@ function placeRandomTreasure() {
   }
 }
 
-// --- MÉCANISMES DU JOUEUR ---
+// --- EFFETS VISUELS & PARTICULES ---
+function createSparkles(x, y, color, count = 12) {
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 3 + 1;
+    magicalParticles.push({
+      x: x,
+      y: y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      size: Math.random() * 4 + 2,
+      color: color,
+      life: 30
+    });
+  }
+}
+
+// --- MÉCANISMES ---
 function triggerDash() {
   if (player.dashCooldown <= 0 && !gameOver) {
     player.isDashing = true;
     player.dashCooldown = 60;
+    createSparkles(player.x, player.y, "#ff007f", 18);
+    screenShake = 6;
     setTimeout(() => { player.isDashing = false; }, 200);
   }
 }
@@ -312,6 +334,7 @@ function shootBullet() {
   if (ammo > 0 && !gameOver) {
     ammo--;
     playSound('shoot');
+    createSparkles(player.x, player.y, "#00ff66", 6);
     bullets.push({
       x: player.x,
       y: player.y,
@@ -323,15 +346,16 @@ function shootBullet() {
   }
 }
 
-// --- MISE À JOUR DE LA PHYSIQUE ET LOGIQUE ---
+// --- MISE À JOUR ---
 function update() {
   if (gameOver) return;
 
+  if (screenShake > 0) screenShake--;
+
   player.dx = 0;
   player.dy = 0;
-  let currentSpeed = player.isDashing ? player.speed * 2.2 : player.speed;
+  let currentSpeed = player.isDashing ? player.speed * 2.5 : player.speed;
 
-  // Lecture des mouvements compatibles
   if (keys['ArrowUp'] || keys['w'] || keys['W'] || keys['KeyW'] || keys['z'] || keys['Z'] || keys['KeyZ']) player.dy = -currentSpeed;
   if (keys['ArrowDown'] || keys['s'] || keys['S'] || keys['KeyS']) player.dy = currentSpeed;
   if (keys['ArrowLeft'] || keys['q'] || keys['Q'] || keys['KeyQ'] || keys['a'] || keys['A'] || keys['KeyA']) player.dx = -currentSpeed;
@@ -340,13 +364,38 @@ function update() {
   if (player.dx !== 0 || player.dy !== 0) {
     player.lastVx = player.dx !== 0 ? Math.sign(player.dx) : 0;
     player.lastVy = player.dy !== 0 ? Math.sign(player.dy) : 0;
+    
+    // Particules de traînée magique subtiles en mouvement
+    if (Math.random() < 0.3) {
+      magicalParticles.push({
+        x: player.x,
+        y: player.y,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: 3,
+        color: "#00f3ff",
+        life: 15
+      });
+    }
   }
 
   movePlayerWithCollisions();
 
   if (player.dashCooldown > 0) player.dashCooldown--;
 
-  // Mise à jour des balles
+  // Trésor pulsation magique
+  treasure.pulse += 0.08;
+
+  // Mise à jour des particules
+  for (let i = magicalParticles.length - 1; i >= 0; i--) {
+    let p = magicalParticles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+    if (p.life <= 0) magicalParticles.splice(i, 1);
+  }
+
+  // Balles
   for (let i = bullets.length - 1; i >= 0; i--) {
     let b = bullets[i];
     b.x += b.vx;
@@ -357,19 +406,22 @@ function update() {
     let tileC = Math.floor(b.x / TILE_SIZE);
 
     if (tileR < 0 || tileR >= map.length || tileC < 0 || tileC >= map[0].length || map[tileR][tileC] === 1) {
+      createSparkles(b.x, b.y, "#00f3ff", 5);
       bullets.splice(i, 1);
       continue;
     }
 
     let wallIndex = breakableWalls.findIndex(w => w.r === tileR && w.c === tileC);
     if (wallIndex !== -1) {
+      createSparkles(b.x, b.y, "#e67e22", 15);
       breakableWalls.splice(wallIndex, 1);
       playSound('break');
+      screenShake = 8;
       bullets.splice(i, 1);
     }
   }
 
-  // Mise à jour des ennemis
+  // Ennemis
   enemies.forEach(en => {
     en.x += en.vx;
     en.y += en.vy;
@@ -383,16 +435,17 @@ function update() {
     }
   });
 
-  // Collision avec le trésor
+  // Trésor
   let distTreasure = Math.hypot(player.x - treasure.x, player.y - treasure.y);
   if (distTreasure < player.size / 2 + treasure.size / 2) {
     playSound('treasure');
+    createSparkles(treasure.x, treasure.y, "#ffcc00", 30);
     score += 500;
     triggerLevelComplete();
   }
 }
 
-// Collisions fluides par axe
+// Collisions
 function movePlayerWithCollisions() {
   let map = levelMaps[currentLevelIndex];
 
@@ -422,7 +475,6 @@ function checkCollision(x, y, map) {
 
     if (r < 0 || r >= map.length || c < 0 || c >= map[0].length) return true;
     if (map[r][c] === 1) return true;
-
     if (breakableWalls.some(w => w.r === r && w.c === c)) return true;
   }
   return false;
@@ -430,6 +482,8 @@ function checkCollision(x, y, map) {
 
 function handlePlayerHit() {
   playSound('hurt');
+  screenShake = 12;
+  createSparkles(player.x, player.y, "#ff1a1a", 20);
   lives--;
   updateHUD();
   if (lives <= 0) {
@@ -442,11 +496,11 @@ function handlePlayerHit() {
 
 function triggerLevelComplete() {
   if (currentLevelIndex + 1 < levelsConfig.length) {
-    showOverlay("LEVEL COMPLETE !", "Préparez-vous pour le niveau suivant !", "NIVEAU SUIVANT", () => {
+    showOverlay("✨ MAGIQUE ! ✨", "Niveau réussi avec brio !", "NIVEAU SUIVANT", () => {
       loadLevel(currentLevelIndex + 1);
     });
   } else {
-    showOverlay("VICTOIRE ULTIME !", "Vous avez vaincu tous les labyrinthes !", "REJOUER", () => {
+    showOverlay("🌟 VICTOIRE LÉGENDAIRE ! 🌟", "Vous avez illuminé tous les labyrinthes !", "REJOUER", () => {
       score = 0;
       lives = 3;
       loadLevel(0);
@@ -456,7 +510,7 @@ function triggerLevelComplete() {
 
 function triggerGameOver() {
   gameOver = true;
-  showOverlay("GAME OVER", "Le réseau vous a eu...", "RÉESSAYER", () => {
+  showOverlay("💫 GAME OVER 💫", "Ne lchez rien, recommencez l'aventure !", "RÉESSAYER", () => {
     lives = 3;
     gameOver = false;
     loadLevel(currentLevelIndex);
@@ -466,6 +520,7 @@ function triggerGameOver() {
 function showOverlay(title, msg, btnText, callback) {
   gameOver = true;
   const screen = document.getElementById("game-over-screen");
+  document.getElementById("over-titleinnerHTML") = title;
   document.getElementById("over-title").innerText = title;
   document.getElementById("over-msg").innerText = msg;
   const btn = document.getElementById("btn-action-main");
@@ -473,7 +528,7 @@ function showOverlay(title, msg, btnText, callback) {
   
   btn.onclick = () => {
     screen.classList.add("hidden");
-    gameOver = false; // <-- Correction : Débloque le jeu lors du changement de niveau ou redémarrage
+    gameOver = false;
     callback();
   };
   screen.classList.remove("hidden");
@@ -486,59 +541,99 @@ function updateHUD() {
   document.getElementById("lives-val").innerText = '♥'.repeat(Math.max(0, lives));
 }
 
-// --- RENDU GRAPHIQUE ---
+// --- RENDU MAGIQUE ---
 function draw() {
+  ctx.save();
+  
+  // Appliquer le tremblement d'écran magique (screen shake)
+  if (screenShake > 0) {
+    let shakeX = (Math.random() - 0.5) * screenShake;
+    let shakeY = (Math.random() - 0.5) * screenShake;
+    ctx.translate(shakeX, shakeY);
+  }
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   let map = levelMaps[currentLevelIndex];
 
+  // Dessin des murs avec lueur néon
   for (let r = 0; r < map.length; r++) {
+    let rowY = r * TILE_SIZE;
     for (let c = 0; c < map[r].length; c++) {
+      let colX = c * TILE_SIZE;
       if (map[r][c] === 1) {
-        ctx.fillStyle = "#16192b";
-        ctx.fillRect(c * TILE_SIZE, r * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        ctx.fillStyle = "#121526";
+        ctx.fillRect(colX, rowY, TILE_SIZE, TILE_SIZE);
         ctx.strokeStyle = "#00f3ff";
-        ctx.lineWidth = 1;
-        ctx.strokeRect(c * TILE_SIZE, r * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        ctx.shadowColor = "#00f3ff";
+        ctx.shadowBlur = 4;
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(colX, rowY, TILE_SIZE, TILE_SIZE);
+        ctx.shadowBlur = 0;
       }
     }
   }
 
+  // Murs destructibles scintillants
   ctx.fillStyle = "#e67e22";
   breakableWalls.forEach(w => {
-    ctx.fillRect(w.c * TILE_SIZE + 2, w.r * TILE_SIZE + 2, TILE_SIZE - 4, TILE_SIZE - 4);
+    ctx.shadowColor = "#e67e22";
+    ctx.shadowBlur = 8;
+    ctx.fillRect(w.c * TILE_SIZE + 3, w.r * TILE_SIZE + 3, TILE_SIZE - 6, TILE_SIZE - 6);
+    ctx.shadowBlur = 0;
   });
 
+  // Trésor magique vibrant (effet de battement de cœur lumineux)
+  let pulseSize = (treasure.size / 2) + Math.sin(treasure.pulse) * 3;
   ctx.fillStyle = "#ffcc00";
   ctx.shadowColor = "#ffcc00";
-  ctx.shadowBlur = 12;
+  ctx.shadowBlur = 20;
   ctx.beginPath();
-  ctx.arc(treasure.x, treasure.y, treasure.size / 2, 0, Math.PI * 2);
+  ctx.arc(treasure.x, treasure.y, Math.max(8, pulseSize), 0, Math.PI * 2);
   ctx.fill();
   ctx.shadowBlur = 0;
 
+  // Joueur lumineux et charismatique
   ctx.fillStyle = player.isDashing ? "#ff007f" : "#00f3ff";
   ctx.shadowColor = ctx.fillStyle;
-  ctx.shadowBlur = 15;
+  ctx.shadowBlur = 18;
   ctx.beginPath();
   ctx.arc(player.x, player.y, player.size / 2, 0, Math.PI * 2);
   ctx.fill();
   ctx.shadowBlur = 0;
 
+  // Projectiles brillants
   ctx.fillStyle = "#00ff66";
+  ctx.shadowColor = "#00ff66";
+  ctx.shadowBlur = 10;
   bullets.forEach(b => {
     ctx.beginPath();
     ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
     ctx.fill();
   });
+  ctx.shadowBlur = 0;
 
+  // Ennemis menaçants au néon rouge
   ctx.fillStyle = "#ff1a1a";
   enemies.forEach(en => {
     ctx.shadowColor = "#ff1a1a";
-    ctx.shadowBlur = 10;
+    ctx.shadowBlur = 14;
     ctx.fillRect(en.x - en.size / 2, en.y - en.size / 2, en.size, en.size);
     ctx.shadowBlur = 0;
   });
+
+  // Particules magiques étincelantes
+  magicalParticles.forEach(p => {
+    ctx.fillStyle = p.color;
+    ctx.shadowColor = p.color;
+    ctx.shadowBlur = 8;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  });
+
+  ctx.restore();
 }
 
 function gameLoop() {
@@ -547,7 +642,7 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
-// Contrôles tactiles / boutons mobiles
+// Contrôles tactiles & mobiles
 const btnUp = document.getElementById('btn-up');
 const btnDown = document.getElementById('btn-down');
 const btnLeft = document.getElementById('btn-left');
