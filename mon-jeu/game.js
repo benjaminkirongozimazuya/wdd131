@@ -216,7 +216,9 @@ let player = {
   dx: 0,
   dy: 0,
   isDashing: false,
-  dashCooldown: 0
+  dashCooldown: 0,
+  lastVx: 1,
+  lastVy: 0
 };
 
 // Trésor (Position dynamique)
@@ -228,27 +230,30 @@ let enemies = [];
 let breakableWalls = [];
 let traps = [];
 
-// Commandes clavier
+// Commandes clavier robustes (compatible flèches, WASD, ZQSD)
 const keys = {};
 
 window.addEventListener('keydown', (e) => {
-  keys[e.key] = true;
-  if (e.key === ' ' || e.key === 'Spacebar') {
+  keys[e.code] = true;
+  keys[e.key.toLowerCase()] = true;
+  
+  if (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space') {
     triggerDash();
   }
-  if (e.key === 'f' || e.key === 'F') {
+  if (e.key === 'f' || e.key === 'F' || e.code === 'KeyF') {
     shootBullet();
   }
 });
 
 window.addEventListener('keyup', (e) => {
-  keys[e.key] = false;
+  keys[e.code] = false;
+  keys[e.key.toLowerCase()] = false;
 });
 
 // --- INITIALISATION DU NIVEAU ---
 function loadLevel(index) {
   if (index >= levelsConfig.length) {
-    index = 0; // Boucle ou écran de victoire finale
+    index = 0;
   }
   currentLevelIndex = index;
   const config = levelsConfig[index];
@@ -258,11 +263,9 @@ function loadLevel(index) {
   player.y = 75;
   bullets = [];
   
-  // Charger les murs destructibles
   breakableWalls = config.breakables.map(pos => ({ r: pos[0], c: pos[1] }));
   traps = config.traps.map(pos => ({ r: pos[0], c: pos[1] }));
   
-  // Charger les ennemis
   enemies = config.enemies.map(en => ({
     x: en.x,
     y: en.y,
@@ -271,7 +274,6 @@ function loadLevel(index) {
     size: 20
   }));
 
-  // Placer le trésor aléatoirement sur une case vide
   placeRandomTreasure();
   updateHUD();
 }
@@ -283,7 +285,6 @@ function placeRandomTreasure() {
   for (let r = 0; r < map.length; r++) {
     for (let c = 0; c < map[r].length; c++) {
       if (map[r][c] === 0) {
-        // Éviter de placer sur le joueur au départ
         if (!(r === 1 && c === 1)) {
           emptyTiles.push({ r, c });
         }
@@ -314,8 +315,8 @@ function shootBullet() {
     bullets.push({
       x: player.x,
       y: player.y,
-      vx: player.lastVx * 8 || 8,
-      vy: player.lastVy * 8 || 0,
+      vx: player.lastVx * 8,
+      vy: player.lastVy * 8,
       size: 6
     });
     updateHUD();
@@ -326,22 +327,21 @@ function shootBullet() {
 function update() {
   if (gameOver) return;
 
-  // Gestion des mouvements
   player.dx = 0;
   player.dy = 0;
   let currentSpeed = player.isDashing ? player.speed * 2.2 : player.speed;
 
-  if (keys['ArrowUp'] || keys['w'] || keys['W']) player.dy = -currentSpeed;
-  if (keys['ArrowDown'] || keys['s'] || keys['S']) player.dy = currentSpeed;
-  if (keys['ArrowLeft'] || keys['a'] || keys['A']) player.dx = -currentSpeed;
-  if (keys['ArrowRight'] || keys['d'] || keys['D']) player.dx = currentSpeed;
+  // Lecture des mouvements compatibles
+  if (keys['ArrowUp'] || keys['w'] || keys['W'] || keys['KeyW'] || keys['z'] || keys['Z'] || keys['KeyZ']) player.dy = -currentSpeed;
+  if (keys['ArrowDown'] || keys['s'] || keys['S'] || keys['KeyS']) player.dy = currentSpeed;
+  if (keys['ArrowLeft'] || keys['q'] || keys['Q'] || keys['KeyQ'] || keys['a'] || keys['A'] || keys['KeyA']) player.dx = -currentSpeed;
+  if (keys['ArrowRight'] || keys['d'] || keys['D'] || keys['KeyD']) player.dx = currentSpeed;
 
   if (player.dx !== 0 || player.dy !== 0) {
     player.lastVx = player.dx !== 0 ? Math.sign(player.dx) : 0;
     player.lastVy = player.dy !== 0 ? Math.sign(player.dy) : 0;
   }
 
-  // Déplacement avec collisions fluides
   movePlayerWithCollisions();
 
   if (player.dashCooldown > 0) player.dashCooldown--;
@@ -352,7 +352,6 @@ function update() {
     b.x += b.vx;
     b.y += b.vy;
 
-    // Collision murs normaux
     let map = levelMaps[currentLevelIndex];
     let tileR = Math.floor(b.y / TILE_SIZE);
     let tileC = Math.floor(b.x / TILE_SIZE);
@@ -362,7 +361,6 @@ function update() {
       continue;
     }
 
-    // Collision murs destructibles
     let wallIndex = breakableWalls.findIndex(w => w.r === tileR && w.c === tileC);
     if (wallIndex !== -1) {
       breakableWalls.splice(wallIndex, 1);
@@ -376,11 +374,9 @@ function update() {
     en.x += en.vx;
     en.y += en.vy;
 
-    // Rebond sur les bords du canvas
     if (en.x < 50 || en.x > canvas.width - 50) en.vx *= -1;
     if (en.y < 50 || en.y > canvas.height - 50) en.vy *= -1;
 
-    // Collision avec le joueur
     let dist = Math.hypot(player.x - en.x, player.y - en.y);
     if (dist < player.size / 2 + en.size / 2 && !player.isDashing) {
       handlePlayerHit();
@@ -400,13 +396,11 @@ function update() {
 function movePlayerWithCollisions() {
   let map = levelMaps[currentLevelIndex];
 
-  // Axe X
   player.x += player.dx;
   if (checkCollision(player.x, player.y, map)) {
     player.x -= player.dx;
   }
 
-  // Axe Y
   player.y += player.dy;
   if (checkCollision(player.x, player.y, map)) {
     player.y -= player.dy;
@@ -429,7 +423,6 @@ function checkCollision(x, y, map) {
     if (r < 0 || r >= map.length || c < 0 || c >= map[0].length) return true;
     if (map[r][c] === 1) return true;
 
-    // Vérifier les murs destructibles
     if (breakableWalls.some(w => w.r === r && w.c === c)) return true;
   }
   return false;
@@ -442,7 +435,6 @@ function handlePlayerHit() {
   if (lives <= 0) {
     triggerGameOver();
   } else {
-    // Réinitialiser la position sans recommencer le niveau du début
     player.x = 75;
     player.y = 75;
   }
@@ -467,7 +459,7 @@ function triggerGameOver() {
   showOverlay("GAME OVER", "Le réseau vous a eu...", "RÉESSAYER", () => {
     lives = 3;
     gameOver = false;
-    loadLevel(currentLevelIndex); // Redémarre au niveau actuel sans repartir de zéro
+    loadLevel(currentLevelIndex);
   });
 }
 
@@ -479,7 +471,6 @@ function showOverlay(title, msg, btnText, callback) {
   const btn = document.getElementById("btn-action-main");
   btn.innerText = btnText;
   
-  // Remplacer l'action du bouton proprement
   btn.onclick = () => {
     screen.classList.add("hidden");
     callback();
@@ -494,13 +485,12 @@ function updateHUD() {
   document.getElementById("lives-val").innerText = '♥'.repeat(Math.max(0, lives));
 }
 
-// --- RENDU GRAPHIQUE (60 FPS FLUIDE) ---
+// --- RENDU GRAPHIQUE ---
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   let map = levelMaps[currentLevelIndex];
 
-  // Dessiner la grille & les murs
   for (let r = 0; r < map.length; r++) {
     for (let c = 0; c < map[r].length; c++) {
       if (map[r][c] === 1) {
@@ -513,22 +503,19 @@ function draw() {
     }
   }
 
-  // Murs destructibles
   ctx.fillStyle = "#e67e22";
   breakableWalls.forEach(w => {
     ctx.fillRect(w.c * TILE_SIZE + 2, w.r * TILE_SIZE + 2, TILE_SIZE - 4, TILE_SIZE - 4);
   });
 
-  // Trésor (avec effet de brillance)
   ctx.fillStyle = "#ffcc00";
   ctx.shadowColor = "#ffcc00";
   ctx.shadowBlur = 12;
   ctx.beginPath();
   ctx.arc(treasure.x, treasure.y, treasure.size / 2, 0, Math.PI * 2);
   ctx.fill();
-  ctx.shadowBlur = 0; // Reset shadow
+  ctx.shadowBlur = 0;
 
-  // Joueur
   ctx.fillStyle = player.isDashing ? "#ff007f" : "#00f3ff";
   ctx.shadowColor = ctx.fillStyle;
   ctx.shadowBlur = 15;
@@ -537,7 +524,6 @@ function draw() {
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // Balles
   ctx.fillStyle = "#00ff66";
   bullets.forEach(b => {
     ctx.beginPath();
@@ -545,7 +531,6 @@ function draw() {
     ctx.fill();
   });
 
-  // Ennemis
   ctx.fillStyle = "#ff1a1a";
   enemies.forEach(en => {
     ctx.shadowColor = "#ff1a1a";
@@ -555,36 +540,56 @@ function draw() {
   });
 }
 
-// Boucle principale du jeu
 function gameLoop() {
   update();
   draw();
   requestAnimationFrame(gameLoop);
 }
 
-// Contrôles tactiles mobiles
-document.getElementById('btn-up').addEventListener('touchstart', () => { keys['ArrowUp'] = true; });
-document.getElementById('btn-up').addEventListener('touchend', () => { keys['ArrowUp'] = false; });
-document.getElementById('btn-down').addEventListener('touchstart', () => { keys['ArrowDown'] = true; });
-document.getElementById('btn-down').addEventListener('touchend', () => { keys['ArrowDown'] = false; });
-document.getElementById('btn-left').addEventListener('touchstart', () => { keys['ArrowLeft'] = true; });
-document.getElementById('btn-left').addEventListener('touchend', () => { keys['ArrowLeft'] = false; });
-document.getElementById('btn-right').addEventListener('touchstart', () => { keys['ArrowRight'] = true; });
-document.getElementById('btn-right').addEventListener('touchend', () => { keys['ArrowRight'] = false; });
+// Contrôles tactiles / boutons mobiles
+const btnUp = document.getElementById('btn-up');
+const btnDown = document.getElementById('btn-down');
+const btnLeft = document.getElementById('btn-left');
+const btnRight = document.getElementById('btn-right');
 
-document.getElementById('btn-dash').addEventListener('click', triggerDash);
-document.getElementById('btn-shoot').addEventListener('click', shootBullet);
+if (btnUp) {
+  btnUp.addEventListener('touchstart', () => { keys['ArrowUp'] = true; });
+  btnUp.addEventListener('touchend', () => { keys['ArrowUp'] = false; });
+}
+if (btnDown) {
+  btnDown.addEventListener('touchstart', () => { keys['ArrowDown'] = true; });
+  btnDown.addEventListener('touchend', () => { keys['ArrowDown'] = false; });
+}
+if (btnLeft) {
+  btnLeft.addEventListener('touchstart', () => { keys['ArrowLeft'] = true; });
+  btnLeft.addEventListener('touchend', () => { keys['ArrowLeft'] = false; });
+}
+if (btnRight) {
+  btnRight.addEventListener('touchstart', () => { keys['ArrowRight'] = true; });
+  btnRight.addEventListener('touchend', () => { keys['ArrowRight'] = false; });
+}
+
+const btnDash = document.getElementById('btn-dash');
+const btnShoot = document.getElementById('btn-shoot');
+if (btnDash) btnDash.addEventListener('click', triggerDash);
+if (btnShoot) btnShoot.addEventListener('click', shootBullet);
 
 // Gestion de la modale d'aide
-document.getElementById('btn-help').addEventListener('click', () => {
-  document.getElementById('help-modal').classList.remove('hidden');
-  gameOver = true;
-});
-document.getElementById('btn-close-help').addEventListener('click', () => {
-  document.getElementById('help-modal').classList.add('hidden');
-  gameOver = false;
-});
+const btnHelp = document.getElementById('btn-help');
+const btnCloseHelp = document.getElementById('btn-close-help');
+if (btnHelp) {
+  btnHelp.addEventListener('click', () => {
+    document.getElementById('help-modal').classList.remove('hidden');
+    gameOver = true;
+  });
+}
+if (btnCloseHelp) {
+  btnCloseHelp.addEventListener('click', () => {
+    document.getElementById('help-modal').classList.add('hidden');
+    gameOver = false;
+  });
+}
 
-// Démarrage initial du jeu au Niveau 1
+// Démarrage initial
 loadLevel(0);
 gameLoop();
