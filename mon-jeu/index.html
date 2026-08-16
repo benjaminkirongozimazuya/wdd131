@@ -2,80 +2,70 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Cyber Maze Pro - 10 Levels</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maze Treasure</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="game-wrapper">
-    <!-- En-tête HUD -->
-    <header class="hud-container">
-      <div class="hud-box">
-        <span class="hud-label">NIVEAU</span>
-        <span id="level-val" class="hud-value" style="color: #ffcc00;">1/10</span>
-      </div>
-      <div class="hud-box">
-        <span class="hud-label">SCORE</span>
-        <span id="score-val" class="hud-value">0000</span>
-      </div>
-      <div class="hud-box">
-        <span class="hud-label">BALLES</span>
-        <span id="ammo-val" class="hud-value" style="color: #00ff66;">05</span>
-      </div>
-      <div class="hud-box">
-        <span class="hud-label">VIES</span>
-        <span id="lives-val" class="hud-value" style="color: #ff007f;">♥♥♥</span>
-      </div>
-      <button id="btn-help" class="hud-btn-help">?</button>
-    </header>
+  <div id="game-container">
 
-    <!-- Zone Canvas du jeu -->
-    <div class="canvas-container">
-      <canvas id="gameCanvas" width="800" height="500"></canvas>
-      
-      <!-- Fenêtre d'explication (Modal de Règles) -->
-      <div id="help-modal" class="overlay">
-        <div class="modal-content">
-          <h2>📜 RÈGLES DU JEU</h2>
-          <div class="instructions">
-            <p><strong>OBJECTIF :</strong> Traverser le labyrinthe et récupérer le <span>TRÉSOR DORÉ</span> pour passer au niveau suivant (10 niveaux au total).</p>
-            <hr>
-            <ul>
-              <li><span class="highlight-cyan">Noyau Bleu (Vous) :</span> Déplacez-vous avec les flèches du clavier ou le d-pad.</li>
-              <li><span class="highlight-orange">Murs Oranges :</span> Destructibles en tirant dessus (Touche <strong>F</strong> ou bouton <strong>TIRER</strong>).</li>
-              <li><span class="highlight-red">Drones & Lasers :</span> Vous éliminent au contact. Utilisez le <strong>DASH</strong> (Espace) pour passer vite !</li>
-              <li><span class="highlight-green">Munitions :</span> Économisez vos balles ou ramassez les recharges sur la carte.</li>
-            </ul>
-          </div>
-          <button id="btn-close-help" class="btn-primary">JOUER / REPRENDRE</button>
-        </div>
-      </div>
-
-      <!-- Écran d'Inter-niveau & Game Over -->
-      <div id="game-over-screen" class="overlay hidden">
-        <h2 id="over-title">LEVEL COMPLETE !</h2>
-        <p id="over-msg">Préparez-vous pour la suite...</p>
-        <button id="btn-action-main" onclick="handleScreenAction()" class="btn-primary">NIVEAU SUIVANT</button>
-      </div>
+    <div id="hud">
+      <div>NIVEAU <span id="level-val">1/30</span></div>
+      <div>SCORE <span id="score-val">0000</span></div>
+      <div>MUNITIONS <span id="ammo-val">00</span></div>
+      <div>VIES <span id="lives-val">♥♥♥</span></div>
     </div>
 
-    <!-- Contrôles Téléphone -->
-    <div class="mobile-controls">
+    <canvas id="gameCanvas" width="800" height="500"></canvas>
+
+    <!-- Contrôles tactiles -->
+    <div id="mobile-controls">
+
       <div class="dpad">
-        <button id="btn-up" class="dbtn dbtn-up">▲</button>
-        <div class="dpad-middle">
-          <button id="btn-left" class="dbtn dbtn-left">◀</button>
-          <button id="btn-down" class="dbtn dbtn-down">▼</button>
-          <button id="btn-right" class="dbtn dbtn-right">▶</button>
+        <button id="btn-up">▲</button>
+
+        <div>
+          <button id="btn-left">◀</button>
+          <button id="btn-down">▼</button>
+          <button id="btn-right">▶</button>
         </div>
       </div>
+
       <div class="action-buttons">
-        <button id="btn-shoot" class="abtn btn-fire">TIRER<br>(Balle)</button>
-        <button id="btn-dash" class="abtn btn-dash">DASH<br>(Esquive)</button>
+        <button id="btn-shoot">F</button>
+        <button id="btn-dash">DASH</button>
+      </div>
+
+    </div>
+
+    <button id="btn-help">?</button>
+
+    <!-- Écran de fin -->
+    <div id="game-over-screen" class="hidden">
+      <div class="modal">
+        <h1 id="over-title">GAME OVER</h1>
+        <p id="over-msg">Vous avez perdu toutes vos vies...</p>
+        <button id="btn-screen-action">CONTINUER</button>
       </div>
     </div>
+
+    <!-- Aide -->
+    <div id="help-modal" class="hidden">
+      <div class="modal">
+        <button id="btn-close-help">X</button>
+
+        <h2>COMMENT JOUER</h2>
+
+        <p>🎮 Déplacez-vous avec les flèches ou WASD.</p>
+        <p>🔫 Appuyez sur <b>F</b> pour tirer.</p>
+        <p>⚡ Appuyez sur <b>ESPACE</b> pour effectuer un dash.</p>
+        <p>💰 Trouvez le trésor pour terminer le niveau.</p>
+        <p>💗 Évitez les ennemis et les pièges.</p>
+      </div>
+    </div>
+
   </div>
 
   <script src="game.js"></script>
