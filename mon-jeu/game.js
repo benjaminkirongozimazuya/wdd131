@@ -473,6 +473,7 @@ function showOverlay(title, msg, btnText, callback) {
   
   btn.onclick = () => {
     screen.classList.add("hidden");
+    gameOver = false; // <-- Correction : Débloque le jeu lors du changement de niveau ou redémarrage
     callback();
   };
   screen.classList.remove("hidden");
