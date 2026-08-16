@@ -79,7 +79,20 @@ function playDefeatSound() {
 
 
 // ==========================================
-// 3. BANQUE DE DONNÉES - NIVEAUX (1 À 10)
+// 3. VARIABLES D'ÉTAT DU JEU
+// ==========================================
+let currentMode = null;       // 'level' ou 'category'
+let currentIdentifier = null; // Numéro du niveau (1-10) ou nom de la catégorie ('histoire', etc.)
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+let coins = 0;
+let timer;
+let timeLeft = 15;
+
+
+// ==========================================
+// 4. BANQUE DE DONNÉES - NIVEAUX (1 À 10)
 // ==========================================
 const levelsData = {
   1: [
@@ -146,7 +159,7 @@ const levelsData = {
 
 
 // ==========================================
-// 4. BANQUE DE DONNÉES - CATÉGORIES (+200 QUESTIONS AU TOTAL)
+// 5. BANQUE DE DONNÉES - CATÉGORIES (INTÉGRALE)
 // ==========================================
 const questionsData = {
   histoire: [
@@ -342,196 +355,228 @@ const questionsData = {
 
 
 // ==========================================
-// 5. ÉTATS ET LOGIQUE DU JEU
+// 6. LOGIQUE DE NAVIGATION DES ONGLETS
 // ==========================================
-let currentQuestions = [];
-let currentQuestionIndex = 0;
-let score = 0;
-let currentModeTitle = "";
-let currentStorageKey = "";
-let lastGameType = "";
-let lastTarget = "";
-
-let timerInterval;
-const QUESTION_TIME_LIMIT = 15;
-
 function switchTab(tabName) {
-  const levelsTab = document.getElementById("levels-tab");
-  const categoriesTab = document.getElementById("categories-tab");
-  const levelsBtn = document.getElementById("tab-levels-btn");
-  const categoriesBtn = document.getElementById("tab-categories-btn");
+  const levelsTab = document.getElementById('levels-tab');
+  const categoriesTab = document.getElementById('categories-tab');
+  const btnLevels = document.getElementById('tab-levels-btn');
+  const btnCategories = document.getElementById('tab-categories-btn');
 
-  if (tabName === "levels") {
-    levelsTab.style.display = "block";
-    categoriesTab.style.display = "none";
-    levelsBtn.classList.add("active");
-    categoriesBtn.classList.remove("active");
+  if (tabName === 'levels') {
+    levelsTab.style.display = 'block';
+    categoriesTab.style.display = 'none';
+    btnLevels.classList.add('active');
+    btnCategories.classList.remove('active');
   } else {
-    levelsTab.style.display = "none";
-    categoriesTab.style.display = "block";
-    categoriesBtn.classList.add("active");
-    levelsBtn.classList.remove("active");
+    levelsTab.style.display = 'none';
+    categoriesTab.style.display = 'block';
+    btnCategories.classList.add('active');
+    btnLevels.classList.remove('active');
   }
 }
 
-function startQuiz(type, target) {
-  lastGameType = type;
-  lastTarget = target;
 
-  if (type === 'level') {
-    currentQuestions = shuffleArray([...levelsData[target]]);
-    currentModeTitle = `Niveau ${target}`;
-    currentStorageKey = `quiz_best_level_${target}`;
-  } else {
-    const rawQuestions = [...questionsData[target]];
-    currentQuestions = shuffleArray(rawQuestions).slice(0, 10); // 10 questions aléatoires par session de catégorie
-    currentModeTitle = target.charAt(0).toUpperCase() + target.slice(1);
-    currentStorageKey = `quiz_best_cat_${target}`;
-  }
-
-  currentQuestionIndex = 0;
+// ==========================================
+// 7. LANCEMENT DU QUIZ & GESTION DES QUESTIONS
+// ==========================================
+function startQuiz(mode, identifier) {
+  currentMode = mode;
+  currentIdentifier = identifier;
   score = 0;
+  currentQuestionIndex = 0;
 
-  document.getElementById("selection-screen").style.display = "none";
-  document.getElementById("quiz-box").style.display = "block";
-  document.getElementById("result-box").style.display = "none";
+  if (mode === 'level') {
+    currentQuestions = [...levelsData[identifier]];
+    document.getElementById('mode-indicator').innerText = `Niveau ${identifier}`;
+  } else {
+    currentQuestions = [...questionsData[identifier]];
+    // Mélange aléatoire des questions de la catégorie
+    currentQuestions.sort(() => Math.random() - 0.5);
+    // Limiter à 10 questions par partie de catégorie
+    currentQuestions = currentQuestions.slice(0, 10);
+    document.getElementById('mode-indicator').innerText = `Catégorie : ${identifier.toUpperCase()}`;
+  }
 
-  showQuestion();
+  document.getElementById('selection-screen').style.display = 'none';
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('quiz-box').style.display = 'block';
+
+  loadQuestion();
 }
 
-function showQuestion() {
-  clearInterval(timerInterval);
+function loadQuestion() {
+  clearInterval(timer);
+  if (currentQuestionIndex >= currentQuestions.length) {
+    endQuiz();
+    return;
+  }
+
   const q = currentQuestions[currentQuestionIndex];
+  document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1}/${currentQuestions.length}`;
+  document.getElementById('question-text').innerText = q.question;
 
-  document.getElementById("mode-indicator").innerText = currentModeTitle;
-  document.getElementById("question-number").innerText = `Question ${currentQuestionIndex + 1} / ${currentQuestions.length}`;
-  document.getElementById("coin-count").innerText = score;
-  document.getElementById("question-text").innerText = q.question;
+  const optionsContainer = document.getElementById('options-container');
+  optionsContainer.innerHTML = '';
 
-  const optionsContainer = document.getElementById("options-container");
-  optionsContainer.innerHTML = "";
-
-  const shuffledOptions = shuffleArray([...q.options]);
+  // Mélange des options de réponse
+  const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
 
   shuffledOptions.forEach(option => {
-    const btn = document.createElement("button");
-    btn.className = "btn-option";
+    const btn = document.createElement('button');
+    btn.className = 'btn-option';
     btn.innerText = option;
-
-    btn.addEventListener("click", () => handleSelectOption(btn, option, q.answer));
+    btn.onclick = () => selectAnswer(btn, option, q.answer);
     optionsContainer.appendChild(btn);
   });
 
-  startTimer(q.answer);
+  startTimer();
 }
 
-function startTimer(correctAnswer) {
-  let timeLeft = QUESTION_TIME_LIMIT;
-  const timerBar = document.getElementById("timer-bar");
-  
-  timerBar.style.width = "100%";
-  timerBar.style.backgroundColor = "var(--secondary-color)";
 
-  timerInterval = setInterval(() => {
+// ==========================================
+// 8. GESTION DU CHRONOMÈTRE
+// ==========================================
+function startTimer() {
+  timeLeft = 15;
+  const timerBar = document.getElementById('timer-bar');
+  timerBar.style.width = '100%';
+  timerBar.style.backgroundColor = 'var(--secondary-color)';
+
+  timer = setInterval(() => {
     timeLeft -= 0.1;
-    const percentage = (timeLeft / QUESTION_TIME_LIMIT) * 100;
-    timerBar.style.width = `${Math.max(0, percentage)}%`;
+    const percentage = (timeLeft / 15) * 100;
+    timerBar.style.width = `${percentage}%`;
 
-    if (percentage < 30) {
-      timerBar.style.backgroundColor = "var(--danger-color)";
-    } else if (percentage < 60) {
-      timerBar.style.backgroundColor = "var(--gold-color)";
+    if (timeLeft <= 5) {
+      timerBar.style.backgroundColor = 'var(--danger-color)';
     }
 
     if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      handleSelectOption(null, null, correctAnswer);
+      clearInterval(timer);
+      handleTimeout();
     }
   }, 100);
 }
 
-function handleSelectOption(selectedBtn, selectedOption, correctOption) {
-  clearInterval(timerInterval);
+function handleTimeout() {
+  const options = document.querySelectorAll('.btn-option');
+  options.forEach(btn => {
+    btn.disabled = true;
+    const q = currentQuestions[currentQuestionIndex];
+    if (btn.innerText === q.answer) {
+      btn.classList.add('correct');
+    }
+  });
 
-  const allBtns = document.querySelectorAll(".btn-option");
-  allBtns.forEach(btn => btn.disabled = true);
+  playDefeatSound();
 
-  if (selectedOption === correctOption) {
-    if (selectedBtn) selectedBtn.classList.add("correct");
+  setTimeout(() => {
+    currentQuestionIndex++;
+    loadQuestion();
+  }, 1500);
+}
+
+
+// ==========================================
+// 9. VALIDATION DES RÉPONSES
+// ==========================================
+function selectAnswer(selectedBtn, chosen, correct) {
+  clearInterval(timer);
+  const options = document.querySelectorAll('.btn-option');
+  options.forEach(btn => btn.disabled = true);
+
+  if (chosen === correct) {
+    selectedBtn.classList.add('correct');
     score += 10;
+    coins += 5;
+    document.getElementById('coin-count').innerText = coins;
   } else {
-    if (selectedBtn) selectedBtn.classList.add("wrong");
-    allBtns.forEach(btn => {
-      if (btn.innerText === correctOption) {
-        btn.classList.add("correct");
+    selectedBtn.classList.add('wrong');
+    playDefeatSound();
+    options.forEach(btn => {
+      if (btn.innerText === correct) {
+        btn.classList.add('correct');
       }
     });
   }
 
-  document.getElementById("coin-count").innerText = score;
-
   setTimeout(() => {
     currentQuestionIndex++;
-    if (currentQuestionIndex < currentQuestions.length) {
-      showQuestion();
-    } else {
-      endQuiz();
-    }
-  }, 1000);
+    loadQuestion();
+  }, 1500);
 }
 
+
+// ==========================================
+// 10. FIN DU QUIZ & AUTOMATISATION DU NIVEAU SUIVANT
+// ==========================================
 function endQuiz() {
-  clearInterval(timerInterval);
-  document.getElementById("quiz-box").style.display = "none";
-  document.getElementById("result-box").style.display = "block";
+  clearInterval(timer);
+  document.getElementById('quiz-box').style.display = 'none';
+  document.getElementById('result-box').style.display = 'block';
 
-  const totalQuestions = currentQuestions.length;
-  const maxCoins = totalQuestions * 10;
-  const successThreshold = (Math.ceil(totalQuestions / 2)) * 10;
+  const maxScore = currentQuestions.length * 10;
+  const passed = score >= maxScore / 2;
 
-  const resultTitleElem = document.getElementById("result-title");
-  const finalScoreElem = document.getElementById("final-score");
-  const encouragementMsgElem = document.getElementById("encouragement-msg");
-
-  finalScoreElem.innerHTML = `${currentModeTitle} terminé ! Vous avez gagné : <img src="images/coin.png" class="coin-img" alt="🪙"> <strong>${score} / ${maxCoins}</strong> Pièces d'Or`;
-
-  if (score < successThreshold) {
-    playDefeatSound();
-    resultTitleElem.innerText = "❌ Tu as échoué !";
-    resultTitleElem.style.color = "#ef4444";
-    encouragementMsgElem.innerText = "Ne te décourage pas ! C'est en faisant des erreurs qu'on apprend. Relève le défi, réessaie pour accumuler plus de pièces ! 💪";
-  } else {
+  if (passed) {
     playVictorySound();
-    resultTitleElem.innerText = "🎉 Félicitations, c'est gagné !";
-    resultTitleElem.style.color = "#10b981";
-    encouragementMsgElem.innerText = "Super travail ! Tu maîtrises bien ce mode. Continue sur cette lancée ! 🚀";
+    document.getElementById('result-title').innerText = "🎉 Félicitations ! Partie Gagnée !";
+    document.getElementById('encouragement-msg').innerText = "Excellent travail ! Vous maîtrisez parfaitement ce sujet.";
+  } else {
+    playDefeatSound();
+    document.getElementById('result-title').innerText = "💡 Dommage ! Partie Terminée.";
+    document.getElementById('encouragement-msg').innerText = "Ne lâchez rien ! Retentez votre chance pour progresser.";
   }
 
-  const bestScore = parseInt(localStorage.getItem(currentStorageKey) || 0);
+  document.getElementById('final-score').innerText = `Score : ${score} / ${maxScore}`;
+  document.getElementById('high-score').innerText = `Pièces gagnées : +${coins} 🪙`;
 
-  if (score > bestScore) {
-    localStorage.setItem(currentStorageKey, score);
-    document.getElementById("high-score").innerHTML = `🏆 Nouveau record personnel : <img src="images/coin.png" class="coin-img" alt="🪙"> <strong>${score}</strong> Pièces d'Or !`;
-  } else {
-    document.getElementById("high-score").innerHTML = `Meilleur trésor enregistré : <img src="images/coin.png" class="coin-img" alt="🪙"> ${bestScore} Pièces d'Or`;
+  // Gestion dynamique de l'automatisation du niveau suivant
+  setupResultActions();
+}
+
+function setupResultActions() {
+  const resultActionsDiv = document.querySelector('.result-actions');
+  
+  // Supprimer l'ancien bouton 'Niveau Suivant' s'il existe déjà pour éviter les doublons
+  const existingNextBtn = document.getElementById('btn-next-level');
+  if (existingNextBtn) {
+    existingNextBtn.remove();
+  }
+
+  // Vérifier si nous sommes en mode 'level' et que le niveau actuel est < 10
+  if (currentMode === 'level' && currentIdentifier < 10) {
+    const nextLevelBtn = document.createElement('button');
+    nextLevelBtn.id = 'btn-next-level';
+    nextLevelBtn.className = 'btn-home'; // Utilise le style d'un bouton principal
+    nextLevelBtn.innerHTML = `⏩ Niveau ${currentIdentifier + 1} Suivant`;
+    nextLevelBtn.onclick = () => goToNextLevel();
+    
+    // Insérer le bouton juste avant le bouton Accueil
+    resultActionsDiv.appendChild(nextLevelBtn);
+  }
+}
+
+function goToNextLevel() {
+  if (currentIdentifier < 10) {
+    startQuiz('level', currentIdentifier + 1);
   }
 }
 
 function restartSameGame() {
-  if (lastGameType && lastTarget) {
-    startQuiz(lastGameType, lastTarget);
-  } else {
-    resetQuiz();
-  }
+  startQuiz(currentMode, currentIdentifier);
 }
 
 function resetQuiz() {
-  clearInterval(timerInterval);
-  document.getElementById("quiz-box").style.display = "none";
-  document.getElementById("result-box").style.display = "none";
-  document.getElementById("selection-screen").style.display = "block";
-}
-
-function shuffleArray(array) {
-  return array.sort(() => Math.random() - 0.5);
+  clearInterval(timer);
+  document.getElementById('quiz-box').style.display = 'none';
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('selection-screen').style.display = 'block';
+  
+  // Nettoyer le bouton de niveau suivant si on retourne à l'accueil
+  const existingNextBtn = document.getElementById('btn-next-level');
+  if (existingNextBtn) {
+    existingNextBtn.remove();
+  }
 }
