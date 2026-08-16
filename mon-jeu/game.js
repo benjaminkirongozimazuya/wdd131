@@ -265,6 +265,7 @@ function loadLevel(index) {
   player.y = 75;
   bullets = [];
   magicalParticles = [];
+  gameOver = false; // S'assure de débloquer l'état du jeu lors du chargement d'un niveau
   
   breakableWalls = config.breakables.map(pos => ({ r: pos[0], c: pos[1] }));
   traps = config.traps.map(pos => ({ r: pos[0], c: pos[1] }));
