@@ -1,16 +1,16 @@
 :root {
   /* Couleurs de fond */
-  --bg-dark: #f8fafc;           
+  --bg-dark: #f8fafc;          
   --card-bg: rgba(255, 255, 255, 0.75); /* Fond carte glacé */
   --inner-bg: rgba(241, 245, 249, 0.85); 
   
   /* Couleurs d'accentuation (Accentuées pour de meilleurs contrastes SEO/Accessibilité) */
-  --accent-gold: #b45309;       
+  --accent-gold: #b45309;      
   --accent-gold-hover: #92400e;   
   --accent-blue: #0284c7;
   
   /* Couleurs de texte */
-  --text-main: #0f172a;         
+  --text-main: #0f172a;        
   --text-muted: #334155;        
   --border-color: rgba(255, 255, 255, 0.4);      
   
@@ -268,13 +268,21 @@ body {
 /* ----------------------------------
    Grilles Adaptatives (Responsive)
 ---------------------------------- */
-.founders-grid, .events-grid, .library-grid {
+.founders-grid, .events-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
-.founder-card, .event-item, .book-card {
+/* Mise à jour spécifique pour la grille de la bibliothèque (6 livres) */
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.founder-card, .event-item {
   background: var(--inner-bg);
   border: 1px solid var(--border-color);
   padding: 20px;
@@ -316,10 +324,60 @@ body {
 .event-badge.formation { background-color: #d97706; color: #fff; }
 .event-date { color: var(--accent-gold); font-size: 0.85rem; font-weight: bold; margin-bottom: 10px; }
 
-.book-card { display: flex; flex-direction: column; justify-content: space-between; }
-.book-badge { background: #fff; color: var(--accent-gold); border: 1px solid var(--accent-gold); }
-.book-author { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 8px; font-weight: 600; }
-.book-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px; }
+/* Mise à jour des cartes de livres (Alignement parfait des 6 blocs) */
+.book-card { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  background: var(--inner-bg);
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.book-card > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-badge { 
+  background: #fff; 
+  color: var(--accent-gold); 
+  border: 1px solid var(--accent-gold);
+  width: fit-content;
+}
+
+.book-card h3 {
+  font-size: 1.15rem;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.book-author { 
+  font-size: 0.85rem; 
+  color: var(--accent-blue); 
+  margin-bottom: 8px; 
+  font-weight: 600; 
+}
+
+.book-desc { 
+  font-size: 0.88rem; 
+  color: var(--text-muted); 
+  margin-bottom: 18px; 
+  line-height: 1.5;
+}
+
+.book-card .btn-book {
+  margin-top: auto;
+  width: 100%;
+  text-align: center;
+}
 
 /* ----------------------------------
    Formulaires
